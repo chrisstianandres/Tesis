@@ -1,0 +1,194 @@
+<title>Listado Asignaciones de Materias</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-user-circle-o"></i> Materias Asignadas</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px; width: 80%">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-user-circle-o fa-lg"></i> <strong>Materias Asignadas</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover " id="asignar">
+                        <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>Periodo</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if Asignadas %}
+                            {% for Asignar in Asignadas %}
+                                <tr>
+                                    <td> {{ Asignar.materia }}  </td>
+                                    <td> {{ Asignar.periodo }} </td>
+                                    <td><a type="button" class="btn btn-default btn-xs"
+                                       href="{% url 'materias:plan' Asignar.materia.id %}"><span
+                                        class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+                                        title="Ver Plan"> </span></a>
+                                        <a type="button" class="btn btn-primary btn-xs"
+                                           href="{% url 'curso:cursos' Asignar.materia.id Asignar.periodo.id%}">
+                                        <span class="glyphicon glyphicon-list" data-toggle="tooltip"
+                                        title="Ver cursos Asignados"> </span></a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+        <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+            font-size: 16px;
+        }
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+           color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
+    </style>
+
+
+    <script>
+    var table;
+        $(document).ready(function () {
+            tabla();
+        });
+
+        function tabla() {
+           table= $('#asignar').DataTable({
+                destroy: true,
+                responsive: true,
+                columnDefs: [
+                    {"className": "dt-center", "targets": [0, 2]},
+                    {width: "12%", bSortable: false, "targets": [-1]}
+                ],
+            });
+           filtros();
+        }
+
+        function filtros() {
+            $('#asignar thead th').each(function () {
+                var title = $(this).text();
+                if (title === 'Materia') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Nombre') {
+                     $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Periodo') {
+                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }
+            });
+
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        $('.tooltip').remove();
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+        }
+
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

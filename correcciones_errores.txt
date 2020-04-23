@@ -1,0 +1,28 @@
+<-----------------------CORRECIONES Y ERRORES------------------------------------>
+
+
+<------------------------REPORTES EN PDF----------------------------------------->
+
+generar reporte de materias asignadas por docente desde la tabla docente 
+generar reporte de materias asignadas general
+generar reporte de materias asignadas al docente logeado
+generar reporte de plan de clase de cada materia 
+generar reporte de alumnos 
+generar reporte de asistencias 
+generar reporte de notas 
+generar reporte de matriculas 
+
+
+
+
+
+<-------------------------DOCUMENTO DE TESIS------------------------------------->
+
+modificar el diagrama de base de datos 
+agregar pruebas de caja blanca o negra
+agregar manual de usuario
+agregar manual tecnico
+
+
+
+<---------------------------------FIN-------------------------------------------->

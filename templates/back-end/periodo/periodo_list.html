@@ -1,0 +1,188 @@
+<title>Listado de Periodos</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-clock-o"></i> Periodos</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-clock-o fa-lg"></i> <strong>Periodos</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="periodos">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Inicio</th>
+                            <th>Final</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if lista %}
+                            {% for Periodo in lista %}
+                                <tr>
+                                    <td>{{ Periodo.id }}</td>
+                                    <td>{{ Periodo.periodo_inicio }}</td>
+                                    <td> {{ Periodo.periodo_fin }}  </td>
+                                    <td><a type="button" class="btn btn-primary btn-xs" data-toggle="tooltip"
+                                           title="Editar Periodo"
+                                           href="{% url 'periodo:editar' Periodo.id %}"><span
+                                            class="glyphicon glyphicon-pencil"> </span></a>
+                                        <button type="button" class="btn btn-danger btn-xs borrar" data-toggle="tooltip"
+                                                title="Eliminar Periodo" name="btnborrar"><span
+                                                class="glyphicon glyphicon-trash"> </span></button>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <a type="button" class="btn btn-primary btn-sm" href="{% url 'Periodos:nuevo' %}">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Periodo
+            </a>
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+    <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var table;
+        var dialog;
+        $(document).ready(function () {
+            tabla();
+            $(".borrar").on("click", eliminar);
+        });
+
+        function tabla() {
+            table = $('#periodos').DataTable({
+                destroy: true,
+                responsive: true,
+                columnDefs:
+                    [{"className": "dt-center", "width": "12%", "bSortable": false, "targets": [-1]}],
+            });
+            filtros();
+        }
+
+        function filtros() {
+            $('#periodos thead th').each(function () {
+                var title = $(this).text();
+                if (title === 'Inicio') {
+                    $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Final') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+            });
+
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        $('.tooltip').remove();
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
+
+        function eliminar() {
+            $('.tooltip').remove();
+            var data = table.row($(this).parents('tr')).data();
+            bootbox.dialog({
+                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                message: 'Desea eliminar este periodo?',
+                buttons: {
+                    default: {
+                        label: "<i class='fa fa-times'></i>",
+                        className: "btn btn-danger btn-sm btn-flat",
+                        callback: function () {
+                        }
+                    },
+                    success: {
+                        label: "<i class='fa fa-check'></i>",
+                        className: "btn btn-primary btn-sm btn-flat",
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'periodo:eliminar' %}",
+                                data: {
+                                    id: data[0]
+                                },
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Eliminando Registro..' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    alert(data.error);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

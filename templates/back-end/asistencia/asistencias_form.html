@@ -1,0 +1,292 @@
+<title>Asistencias/Reporte</title>
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-list"></i> Asistencias / Alumnos </a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-list fa-lg"></i> <strong>Asistencias / Alumnos</strong></h5>
+            </div>
+            <div class="container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="id_periodo" class="control-label col-xs-1"> {{ form.periodo.label_tag }}</label>
+                            {{ form.periodo }}
+                        </div>
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="id_materia"
+                                   class="control-label col-xs-1"> {{ form.materia.label_tag }}  </label>
+                            {{ form.materia }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="curso" class="control-label col-xs-1"> {{ form.curso.label_tag }}</label>
+                            {{ form.curso }}
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-3">
+                                <label for="desde" class="control-label col-xs-1"> {{ form.desde.label }}</label>
+                                <br>
+                                <div class='input-group date1'><input title="desde" type='text' class="form-control
+                        form-rounded time2" id="desde"/>
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-calendar"></span></span></div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3">
+                                <label for="desde" class="control-label col-xs-1"> {{ form.hasta.label_tag }}</label>
+                                <br>
+                                <div class='input-group date2'><input title="hasta" type='text' class="form-control
+                       form-rounded time2" id="hasta"/>
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-calendar"></span></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-title="Buscar..."
+                        name="ok" id="search"><i class="fa fa-search"></i> Buscar...
+                </button>
+            </div>
+            <div class="box-body" style="display: none;" id="tabla">
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-danger btn btn-primary btn-sm" data-title="Selecionar"
+                    data-toggle="modal" data-target="#edit" name="ok" id="pdf" disabled="disabled"><i
+                    class="fa fa-save">
+            </i> Generar PDF
+            </button>
+        </div>
+    </section>
+    <style>
+        td.green {
+            color: black;
+            text-align: center;
+            background-color: darkseagreen;
+            font-weight: bold;
+        }
+
+        td.red {
+            color: black;
+            text-align: center;
+            background-color: darkorange;
+            font-weight: bold;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        var table;
+        var c = 0;
+        $(document).ready(function () {
+            loadDatePiker();
+            getPeriodo();
+            $("#id_periodo").on("change", getMateria);
+            $("#id_materia").on("change", getCurso);
+            $("#id_curso").on("change", ocultar);
+            $("#search").on("click", tabla);
+            $('#guardarNotas').on("click", enviarNotas);
+        });
+
+        function date(desde, hasta) {
+            $('.date1').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'Es',
+                minDate: desde,
+                maxDate: hasta
+            });
+            $('.date2').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'Es',
+                minDate: desde,
+                maxDate: hasta
+            });
+        }
+
+        function ocultar() {
+            fechas();
+            $("#tabla").hide();
+        }
+
+        function getPeriodo() {
+            $("#id_periodo").html("");
+            var request = $.ajax({
+                type: "GET",
+                url: "{% url 'get_periodo' %}",
+            });
+            request.done(function (response) {
+                // Agregamos los resultados al select
+                $("#id_periodo").html(response.periodos);
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_periodo").trigger("change");
+            });
+        }
+
+        function getMateria() {
+            var periodoId = $("#id_periodo").val();
+            if (periodoId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_materia").html("");
+                var request = $.ajax({
+                    type: "GET",
+                    url: "{% url 'get_materia' %}",
+                    data: {
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_materia").html(response.materias);
+                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                    $("#id_materia, #id_curso").trigger("change");
+                });
+            } else {
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_curso").trigger("change");
+            }
+        }
+
+        function getCurso() {
+            $("#tabla").hide();
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            if (materiaId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_curso").html("");
+                var request = $.ajax({
+                    type: "GET",
+                    url: "{% url 'get_curso_asistencias' %}",
+                    data: {
+                        "materia_id": materiaId,
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_curso").html(response.cursos);
+                    $("#id_curso").trigger("change");
+                });
+            } else {
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").trigger("change");
+            }
+        }
+
+        function loadDatePiker() {
+            var request = $.ajax({
+                type: "POST",
+                url: "{% url 'get_fecha' %}",
+            });
+            request.done(function (response) {
+                date(response.desde, response.hasta);
+            });
+        }
+
+        function tabla() {
+            c = 0;
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            var cursoId = $("#id_curso").val();
+            var desde = $("#desde").val();
+            var hasta = $("#hasta").val();
+
+            if (periodoId && materiaId && cursoId) {
+
+                var request = $.ajax({
+                    dataType: 'JSON',
+                    type: 'POST',
+                    url: "{% url 'asistencia_list:asistencia_report' %}",
+                    data: {
+                        "materia_id": materiaId,
+                        "periodo_id": periodoId,
+                        "curso_id": cursoId,
+                        "desde": desde,
+                        "hasta": hasta
+                    },
+                });
+                request.done(function (response) {
+                    if (response.resp === 'False') {
+                        bootbox.dialog({
+                            title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Sin coincidencias",
+                            message: 'No hay asistencias registradas con los datos requeridos <br> Revisa el formulario y vuelve a ' +
+                                'intentarlo',
+                            buttons: {
+                                success: {
+                                    label: "<i class='fa fa-check'>OK</i>",
+                                    className: "btn btn-primary btn-flat",
+                                }
+                            }
+                        });
+                    } else {
+                        $("#tabla").show();
+                        $("#tabla").html(response.tablaHtml);
+                        table = $('#asistencia').DataTable({
+                            responsive: true,
+                            columnDefs: [
+                                {
+                                    targets: '_all',
+                                    "width": "10%"
+                                }],
+
+                            "createdRow": function (row, data, dataIndex) {
+                                var t = $("#asistencia tbody tr").each(function (index) {
+                                    var filas = $(this).children("td").each(function (index2) {
+                                        var p;
+                                        switch (index2) {
+                                            case c:
+                                                p = $(this).text();
+                                                if (p === '1') {
+                                                    $(this).text('P');
+                                                    $(this).addClass('green');
+                                                } else {
+                                                    $(this).text('F');
+                                                    $(this).addClass('red');
+                                                }
+                                                break;
+                                        }
+
+                                    });
+                                });
+                                c = c + 1;
+                            }
+                        });
+                    }
+                });
+
+            } else {
+                bootbox.dialog({
+                    title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
+                    message: 'Por favor completa todos los campos del formulario',
+                    buttons: {
+                        success: {
+                            label: "<i class='fa fa-check'>OK</i>",
+                            className: "btn btn-primary btn-flat",
+                        }
+                    }
+                });
+            }
+        }
+
+    </script>
+{% endblock %}

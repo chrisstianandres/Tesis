@@ -1,0 +1,21 @@
+{% extends "back-end/form.html" %}
+{% load static from staticfiles %}
+{% block form_head %}
+    <link rel="stylesheet" href="{% static "plugins/bootstrap-select-1.12.2/css/bootstrap-select.min.css" %}"/>
+    <script src="{% static "plugins/bootstrap-select-1.12.2/js/bootstrap-select.min.js" %}"></script>
+    <script src="{% static "js/representante.js" %}"></script>
+    <script>
+        $(document).ready(function () {
+            soloNumeros();
+        });
+
+        function soloNumeros() {
+            var input = document.getElementById('id_cedula');
+            input.addEventListener('input', function () {
+                if (this.value.length > 10)
+                    this.value = this.value.slice(0, 10);
+            });
+        }
+    </script>
+{% endblock %}
+

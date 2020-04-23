@@ -1,0 +1,507 @@
+<title>Horario</title>
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-calendar-plus-o"></i> Horario</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-calendar-plus-o fa-lg"></i> <strong>Horario</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="horario">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Desde</th>
+                            <th>Hasta</th>
+                            <th>Curso</th>
+                            <th>Aula</th>
+                            <th>Materia</th>
+                            <th>Tema</th>
+                            <th>Unidad</th>
+                            <th>Semana</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="panel panel-default" style="display: none;" id="pnl_actividad">
+                        <div class="panel-heading" id="pnl_act_titulo"></div>
+                        <div class="panel-body">
+                            <table style="width: 100%" class="table table-striped table-bordered table-hover"
+                                   id="actividad">
+                                <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Estudiante</th>
+                                    <th>Nombre</th>
+                                    <th>Observación</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="panel panel-default" style="display: none;" id="pnl_asistencia">
+                    <div class="panel-heading" id="pnl_ast_titulo"></div>
+                    <div class="panel-body">
+                        <table style="width: 50%" class="table table-striped table-bordered table-hover"
+                               id="asistencia">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Alumno</th>
+                                <th><input title="asis" type="checkbox" id="checkTodos" name="checkTodos"> Asistencia
+                                </th>
+                                <th>Horario</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-success btn btn-primary btn-sm" data-title="Selecionar"
+                                    id="guardarAsistencias"><i class="fa fa-save">
+                            </i> Registrar Asistencias
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+    <script type="application/javascript">
+        var table;
+        var tblasist;
+        var asistencia;
+        var myVar;
+        var Asi;
+        $(document).ready(function () {
+            recargar();
+            $('#guardarAsistencias').on("click", enviarAsistencias);
+        });
+
+        function rango_horas(inicio, fin) {
+            var inicioHoras = parseInt(inicio.substr(0, 2));
+            var finHoras = parseInt(fin.substr(0, 2));
+            var inicioMinuto = parseInt(inicio.substr(3, 2));
+            var finMinuto = parseInt(inicio.substr(3, 2));
+            var tiempo = new Date();
+            var hora = tiempo.getHours();
+            var minuto = tiempo.getMinutes();
+            return ((hora >= inicioHoras & hora < finHoras));
+        }
+
+        function restar_horas(inicio, fin) {
+            if (rango_horas(inicio, fin)) {
+                inicioMinutos = parseInt(inicio.substr(3, 2));
+                inicioHoras = parseInt(inicio.substr(0, 2));
+                finMinutos = parseInt(fin.substr(3, 2));
+                finHoras = parseInt(fin.substr(0, 2));
+                transcurridoMinutos = finMinutos - inicioMinutos;
+                transcurridoHoras = finHoras - inicioHoras;
+                if (transcurridoMinutos < 0) {
+                    transcurridoHoras--;
+                    transcurridoMinutos = 60 + transcurridoMinutos;
+                }
+                horas = transcurridoHoras.toString();
+                minutos = transcurridoMinutos.toString();
+                return horas > 0 | minutos > 0;
+            }
+            return false;
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            /*------------------------------Horario---------------------------------------------*/
+            table = $('#horario').DataTable({
+                responsive: true,
+                select: true,
+                ajax: {
+                    url: '/horario_json/',
+                    type: 'POST',
+                    dataSrc: ""
+                },
+                columnDefs: [
+                    {
+                        'targets': -1,
+                        "width": "12%",
+                        'bSortable': false,
+                        'data': null,
+                        'sclass': 'text-center',
+                        'render': function (data, type, row) {
+                            var registro = data[10] == 1 ? '<button class="btn btn-default btn-sm" name="btnRegistrar" data-toggle="tooltip" title="Registrar"><i class="fa fa-book" aria-hidden="true"></i></button>' : '';
+                            var asistencia = data[9] == 1 ? '<button class="btn btn-default btn-sm" name="btnAsistencia" data-toggle="tooltip" title="Registrar"><i class="fa fa-child" aria-hidden="true"></i></button>' : '';
+                            return '<button class="btn btn-default btn-sm" name="btnActividad"  data-toggle="tooltip" title="Actividades"><i class="fa fa-search" aria-hidden="true"></i></button> ' + asistencia + registro;
+                        },
+                    }
+                ],
+                fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    var row = $(nRow).closest('tr');
+                    var resp = restar_horas(aData[1], aData[2]);
+                    row.find("button[name='btnRegistrar']").prop('disabled', !resp);
+                    row.find("button[name='btnAsistencia']").prop('disabled', !resp);
+                    if (resp) {
+                        $('td', nRow).css('background-color', '#dff0d8');
+                    } else {
+
+                        if (aData[9] === 1) {
+                            var id = aData[0];
+                            enviarFaltas(id);
+                        }
+                    }
+                },
+            });
+
+            $('#horario tbody').on('click', 'button[name="btnActividad"]', function () {
+                $('.tooltip').remove();
+                var data = table.row($(this).parents('tr')).data();
+                $('#pnl_actividad').show();
+                $('#pnl_act_titulo').html('<i class="fa fa-folder-open" aria-hidden="true"></i> Actividades ' + '<span class="label label-primary">' + data[2] + ' - ' + data[2] + '</span>');
+                $('#actividad').DataTable({
+                    destroy: true,
+                    responsive: true,
+                    ajax: {
+                        url: '/actividad_id/',
+                        type: 'POST',
+                        data: {id: data[0]},
+                        dataSrc: ""
+                    },
+                    columnDefs: [
+                        {
+                            'targets': -1,
+                            'bSortable': false,
+                            'data': null,
+                            'sclass': 'text-center',
+                            'render': function (data, type, row) {
+                                var registro = '<textarea rows="2" cols="50" class="form-control"></textarea>';
+                                return registro;
+                            },
+                        }
+                    ],
+                });
+            });
+
+            $('#horario tbody').on('click', 'button[name="btnRegistrar"]', function () {
+                $('.tooltip').remove();
+                var data = table.row($(this).parents('tr')).data();
+                bootbox.dialog({
+                    title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                    message: 'Desea registrar la hora ?',
+                    buttons: {
+                        default: {
+                            label: "<i class='fa fa-times'></i>",
+                            className: "btn btn-default btn-sm btn-flat",
+                            callback: function () {
+                            }
+                        },
+                        success: {
+                            label: "<i class='fa fa-check'></i>",
+                            className: "btn btn-default btn-sm btn-flat",
+                            callback: function () {
+                                $.ajax({
+                                    dataType: 'JSON',
+                                    type: 'POST',
+                                    url: '/registrar_clase',
+                                    data: {
+                                        id: data[0]
+                                    },
+                                    success: function (data) {
+                                        if (data.resp) {
+                                            $.isLoading({
+                                                text: "<strong>" + 'Registrando..' + "</strong>",
+                                                tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                            });
+                                            setTimeout(function () {
+                                                location.reload();
+                                            }, 1000);
+                                            return false;
+                                        }
+                                        alert(data.error);
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown + ' ' + textStatus);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#horario tbody').on('click', 'button[name="btnAsistencia"]', function () {
+
+                var data = table.row($(this).parents('tr')).data();
+                dialog = bootbox.dialog({
+                    title: 'Registrar Asistencias',
+                    message: 'Desea registrar las asistencias de esta/s hora/s? <br>' +
+                        'Recuerde que podra hacerlo hasta 1 minuto antes de culminar la hora clase <br>' +
+                        'Si no registra la hora al culminar la hora se enviaran los registros con  faltas <br>' +
+                        'Al dar click en aceptar tendra 5 minutos para registar las asistencias, caso contrario' +
+                        'las asistencias se enviaran automaticamnete <br>' +
+                        '<strong>Desea continuar?</strong>',
+                    size: 'large',
+                    buttons: {
+                        cancel: {
+                            label: "Aceptar",
+                            className: 'btn-primary',
+                            callback: function () {
+                                $('.tooltip').remove();
+                                AltoAsitencia();
+                                $('#pnl_asistencia').show();
+                                $('#pnl_ast_titulo').html('<i class="fa fa-child" aria-hidden="true"></i> Asistencias ' + ' de ' + data[5] +
+                                    ' en el ' + data[3] + ' de ' + '<span class="label label-primary">' + data[1] + 'H' + ' - ' + data[2] + 'H' + '</span>');
+                                tblasist = $('#asistencia').DataTable({
+                                    destroy: true,
+                                    responsive: true,
+                                    dom: 't',
+                                    ajax: {
+                                        url: "{% url 'horario:get_alumno' %}",
+                                        type: 'POST',
+                                        data: {id: data[0]},
+                                        dataSrc: ""
+                                    },
+                                    columnDefs: [
+                                        {
+                                            'targets': 2,
+                                            'bSortable': false,
+                                            'data': null,
+                                            'sclass': 'text-center',
+                                            'render': function (data, type, row) {
+                                                return '<td><input  title="asist" type="checkbox"  name= "asiste" class="asiste" value="0" ></td>';
+                                            },
+                                        },
+                                        {bSortable: false, "targets": '_all'},
+                                        {"className": "dt-center horario", "width": "10%", "targets": [0]},
+                                        {"className": "dt-center asistencia", "width": "25%", "targets": [2]},
+                                        {visible: false, "className": "dt-center horario", "targets": [-1]}
+                                    ],
+                                    fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                                        AltoAsitencia();
+                                    }
+                                });
+                                $("#checkTodos").change(function () {
+                                    $("input:checkbox").prop('checked', $(this).prop("checked"));
+                                });
+                            }
+                        },
+                        noclose: {
+                            label: "Cncelar",
+                            className: 'btn-danger',
+                            callback: function () {
+                            }
+                        },
+                    }
+                });
+
+            });
+        });
+
+        function recarga() {
+            document.location.reload();
+        }
+
+        function recargar() {
+            clearTimeout(Asi);
+            myVar = setTimeout(recarga, 60000);
+        }
+
+        function AltoAsitencia() {
+
+            clearTimeout(myVar);
+            setTimeout(enviarAsistenciasfalta, 300000);
+            Asi = setTimeout(recarga, 330000);
+        }
+
+        function enviarAsistencias() {
+            var tabla = [];
+            var trs = $("#asistencia tr").length;
+            tblasist.column(3).visible(true);
+            $("#asistencia tbody tr").each(function (index) {
+                var l, h, a;
+                var filas = $(this).children("td").each(function (index2) {
+                    switch (index2) {
+                        case 0:
+                            l = $(this).text();
+                            break;
+                        case 1:
+                        case 2:
+                            if ($(this).find('input:checkbox').prop('checked'))
+                                a = 1;
+                            else
+                                a = 0;
+                            break;
+                        case 3:
+                            h = $(this).text();
+                            break;
+                    }
+                });
+                var items = {
+                    "listado": l,
+                    "asistencia": a,
+                    "horario": h,
+                };
+                tabla.push(items);
+            });
+            //alert(JSON.stringify(tabla));
+            var datos = {'datos': JSON.stringify(tabla)};
+            //console.log(datos);
+            tblasist.column(3).visible(false);
+            bootbox.dialog({
+                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                message: 'Registrando la asistencia de esta hora <br> ¿Desea continuar?',
+                buttons: {
+                    default: {
+                        label: "<i class='fa fa-times'></i>",
+                        className: "btn-danger btn-sm btn-flat",
+                        callback: function () {
+                        }
+                    },
+                    success: {
+                        label: "<i class='fa fa-check'></i>",
+                        className: "btn btn-info btn-sm btn-flat",
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'asistencia_list:save_asistencia' %}",
+                                data: datos,
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Registrando..' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    bootbox.alert({
+                                        message: data.error,
+                                        className: 'rubberBand animated'
+                                    });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
+        }
+
+        function enviarFaltas(id) {
+            tblasist = $('#asistencia').DataTable({
+                destroy: true,
+                dom: 't',
+                ajax: {
+                    url: "{% url 'horario:get_alumno' %}",
+                    type: 'POST',
+                    data: {id: id},
+                    dataSrc: ""
+                },
+                columnDefs: [
+                    {
+                        'targets': 2,
+                        'bSortable': false,
+                        'data': null,
+                        'sclass': 'text-center',
+                        'render': function (data, type, row) {
+                            return '<td><input  title="asist" type="checkbox"  name= "asiste" class="asiste" value="0" ></td>';
+                        },
+                    },
+                ],
+                fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    setTimeout(enviarAsistenciasfalta, 20000);
+                }
+            });
+
+        }
+
+        function enviarAsistenciasfalta() {
+            var tabla = [];
+            var trs = $("#asistencia tr").length;
+            tblasist.column(3).visible(true);
+            $("#asistencia tbody tr").each(function (index) {
+                var l, h, a;
+                var filas = $(this).children("td").each(function (index2) {
+                    switch (index2) {
+                        case 0:
+                            l = $(this).text();
+                            break;
+                        case 1:
+                        case 2:
+                            if ($(this).find('input:checkbox').prop('checked'))
+                                a = 1;
+                            else
+                                a = 0;
+                            break;
+                        case 3:
+                            h = $(this).text();
+                            break;
+                    }
+                });
+                var items = {
+                    "listado": l,
+                    "asistencia": a,
+                    "horario": h,
+                };
+                tabla.push(items);
+            });
+            //alert(JSON.stringify(tabla));
+            var datos = {'datos': JSON.stringify(tabla)};
+            //console.log(datos);
+            tblasist.column(3).visible(false);
+            $.ajax({
+                dataType: 'JSON',
+                type: 'POST',
+                url: "{% url 'asistencia_list:save_asistencia' %}",
+                data: datos
+            });
+        }
+    </script>
+    <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

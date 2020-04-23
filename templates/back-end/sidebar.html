@@ -1,0 +1,216 @@
+{% load static from staticfiles %}
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="{{ user.docente.avatar.url }}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+            <p>{{ user.first_name }}</p>
+            <p>{{ user.last_name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less-->
+    <ul class="sidebar-menu" data-widget="tree">
+        {% if user.docente.rol == 0 %}
+            <li class="header">Modulos del Sistema</li>
+            <li><a href="/"><i class="fa fa-home"></i> <span>Menu Pricipal</span></a></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> <span>Periodos</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'periodo:nuevo' %}"><i class="fa fa-plus-circle"></i>Crear nuevo Periodo</a>
+                    </li>
+                    <li><a href="{% url 'periodo:listado' %}"><i class="fa fa-list-alt"></i> Lista de Periodos</a></li>
+                </ul>
+            </li> <!-- Periodos-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar"></i> <span>Horario</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'horario:nuevo_admin' %}"><i class="fa fa-calendar-plus-o"></i> Nuevo Horario
+                        (admin)</a></li>
+                    <li><a href="{% url 'horario:horarios_admin' %}"><i class="fa fa-calendar-o"></i> Horarios de los
+                        docentes</a></li>
+                </ul>
+            </li>  <!-- Horarios admin-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user-circle"></i> <span>Docentes</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'docente:nuevo' %}"><i class="fa fa-user-plus"></i>Crear nuevo Docente</a></li>
+                    <li><a href="{% url 'docente:Docente_list' %}"><i class="fa fa-users"></i> Lista de Docentes</a>
+                    </li>
+                </ul>
+            </li>  <!-- Docentes-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Asignaciones</span>
+                    <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'asignar:listado' %}"><i class="fa fa-list"></i> Lista de Asignaciones</a></li>
+                </ul>
+            </li>  <!-- Asgnaciones-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Planes de Clases</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'silabos:nuevo' %}"><i class="fa fa-plus-circle"></i> Nuevo plan de Clase </a>
+                    </li>
+                </ul>
+            </li>  <!-- Planes de Clase-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Materias</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'materias:nuevo' %}"><i class="fa fa-plus-circle"></i> Nueva Materia</a></li>
+                    <li><a href="{% url 'materias:lista' %}"><i class="fa fa-list"></i> Lista de Materias</a></li>
+                </ul>
+            </li>  <!-- Materias-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-indent"></i> <span>Cursos</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'curso:nuevo_curso' %}"><i class="fa fa-plus"></i> Nuevo Curso</a></li>
+                    <li><a href="{% url 'curso:lista' %}"><i class="fa fa-list"></i> Lista de Cursos</a></li>
+                </ul>
+            </li>  <!-- Cursos-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sort-alpha-desc"></i> <span>Aula</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'aula:nuevo' %}"><i class="fa fa-plus-circle"></i> Nueva Aula</a></li>
+                    <li><a href="{% url 'aula:lista' %}"><i class="fa fa-list"></i>Lista de Aulas</a></li>
+                </ul>
+            </li>  <!-- Aulas-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-odnoklassniki"></i> <span>Alumnos</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'alumnos:nuevo' %}"><i class="fa fa-odnoklassniki-square"></i> Nuevo Alumno</a>
+                    </li>
+                    <li><a href="{% url 'alumnos:lista' %}"><i class="fa fa-list"></i>Lista de Alumnos</a></li>
+                </ul>
+            </li>  <!-- Alumnos-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-group"></i> <span>Padres</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'representante:nuevo' %}"><i class="fa fa-user-plus"></i> Nuevo Padre de Familia</a>
+                    </li>
+                    <li><a href="{% url 'alumnos:lista' %}"><i class="fa fa-list"></i>Lista de Padres</a></li>
+                </ul>
+            </li>  <!-- Padres-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-card-o"></i>
+                    <span>Matriculas</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'matriculas:nuevo' %}"><i class="fa fa-plus-circle"></i> Nueva Matricula</a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{% url 'matriculas:lista' %}"><i class="fa fa-list"></i> Lista de Matriculas</a></li>
+                </ul>
+            </li>  <!-- Matriculas-->
+
+        {% endif %}
+        {% if user.docente.rol == 1 %}
+            <li><a href="/"><i class="fa fa-home"></i> <span>Menu Pricipal</span></a></li>
+            <li class="header">Modulos de Actividades Docentes</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar"></i> <span>Horario</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'horario:nuevo' %}"><i class="fa fa-plus"></i> Nuevo Horario</a></li>
+                    <li><a href="{% url 'horario:ver' %}"><i class="fa fa-calendar-check-o"></i> Ver Horario</a></li>
+                </ul>
+            </li>  <!-- Horarios-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Planes de Clases</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'asignar:lista_asignadas' %}"><i class="fa fa-list"></i> Materias Asignadas</a>
+                    </li>
+                </ul>
+            </li>  <!-- Planes de Clase-->
+            <li class="header">Modulos de Gestion de Estudiantes</li>
+            <li>
+                <a href="{% url 'asistencia_list:asistencia' %}">
+                    <i class="fa fa-list-alt"></i> <span>Asistencias</span>
+                </a>
+            </li>  <!-- Asistencias-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sort-numeric-asc"></i> <span>Notas</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'notas:alumnos' %}"><i class="fa fa-plus-circle"></i> Ingresar Notas</a></li>
+                    <li><a href="{% url 'notas:notas' %}"><i class="fa fa-sort-numeric-desc"></i> Reporte de Notas</a>
+                    </li>
+                </ul>
+            </li>  <!-- Notas-->
+        {% endif %}
+    </ul>
+    <hr style="border:15px;">
+    <hr style="border:2px;">
+</section>
+

@@ -1,0 +1,248 @@
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
+
+function addZero(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    return i;
+}
+function hoyFecha(){
+    var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth()+1;
+        var yyyy = hoy.getFullYear();
+
+        dd = addZero(dd);
+        mm = addZero(mm);
+          var fecha= dd+'/'+mm+'/'+yyyy;
+        document.getElementById('fecha').innerHTML= ' '+fecha ;
+
+        return dd+'/'+mm+'/'+yyyy;
+
+}
+</script>
+<style>
+table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+   color: black;
+}
+.table tbody tr td{
+    font-size:12px;
+}
+.form-inline .form-control{
+    width: 100%;
+}
+
+
+
+</style>
+
+ <section class="content-header">
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+          <li><a href="{{ ruta }}"><i class="fa fa-graduation-cap" id="materia"></i> </a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+        <div class="box-header with-border">
+          <h5><i class="fa fa-graduation-cap fa-lg" id="materia2"></i> <strong></strong></h5>
+        </div>
+        <div class="box-body">
+          <div class="container-fluid">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="example" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Fecha</th>
+                            <th> <label><input type="checkbox" id="checkTodos" name="checkTodos" align="center"> Asistencia</label></th>
+                            <th hidden="hidden"></th>
+                            <th hidden="hidden"></th>
+                            <th hidden="hidden"></th>
+                            <th hidden="hidden"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% if listaalumno %}
+                            {% for Alumno  in listaalumno  %}
+                                <script>
+                                $( document ).ready(function() {
+                                    var Materia= "";
+                                    var curso="";
+                                     Materia=document.getElementById('tomar').innerText ;
+                                     curso=document.getElementById('tomar2').innerText ;
+                                          document.getElementById('materia').innerHTML= ' ' + '<strong> ' +Materia +' - '+curso+ ' </strong>';
+                                          document.getElementById('materia2').innerHTML= ' ' + '<strong> ' +Materia +' - '+curso+ ' </strong>';
+
+                                });
+
+                                </script>
+                                <tr>
+                                   <td hidden="hidden">{{ Alumno.id }}</td>
+                                   <td>{{Alumno.apellidos}}&nbsp{{Alumno.nombres}}</td>
+                                   <td>{{ Alumno.hoy }}</td>
+                                   <td hidden="hidden">{{ Alumno.idlista }}</td>
+                                   <td hidden="hidden" id="tomar">{{ Alumno.materia }}</td>
+                                   <td hidden="hidden" id="tomar2">{{ Alumno.nombre }}</td>
+                                   <td><label><input  type="checkbox"  name= "asiste" id="asiste" value="0" ></label></td>
+
+
+
+                                </tr>
+                            {% endfor %}
+                        {% else  %}
+
+                            <h1>No hay Alumnos </h1>
+
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+
+
+                    <script>
+                        $('document').ready(function(){
+                            $("#checkTodos").change(function () {
+                                $("input:checkbox").prop('checked', $(this).prop("checked"));
+                            });
+                        });
+                    </script>
+                    <script>
+                        $('document').ready(function(){
+
+                            $('#guardarAsistencia').click(function(){
+                                var tabla=[];
+                                var trs=$("#example tr").length;
+
+                                $("#example tbody tr").each(function (index)
+                                {
+                                    var x, y, z, a, b,c,d;
+                                    $(this).children("td").each(function (index2)
+                                    {
+                                        switch (index2)
+                                        {
+                                            case 0:
+                                                x=$(this).text();
+                                                break;
+                                            case 1:
+                                                y=$(this).text();
+                                            case 2:
+                                                z=$(this).text();
+                                                break;
+                                            case 3:
+                                                a=$(this).text();
+                                                break;
+                                            case 4:
+                                                b=$(this).text();
+                                                break;
+                                            case 5:
+                                                c=$(this).text();
+                                            case 6:
+                                                 if($(this).find('input:checkbox').prop('checked'))
+                                                    d = 1;
+                                            else
+                                                    d = 0;
+
+                                        }
+                                    });
+                                    var items={
+                                        "horario":x,
+                                        "lista":a,
+                                        "asistencia":d,
+                                    };
+                                    tabla.push(items);
+                                });
+                                alert(JSON.stringify(tabla));
+                                var datos={'datos':JSON.stringify(tabla)};
+                                console.log(datos);
+                                $.ajax({
+                                    dataType: 'JSON',
+                                    type: 'POST',
+                                    url: '/asistencia_registrar',
+                                    data: datos,
+                                    success: function (respyes) {
+                                        if (respyes) {
+                                    $.isLoading({
+                                         text: "<strong>"+'Guardando asistencias..'+"</strong>",
+                                         tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+
+                                     });
+
+                                    setTimeout( function(){
+                                        alert('Exito al Guardar');
+                                        window.location.replace("/asistencia/asistencia1");
+                                    },1000);
+                                    return false;
+                                }
+
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown + ' ' + textStatus);
+                                    }
+                                });
+
+                            });
+                        });
+
+
+
+                    </script>
+
+                </div>
+            </div>
+            </div>
+
+
+        </section>
+        <div class="box-footer">
+            <button type="button" class="btn btn-info btn btn-primary btn-xs" data-title="Selecionar"
+                    data-toggle="modal" data-target="#edit" name="ok"><i class="fa fa-save"></i>  Registrar</button>
+
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+
+        </div>
+
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit3" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                        <h4 class="modal-title custom_align" id="Heading">¿Esta seguro que desea resgistar las asistencias?</h4>
+                    </div>
+                    <a type="button" class="btn btn-info" href="#" id="guardarAsistencia">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </a>
+                    <button type="button" class="btn btn-danger btn btn-primary btn-xs" data-title="Selecionar"
+                            data-toggle="modal" data-target="#edit"><i class="fa fa-times"></i></button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+{% endblock  %}

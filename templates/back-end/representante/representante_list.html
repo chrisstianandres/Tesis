@@ -1,0 +1,174 @@
+<title>Listado de Representantes</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-group"></i> Representantes</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-group fa-lg"></i> <strong>Representantes</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="representante">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombres</th>
+                            <th>Cedula</th>
+                            <th>Cumpleaños</th>
+                            <th>Correo</th>
+                            <th>Genero</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if lista %}
+                            {% for Representante in lista %}
+                                <tr>
+                                    <td>{{ Representante.id }}</td>
+                                    <td>{{ Representante }}</td>
+                                    <td> {{ Representante.cedula }}  </td>
+                                    <td> {{ Representante.fecha_nacimiento|date:"d-m-Y" }} </td>
+                                    <td> {{ Representante.correo }} </td>
+                                    <td> {{ Representante.get_sexo_display }} </td>
+                                    <td><a type="button" class="btn btn-primary btn-xs"
+                                           href="{% url 'representante:editar' Representante.id %}"><span
+                                            class="glyphicon glyphicon-pencil"> </span></a>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        <div class="box-footer">
+            <a type="button" class="btn btn-primary btn-sm" href="{% url 'Representante:nuevo' %}">
+                <i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Representante
+            </a>
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+        </div>
+    </section>
+
+    <style>
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        var table;
+        $(document).ready(function () {
+            tabla();
+        });
+
+        function tabla() {
+            table = $('#representante').DataTable({
+                destroy: true,
+                responsive: true,
+                columnDefs:
+                    [{"className": "dt-center", "targets": "_all"},
+                        {"className": "dt-center", "width": "12%", "bSortable": false, "targets": [-1]}],
+                "createdRow": function (row, data, dataIndex) {
+                    if (data[7] === 'Activo') {
+                        $('td', row).eq(6).addClass('green');
+                    } else if (data[7] === 'Retirado') {
+                        $('td', row).eq(6).addClass('red');
+                        $('td', row).eq(7).find("button[name='btnestado']").prop('disabled', true);
+                    } else if (data[7] === 'Suspendido') {
+                        $('td', row).eq(6).addClass('orange');
+                    } else if (data[7] === 'Inactivo') {
+                        $('td', row).eq(6).addClass('blue');
+                        $('td', row).eq(7).find("button[name='btnestado']").prop('disabled', true);
+                    }
+
+                }
+            });
+            filtros();
+        }
+
+        function filtros() {
+            $('#representante thead th').each(function () {
+                var title = $(this).text();
+                if (title === 'Id') {
+                    $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Nombres') {
+                    $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Cedula') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Cumpleaños') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Correo') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Genero') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+            });
+
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        $('.tooltip').remove();
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
+
+    </script>
+{% endblock %}

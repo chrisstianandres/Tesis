@@ -1,0 +1,103 @@
+<title>Listado de Docentes</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+
+        $(document).ready(function () {
+            var Materia = "";
+            Materia = document.getElementById('tomar').innerText;
+            document.getElementById('materia').innerHTML = ' ' + '<strong> ' + Materia + ' </strong>';
+            document.getElementById('materia2').innerHTML = ' ' + '<strong> ' + Materia + ' </strong>';
+        });
+
+    </script>
+    <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+    </style>
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-book" id="materia"></i> </a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-book" id="materia2"></i></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table width="100%" class="table table-striped table-bordered table-hover " id="example"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Semana</th>
+                            <th>Unidad</th>
+                            <th>Clase</th>
+                            <th>Tema</th>
+                            <th hidden="hidden"></th>
+
+                        </thead>
+                        <tbody>
+                        {% if listasilabo %}
+                            {% for Horario in listasilabo %}
+
+                                <tr>
+                                    <td> {{ Horario.semana }} </td>
+                                    <td> {{ Horario.unidad }} </td>
+                                    <td>{{ Horario.clase }}</td>
+                                    <td>{{ Horario.tema }}</td>
+                                    <td id="tomar" hidden="hidden">{{ Horario.materia }}</td>
+
+
+                                </tr>
+                            {% endfor %}
+
+                        {% else %}
+
+                            <h1>No hay Planes de Clases Disponibles </h1>
+
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+{% endblock %}
+
+

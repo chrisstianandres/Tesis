@@ -1,0 +1,170 @@
+<title>Listado de Cursos para Asistencias</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable(
+                {
+                    destroy: true,
+                    responsive: true
+                }
+            );
+        });
+    </script>
+    <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        input.noText {
+            color: transparent;
+            text-indent: -9999px;
+            *margin-left: 9999px; /* IE6 only */
+            font-size: 0px;
+            line-height: 16px; /* retains height */
+        }
+
+    </style>
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-graduation-cap"></i> Cursos/Asistencias</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-graduation-cap fa-lg"></i> <strong>Cursos/Asistencias</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:85%" class="table table-striped table-bordered table-hover " id="example">
+                        <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>Curso</th>
+                            <th>Aula</th>
+                            <th>Registrar</th>
+                            <th>Lista</th>
+                            <th hidden="hidden"></th>
+                            <th hidden="hidden"></th>
+                            <th hidden="hidden"></th>
+
+                        </thead>
+                        <tbody>
+                        {% if listacurso %}
+                            {% for Horario in listacurso %}
+                                <tr>
+                                <td readonly="true">{{ Horario.silabo.materia.nombre }}</td>
+                                <td readonly="true">{{ Horario.curso.nombre }}</td>
+                                <td readonly="true">{{ Horario.numero }}</td>
+                                <form method="get" action="{% url 'alumno_list:alumno_list' %}">
+                                    <td style="text-align: center"><input type="submit"
+                                                                          class="btn btn-danger btn-xs noText"
+                                                                          name="nomCurso"
+                                                                          value="{{ Horario.curso.nombre }}"></td>
+                                    <td hidden="hidden"><input readonly type="text" title="materia" name="materia"
+                                                               value="{{ Horario.silabo.materia.nombre }}"></td>
+                                </form>
+                                <form method="get" action="{% url 'asistencia_list:lista' %}">
+                                    <td hidden="hidden"><input readonly type="text" title="materia" name="materia"
+                                                               value="{{ Horario.silabo.materia.nombre }}"></td>
+                                    <td hidden="hidden"> curso:<input readonly type="text" title="curso" name="nomCurso"
+                                                                      value="{{ Horario.curso.nombre }}"></td>
+                                    <td style="text-align: center"><input type="submit"
+                                                                          class="btn btn-info btn-xs noText"
+                                                                          value="enviar"></td>
+                                </form>
+                            {% endfor %}
+                        {% else %}
+                            <td><h1>No hay Cursos </h1></td>
+                        {% endif %}
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+    <script>
+
+
+        function asistencialista() {
+            var tabla = [];
+            var materia = document.getElementById("materia").text;
+            var curso = document.getElementById("curso").text;
+            var datos = JSON.stringify({"materia": materia, "curso": curso});
+            console.log(datos);
+            alert(datos);
+            $.ajax({
+                dataType: 'JSON',
+                type: 'POST',
+                url: '/asistencia_lista/asistencia_list',
+                data: datos,
+
+                success: function (respyes) {
+                    if (respyes) {
+
+                        setTimeout(function () {
+                            alert('mostrando');
+                        }, 1000);
+                        return false;
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown + ' ' + textStatus);
+                }
+            });
+
+
+        }
+
+
+    </script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

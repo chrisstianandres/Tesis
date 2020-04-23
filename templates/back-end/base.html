@@ -1,0 +1,90 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static "plugins/startbootstrap-sb-admin-gh-pages/css/bootstrap.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "plugins/startbootstrap-sb-admin-gh-pages/css/sb-admin.css" %}"/>
+    <link rel="shortcut icon" href="{% static "img/escuelalogo.png" %}"/>
+    <link rel="stylesheet" href="{% static "plugins/isloading-v1.0.6/isloading-v1.0.6.css" %}"/>
+    <link rel="stylesheet" href="{% static "plugins/jquery-ui-1.12.1/jquery-ui.css" %}"/>
+    <link rel="stylesheet" href="{% static "plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "plugins/font-awesome-4.7.0/css/font-awesome.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/ionicons.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/AdminLTE.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/skins/_all-skins.min.css" %}"/>
+
+
+    <script src="{% static "plugins/jquery-3.2.0.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
+    <script src="{% static "plugins/bootbox.min.js" %}"></script>
+    <script src="{% static "plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "plugins/slimScroll/jquery.slimscroll.min.js" %}"></script>
+    <script src="{% static "plugins/fastclick/fastclick.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+    <script src="{% static "plugins/moment.js" %}"></script>
+    <script src="{% static "plugins/isloading-v1.0.6/isloading-v1.0.6.js" %}"></script>
+    <!-----------------------------------DATATABLE----------------------------------------------------->
+    <link rel="stylesheet" href="{% static "plugins/dataTables-1.10.13/media/css/dataTables.bootstrap.min.css" %}"/>
+    <link rel="stylesheet"
+          href="{% static "plugins/dataTables-1.10.13/extensions/Responsive/css/responsive.bootstrap.min.css" %}"/>
+    <script src="{% static "plugins/dataTables-1.10.13/media/js/jquery.dataTables.js" %}"></script>
+    <script src="{% static "plugins/dataTables-1.10.13/media/js/dataTables.bootstrap.min.js" %}"></script>
+    <script src="{% static "plugins/dataTables-1.10.13/extensions/Responsive/js/dataTables.responsive.min.js" %}"></script>
+    <script src="{% static "plugins/dataTables-1.10.13/extensions/Select/js/dataTables.select.min.js" %}"></script>
+    <script src="{% static "js/config.js" %}"></script>
+
+
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body class="hold-transition skin-green sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        {% include "back-end/header.html" %}
+    </header>
+    <aside class="main-sidebar">
+        {% include "back-end/sidebar.html" %}
+    </aside>
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="main-footer">
+        {% include "back-end/footer.html" %}
+    </footer>
+</div>
+</body>
+
+<style>
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+    table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+        color: black;
+    }
+
+    .table tbody tr td {
+        font-size: 12px;
+    }
+
+    .form-inline .form-control {
+        width: 100%;
+    }
+
+</style>
+</html>

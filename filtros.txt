@@ -1,0 +1,76 @@
+function filtros() {
+            $('#docente thead th').each(function () {
+                var title = $(this).text();
+                if (title === 'Usuario') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Nombre') {
+                     $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Apellido') {
+                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Cedula') {
+                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Correo') {
+                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }if (title === 'Estado') {
+                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                }
+            });
+
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        $('.tooltip').remove();
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+        }
+
+
+
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+           color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
+
+
+
+ <li class="nav-item">
+            <a class="nav-link collapsed text-truncate" data-toggle="collapse" data-target="#submenu7">
+                <i class="fa fa-address-card-o" aria-hidden="true"></i> <span>Matriculas</span></a>
+            <div class="collapse" id="submenu7" aria-expanded="false">
+                <ul class="flex-column pl-2 nav">
+                    <li class="nav-item"><a class="nav-link py-0" href="{% url 'matriculas:nuevo' %}"><i
+                            class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; <span>Crear</span></a></li>
+                    <li class="nav-item"><a class="nav-link py-0" href="{% url 'matriculas:lista' %}"><i
+                            class="fa fa-table" aria-hidden="true"></i>&nbsp;<span>Lista de Matriculas</span></a></li>
+                </ul>
+            </div>
+        </li>

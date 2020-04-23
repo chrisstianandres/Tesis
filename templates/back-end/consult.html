@@ -1,0 +1,100 @@
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+    {% block consult_head %}
+
+    {% endblock %}
+{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+          <li><a href="{{ ruta }}"><i class="{{ icono }}"></i> {{ entidad }}</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+        <div class="box-header with-border">
+          <h5><i class="{{ icono }} fa-lg"></i> <strong>{{ titulo }}</strong></h5>
+        </div>
+        <div class="box-body">
+          <div class="container-fluid">
+              {% block datos %}
+              {% block additional%}{% endblock %}
+              <table width="100%" class="table table-striped table-bordered table-hover" id="datos">
+              <thead>
+                   <tr>
+                       {% block columns %}{% endblock %}
+                   </tr>
+                </thead>
+              <tbody>
+              {% block rows %}{% endblock %}
+              </tbody>
+              </table>
+              {% endblock %}
+              </div>
+        </div>
+        <div class="box-footer">
+            {% if nuevo %}
+                <a href="{{ crud }}?" class="btn btn-default btn-sm" id="btn-nuevo">
+                      <i class="fa fa-plus-square" aria-hidden="true"></i> {{ nuevo }}
+                </a>
+            {% endif %}
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                  <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+             </a>
+        </div>
+    </div>
+    </section>
+    <script type="application/javascript">
+    var table;
+         $(function() {
+             $('[data-toggle="tooltip"]').tooltip();
+
+             $('.btn-delete').on('click',function () {
+                 var id = $(this).data('id');
+                 bootbox.dialog({
+                            title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                            message: "Desea eliminar el registro <strong>"+id+"</strong>?",
+                            buttons: {
+                                default: {
+                                  label: "<i class='fa fa-times'></i>",
+                                  className: "btn btn-default btn-sm btn-flat",
+                                  callback: function() {}
+                                },
+                                success: {
+                                  label: "<i class='fa fa-check'></i>",
+                                  className: "btn btn-default btn-sm btn-flat",
+                                  callback: function() {
+                                      $.ajax({
+                                          url: '{{ delete }}',
+                                          data: { id: id },
+                                          method: 'POST',
+                                          success: function (data) {
+                                            $.isLoading({
+                                             text: "<strong>Eliminando...</strong>",
+                                             tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                            });
+                                            setTimeout( function(){
+                                               window.location = '{{ ruta }}'
+                                            },500);
+                                          },
+                                          error: function(jqXHR, textStatus, errorThrown){
+                                                alert(errorThrown + ' ' + textStatus);
+                                            }
+                                      });
+                                  }
+                                }
+                            }
+                        });
+             });
+
+             table = $('#datos').DataTable({
+                 responsive: true,
+                 aoColumnDefs: [
+                      { bSortable: false, aTargets: [ -1 ] }
+                 ],
+             });
+         });
+    </script>
+{% endblock %}

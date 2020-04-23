@@ -1,0 +1,161 @@
+<title>Horarios de los docentes</title>
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-calendar-plus-o"></i> Horario de los docentes</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-calendar-plus-o fa-lg"></i> <strong>Horario de los docentes</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="horario">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Docente</th>
+                            <th>Desde</th>
+                            <th>Hasta</th>
+                            <th>Curso</th>
+                            <th>Aula</th>
+                            <th>Materia</th>
+                            <th>Tema</th>
+                            <th>Unidad</th>
+                            <th>Semana</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="box-footer">
+            <a type="button" class="btn btn-primary btn-sm" href="{% url 'horario:nuevo_admin' %}">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Horario
+            </a>
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+    <script type="application/javascript">
+        var table;
+        $(document).ready(function () {
+            recargar();
+        });
+
+        function rango_horas(inicio, fin) {
+            var inicioHoras = parseInt(inicio.substr(0, 2));
+            var finHoras = parseInt(fin.substr(0, 2));
+            var tiempo = new Date();
+            var hora = tiempo.getHours();
+            var minuto = tiempo.getMinutes();
+            return ((hora >= inicioHoras & hora < finHoras));
+        }
+
+        function restar_horas(inicio, fin) {
+            if (rango_horas(inicio, fin)) {
+                inicioMinutos = parseInt(inicio.substr(3, 2));
+                inicioHoras = parseInt(inicio.substr(0, 2));
+                finMinutos = parseInt(fin.substr(3, 2));
+                finHoras = parseInt(fin.substr(0, 2));
+                transcurridoMinutos = finMinutos - inicioMinutos;
+                transcurridoHoras = finHoras - inicioHoras;
+                if (transcurridoMinutos < 0) {
+                    transcurridoHoras--;
+                    transcurridoMinutos = 60 + transcurridoMinutos;
+                }
+                horas = transcurridoHoras.toString();
+                minutos = transcurridoMinutos.toString();
+                return horas > 0 | minutos > 0;
+            }
+            return false;
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            /*------------------------------Horario---------------------------------------------*/
+            table = $('#horario').DataTable({
+                responsive: true,
+                select: true,
+                ajax: {
+                    url: '/horario_json_admin/',
+                    type: 'POST',
+                    dataSrc: ""
+                },
+                columnDefs: [
+                    {
+                        'targets': -1,
+                        "width": "5%",
+                        'bSortable': false,
+                        'data': null,
+                        'sclass': 'dt-center',
+                        'render': function (data, type, row) {
+                            return '<button class="btn btn-primary btn-sm" name="btnEditar"  data-toggle="tooltip" title="Editar"><i class="fa fa-edit" aria-hidden="true"></i></button> ';
+                        }
+                    },
+                    {
+                        'targets': [2,3,4,5,6,7,8,9],
+                        'className': 'dt-center',
+                    }
+                ],
+                fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    var row = $(nRow).closest('tr');
+                    var resp = restar_horas(aData[1], aData[2]);
+                    if (resp) {
+                        $('td', nRow).css('background-color', '#dff0d8');
+                    }
+                },
+            });
+              $('#horario tbody').on('click', 'button[name="btnEditar"]', function () {
+                $('.tooltip').remove();
+                var data = table.row($(this).parents('tr')).data();
+                //alert(data[0]);
+                location.href="/horario/editar_admin/"+data[0]+"/";
+                  // window.locationf="horario/editar_admin/"+data[0]+"/";
+            });
+
+        });
+
+        function recarga() {
+            document.location.reload();
+        }
+
+        function recargar() {
+           setTimeout(recarga, 60000);
+        }
+    </script>
+    <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+    </style>
+{% endblock %}

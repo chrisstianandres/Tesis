@@ -1,0 +1,407 @@
+<title>Notas</title>
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-sort-numeric-asc"></i> Notas </a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-sort-numeric-asc fa-lg"></i> <strong>Notas</strong></h5>
+            </div>
+            <div class="container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="id_periodo" class="control-label col-xs-1"> {{ form.periodo.label_tag }}</label>
+                            {{ form.periodo }}
+                        </div>
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="tipo_nota" class="control-label col-xs-4"> Tipo de Nota</label>
+                            <select class="form-control form-control-lg form-rounded" id="tipo_nota">
+                                <option>---------</option>
+                                <option value="0">Parcial</option>
+                                <option value="1">Examen Final</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="id_materia"
+                                   class="control-label col-xs-1"> {{ form.materia.label_tag }}  </label>
+                            {{ form.materia }}
+                        </div>
+                        <div class="form-group col-xs-12 col-md-5 parcial" style="display: none">
+                            <label for="id_quimestre"
+                                   class="control-label col-xs-1"> {{ form.quimestre.label_tag }} </label>
+                            {{ form.quimestre }}
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-5">
+                            <label for="id_curso" class="control-label col-xs-1"> {{ form.curso.label_tag }} </label>
+                            {{ form.curso }}
+                        </div>
+
+                        <div class="form-group col-xs-12 col-md-5 parcial" style="display: none">
+                            <label for="id_parcial"
+                                   class="control-label col-xs-1"> {{ form.parcial.label_tag }} </label>
+                            {{ form.parcial }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-title="Buscar..."
+                        name="ok" id="search"><i class="fa fa-search"></i> Buscar...
+                </button>
+            </div>
+            <div class="box-body" style="display: none;" id="tabla">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover display" id="notas">
+                        <thead>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Nota</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="button" class="btn btn-success btn btn-primary btn-sm" data-title="Selecionar"
+                    data-toggle="modal" data-target="#edit" name="ok" id="guardarNotas"><i class="fa fa-save">
+            </i> Registrar Notas
+            </button>
+
+            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+            </a>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        var table;
+        $(document).ready(function () {
+            var estado = 0;
+            getPeriodo();
+            $("#id_periodo").on("change", getMateria);
+            $("#id_materia").on("change", getCurso);
+            $("#id_curso").on("change", ocultar);
+            $("#id_quimestre").on("change", getParcial);
+            $("#search").on("click", tabla);
+            $('#guardarNotas').on("click", enviarNotas);
+            $("#tipo_nota").on("change", tipo_nota);
+        });
+
+        function ocultar() {
+            $("#tabla").hide();
+        }
+
+        function tipo_nota() {
+            ocultar();
+            $(".parcial").hide();
+            var tipo_nota = $("#tipo_nota").val();
+
+            if (tipo_nota === "0") {
+                $(".parcial").show();
+            }
+        }
+
+        function getPeriodo() {
+            $("#id_periodo").html("");
+            var request = $.ajax({
+                type: "GET",
+                url: "{% url 'get_periodo' %}",
+            });
+            request.done(function (response) {
+                // Agregamos los resultados al select
+                $("#id_periodo").html(response.periodos);
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_periodo").trigger("change");
+            });
+        }
+
+        function getMateria() {
+            var periodoId = $("#id_periodo").val();
+            if (periodoId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_materia").html("");
+                var request = $.ajax({
+                    type: "GET",
+                    url: "{% url 'get_materia' %}",
+                    data: {
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_materia").html(response.materias);
+                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                    $("#id_materia, #id_curso").trigger("change");
+                });
+            } else {
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_curso").trigger("change");
+            }
+        }
+
+        function getCurso() {
+            $("#tabla").hide();
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            if (materiaId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_curso").html("");
+                var request = $.ajax({
+                    type: "GET",
+                    url: "{% url 'get_curso' %}",
+                    data: {
+                        "materia_id": materiaId,
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_curso").html(response.cursos);
+                    $("#id_curso").trigger("change");
+                });
+            } else {
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").trigger("change");
+            }
+        }
+
+        function getParcial() {
+            var quimestreId = $("#id_quimestre").val();
+            if (quimestreId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_parcial").html("");
+                var request = $.ajax({
+                    type: "GET",
+                    url: "{% url 'get_parcial' %}",
+                    data: {
+                        "quimestre_id": quimestreId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_parcial").html(response.parciales);
+                    $("#id_parcial").trigger("change");
+                });
+            } else {
+                $("#id_parcial").html("<option value='' selected='selected'>---------</option>");
+                $("#id_parcial").trigger("change");
+            }
+        }
+
+        function tabla() {
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            var cursoId = $("#id_curso").val();
+            var tipo_nota = $("#tipo_nota").val();
+            var quimestreId = $("#id_quimestre").val();
+            var parcialId = $("#id_parcial").val();
+            if (tipo_nota === 0) {
+                if (periodoId && materiaId && cursoId && quimestreId && parcialId) {
+                    $("#tabla").show();
+                    table = $('#notas').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        ajax: {
+                            url: "{% url 'get_alumno' %}",
+                            type: 'GET',
+                            data: {"periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            dataSrc: ""
+
+                        },
+                        columnDefs: [
+                            {
+                                targets: [2, 3],
+                                bSortable: false,
+                                className: "ocultar",
+                                visible: false
+                            },
+                            {
+                                targets: 1,
+                                'bSortable': false,
+                                data: null,
+                                sclass: "text-center",
+                                render: function (data, type, row) {
+                                    return '<input  type="number" size="2" max="10" min="1" ' +
+                                        'class="form-control nota" value="1" step="1">';
+                                },
+                            },
+                        ],
+                    });
+
+                } else {
+                    bootbox.dialog({
+                        title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
+                        message: 'Por favor completa todos los campos del formulario',
+                        buttons: {
+                            success: {
+                                label: "<i class='fa fa-check'>OK</i>",
+                                className: "btn btn-primary btn-flat",
+                            }
+                        }
+                    });
+                }
+            } else {
+                if (periodoId && materiaId && cursoId) {
+                    $("#tabla").show();
+                    table = $('#notas').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        ajax: {
+                            url: "{% url 'get_alumno' %}",
+                            type: 'GET',
+                            data: {"periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            dataSrc: ""
+
+                        },
+                        columnDefs: [
+                            {
+                                targets: [2, 3],
+                                bSortable: false,
+                                className: "ocultar",
+                                visible: false
+                            },
+                            {
+                                targets: 1,
+                                'bSortable': false,
+                                data: null,
+                                sclass: "text-center",
+                                render: function (data, type, row) {
+                                    return '<input  type="number" size="2" max="10" min="1" ' +
+                                        'class="form-control nota" value="1" step="1">';
+                                },
+                            },
+                        ],
+                    });
+
+                } else {
+                    bootbox.dialog({
+                        title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
+                        message: 'Por favor completa todos los campos del formulario',
+                        buttons: {
+                            success: {
+                                label: "<i class='fa fa-check'>OK</i>",
+                                className: "btn btn-primary btn-flat",
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        function enviarNotas() {
+            var tabla = [];
+            var trs = $("#notas tr").length;
+            table.column(2).visible(true);
+            table.column(3).visible(true);
+            $("#notas tbody tr").each(function (index) {
+                var n, l, a, p;
+                var filas = $(this).children("td").each(function (index2) {
+
+                    switch (index2) {
+                        case 0:
+                            var tn = $("#tipo_nota").val();
+
+                            if (tn == 0) {
+                                p = $("#id_parcial").val();
+                            } else {
+                                p = 10;
+                            }
+
+                            break;
+                        case 1:
+                            n = $(".nota", this).val();
+                            break;
+                        case 2:
+                            l = $(this).text();
+                            break;
+                        case 3:
+                            a = $(this).text();
+                            break;
+                    }
+                });
+                var items = {
+                    "parcial": p,
+                    "nota": n,
+                    "lista": l,
+                    "asignar": a
+                };
+                tabla.push(items);
+            });
+            //alert(JSON.stringify(tabla));
+            var datos = {'datos': JSON.stringify(tabla)};
+            //console.log(datos);
+            table.column(2).visible(false);
+            table.column(3).visible(false);
+            bootbox.dialog({
+                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                message: 'Recuerde que una vez registradas las notas  podr\u00E1 modificarlas <br> ¿Desea continuar?',
+
+                buttons: {
+                    default: {
+                        label: "<i class='fa fa-times'></i>",
+                        className: "btn-danger btn-sm btn-flat",
+                        callback: function () {
+                        }
+                    },
+                    success: {
+                        label: "<i class='fa fa-check'></i>",
+                        className: "btn btn-info btn-sm btn-flat",
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'save_note' %}",
+                                data: datos,
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Registrando..' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    bootbox.alert({
+                                        message: data.error,
+                                        className: 'rubberBand animated'
+                                    });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

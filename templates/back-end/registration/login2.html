@@ -1,0 +1,81 @@
+{% extends "back-end/registration/base.html" %}
+{% load static from staticfiles %}
+{% block head %}
+    <script src="{% static "js/login2.js" %}"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#"><strong>SGD</strong></a>
+            <form>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Unidad Educativa "Mis Primeros Pasos"</a>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text">Bienvenido</p></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Servicios</b><span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'notas_net' %}"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
+                             Consulta de Notas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <form class="form" id="frm-login">
+                                        <div class="form-group has-feedback">
+                                            <input type="text" id="id_username" name="username" class="form-control"
+                                                   placeholder="Username" autofocus autocomplete="off"><span
+                                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <input type="password" id="id_password" name="password" class="form-control"
+                                                   placeholder="Password" autocomplete="off">
+                                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 text-right">
+                                                <button id="btnLogin" class="btn btn-success btn-sm btn-flat"
+                                                        type="submit">
+                                                    <i class="fa fa-user-secret" aria-hidden="true"></i> Iniciar sesión
+                                                </button>
+                                                <button type="reset" class="btn btn-primary btn-sm btn-flat"
+                                                        id="limpiar"
+                                                        onclick="$('#frm-login').formValidation('resetForm', true); $('form:not(.filter) :input:visible:enabled:first').focus();">
+                                                    <i class="fa fa-refresh" aria-hidden="true"></i> Limpiar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="social-auth-links text-center well well-sm">
+                                        <a href="{% url 'password_reset' %}">Puedes reestablecer tu password dando click
+                                            aqui</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

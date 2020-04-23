@@ -1,0 +1,429 @@
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+    {% block form_head %}
+
+    {% endblock %}
+{% endblock %}
+{% block content %}
+    {{ form.media }}
+
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="{{ icono }}"></i> {{ entidad }}</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <form class="form-horizontal" id="frm_objeto" method="POST" action="{{ crud }}" enctype="multipart/form-data">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h5><i class="{{ icono }} fa-lg"></i> <strong>{{ titulo }}</strong></h5>
+                </div>
+                <div class="box-body">
+                    <div class="container-fluid">
+                        <div class="col-lg-12">
+                            <input type="hidden" id="action" name="action" value="{{ action }}">
+                            <span class="label label-danger">{{ dupla }}</span>
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="form-group">
+                                            <span class="label label-danger">{{ error }}</span>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <label for="docente"
+                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.periodo.label_tag }}</label>
+                                    <div class="col-xs-12 col-md-4">
+                                        {{ form.periodo }}
+                                    </div>
+                                    <label for="curso"
+                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.curso.label_tag }}</label>
+                                    <div class="col-xs-12 col-md-4">
+                                        {{ form.curso }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="materia"
+                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.materia.label_tag }}</label>
+                                    <div class="col-xs-12 col-md-4">
+                                        {{ form.materia }}
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-md-4">
+                                        <button type="button" class="btn btn-blue-grey btn-primary btn-sm"
+                                                data-title="Selecionar"
+                                                name="ok" id="btnBuscar"><i class="fa fa-search"></i> Buscar...
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body" id="tabla" style="display: none;">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" name="btnAgregar" id="btnAgregar"
+                                        data-toggle="tooltip" title="Agregar Fila">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar fila
+                                </button>
+                                <br>
+                            </div>
+
+                            <div class="container-fluid">
+                                <br>
+                                <table style="width:100%" class="table table-striped table-bordered table-hover display"
+                                       id="clases">
+                                    <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Desde</th>
+                                        <th>Hasta</th>
+                                        <th>Clase</th>
+                                        <th class="text-center"><em class="fa fa-trash"></em></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tr class="selected">
+                                        <td>
+                                            <div class='input-group date'>
+                                                <input title="desde" type='text'
+                                                       class="form-control form-rounded fecha"/>
+                                                <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class='input-group time'>
+                                                <input title="desde" type='text'
+                                                       class="form-control form-rounded time1"/>
+                                                <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class='input-group time'>
+                                                <input title="hasta" type='text'
+                                                       class="form-control form-rounded time2"/>
+                                                <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                            </div>
+                                        </td>
+                                        <td><select title="clase" class="form-control form-rounded clase"></select></td>
+                                        <td style="width: 15px">
+                                            <button disabled class="btn btn-danger btn-sm remove" name="btnQuitar"
+                                                    data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash"
+                                                                                                 aria-hidden=
+                                                                                                         "true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-success btn btn-primary btn-sm" data-title="Selecionar"
+                                data-toggle="modal" data-target="#edit" name="ok" id="guardarClases"><i
+                                class="fa fa-save">
+                        </i> Registrar Horario
+                        </button>
+
+                        <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                            <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        var table;
+        var cont = 1;
+        var id_fila_selected;
+        $(document).ready(function () {
+            getPeriodo();
+            $("#id_periodo").on("change", getMateria);
+            $("#id_materia").on("change", getCurso);
+            $("#btnBuscar").on("click", tabla);
+            $("#btnAgregar").on("click", agregar);
+            $("#guardarClases").on("click", enviarHorario);
+            $(document).on('click', '.remove', removeElemento);
+        });
+
+        function tabla() {
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            var cursoId = $("#id_curso").val();
+
+            if (periodoId && materiaId && cursoId) {
+                $("#tabla").show();
+                table = $('#clases').DataTable({
+                    destroy: true,
+                    responsive: true,
+                    dom: 't',
+                    columnDefs: [
+                        {
+                            'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
+                            'render': function (data, type, row) {
+                                return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
+                                    'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
+                                    '</i></button>';
+                            },
+                        },
+                        {"width": "20%", "targets": 0},
+                        {"width": "15%", "targets": [1, 2]}
+                    ],
+                });
+
+            } else {
+                bootbox.dialog({
+                    title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
+                    message: 'Por favor completa todos los campos del formulario',
+                    buttons: {
+                        success: {
+                            label: "<i class='fa fa-check'>OK</i>",
+                            className: "btn btn-primary btn-flat",
+                        }
+                    }
+                });
+            }
+            date();
+            getSilabo();
+        }
+
+        function agregar() {
+            $('.tooltip').remove();
+            cont++;
+            var fila = '<tr class="selected" id="fila' + cont + '"> ' +
+                '<td><div class="input-group date"><input title="desde" type="text" class="form-control form-rounded fecha" />' +
+                '<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span></span></div></td>' +
+                '<td><div class=\'input-group time\'><input title="desde" type=\'text\' class="form-control form-rounded time1" />\n' +
+                '<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span></div></td>\n' +
+                '<td><div class=\'input-group time\'><input title="desde" type=\'text\' class="form-control form-rounded time2" />\n' +
+                '<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span></div></td>\n' +
+                '<td><select title="clase" class="form-control form-rounded clase"></select></td>\n' +
+                '<td style="width: 15px"><button class="btn btn-danger btn-sm remove" name="btnQuitar"\n' +
+                'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true"></i></button> </td></tr>';
+            $('#clases').append(fila);
+            date();
+            getSilabo();
+
+        }
+
+        function date() {
+            $('.date').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'Es'
+            });
+            $('.time').datetimepicker({
+                format: 'HH:mm'
+            });
+        }
+
+        function getPeriodo() {
+            var request = $.ajax({
+                type: "POST",
+                url: "{% url 'horario:get_periodo_2' %}",
+            });
+            request.done(function (response) {
+                // Agregamos los resultados al select
+                $("#id_periodo").html(response.periodos);
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_periodo").trigger("change");
+
+            });
+        }
+
+        function getMateria() {
+            var periodoId = $("#id_periodo").val();
+            if (periodoId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_materia").html("");
+                var request = $.ajax({
+                    type: "POST",
+                    url: "{% url 'horario:get_materia_2' %}",
+                    data: {
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_materia").html(response.materias);
+                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                    $("#id_materia, #id_curso").trigger("change");
+                });
+            } else {
+                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_materia, #id_curso").trigger("change");
+            }
+        }
+
+        function getCurso() {
+            $("#tabla").hide();
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            if (materiaId) {
+                // Eliminamos las opciones anteriores del select
+                $("#id_curso").html("");
+                var request = $.ajax({
+                    type: "POST",
+                    url: "{% url 'horario:get_curso_2' %}",
+                    data: {
+                        "materia_id": materiaId,
+                        "periodo_id": periodoId,
+                    },
+                });
+                request.done(function (response) {
+                    // Agregamos los resultados al select
+                    $("#id_curso").html(response.cursos);
+                    $("#id_curso").trigger("change");
+                });
+            } else {
+                $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                $("#id_curso").trigger("change");
+            }
+        }
+
+        function getSilabo() {
+            var materiaId = $("#id_materia").val();
+
+            // Eliminamos las opciones anteriores del select
+            $(".clase").html("");
+            var request = $.ajax({
+                type: "POST",
+                url: "{% url 'horario:get_silabo' %}",
+                data: {
+                    "materia_id": materiaId
+                },
+            });
+            request.done(function (response) {
+                // Agregamos los resultados al select
+                $(".clase").html(response.silabos);
+                $(".clase").trigger("change");
+            });
+        }
+
+        function enviarHorario() {
+            var periodoId = $("#id_periodo").val();
+            var materiaId = $("#id_materia").val();
+            var cursoId = $("#id_curso").val();
+            if (periodoId && materiaId && cursoId) {
+                var tabla = [];
+                var trs = $("#clases tr").length;
+                $("#clases tbody tr").each(function (index) {
+                    var f, d, h, s, a, p;
+                    var filas = $(this).children("td").each(function (index2) {
+                        switch (index2) {
+                            case 0:
+                                f = $(".fecha", this).val();
+                                break;
+                            case 1:
+                                d = $(".time1", this).val();
+                                break;
+                            case 2:
+                                h = $(".time2", this).val();
+                                break;
+                            case 3:
+                                s = $(".clase", this).val();
+                                break;
+                            case 4:
+                                a = $("#id_curso").val();
+                                break;
+                        }
+                    });
+                    var items = {
+                        "fecha": f,
+                        "desde": d,
+                        "hasta": h,
+                        "silabo": s,
+                        "asignar": a,
+                    };
+                    tabla.push(items);
+                });
+                //alert(JSON.stringify(tabla));
+                var datos = {'datos': JSON.stringify(tabla)};
+
+                console.log(datos);
+                bootbox.dialog({
+                    title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                    message: 'Recuerde haber llenado correctamente todos los campos <br> ¿Desea continuar?',
+                    buttons: {
+                        default: {
+                            label: "<i class='fa fa-times'></i>",
+                            className: "btn-danger btn-sm btn-flat",
+                            callback: function () {
+                            }
+                        },
+                        success: {
+                            label: "<i class='fa fa-check'></i>",
+                            className: "btn btn-info btn-sm btn-flat",
+                            callback: function () {
+                                $.ajax({
+                                    dataType: 'JSON',
+                                    type: 'POST',
+                                    url: "{% url 'horario:save_horario_2' %}",
+                                    data: datos,
+                                    success: function (data) {
+                                        if (data.resp) {
+                                            $.isLoading({
+                                                text: "<strong>" + 'Registrando..' + "</strong>",
+                                                tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                            });
+                                            setTimeout(function () {
+                                                location.reload();
+                                            }, 1000);
+                                            return false;
+                                        }
+                                        bootbox.alert({
+                                            message: data.error,
+                                            className: 'rubberBand animated'
+                                        });
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown + ' ' + textStatus);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            } else {
+                bootbox.dialog({
+                    title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
+                    message: 'Por favor completa todos los campos del formulario',
+                    buttons: {
+                        success: {
+                            label: "<i class='fa fa-check'>OK</i>",
+                            className: "btn btn-primary btn-flat",
+                        }
+                    }
+                });
+            }
+        }
+
+        function removeElemento() {
+            $('.tooltip').remove();
+            $(this).parent().parent().remove();
+        }
+    </script>
+
+
+{% endblock %}
+
+

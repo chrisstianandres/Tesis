@@ -1,0 +1,333 @@
+<title>Listado de Docentes</title>
+{% extends 'back-end/base.html' %}
+
+{% load static from staticfiles %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="fa fa-user-circle-o"></i> Docentes</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h5><i class="fa fa-user-circle-o fa-lg"></i> <strong>Docentes</strong></h5>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover " id="docente">
+                        <thead>
+                        <tr>
+                            <th>Docente</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>Asignar</th>
+                            <th class="text-center"><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if Docente_list %}
+                            {% for Docente in Docente_list %}
+                                <tr>
+                                    <td>{{ Docente.id }}</td>
+                                    <td><strong>{{ Docente.username }} </strong></td>
+                                    <td> {{ Docente.first_name }} </td>
+                                    <td> {{ Docente.last_name }} </td>
+                                    <td> {{ Docente.cedula }} </td>
+                                    <td> {{ Docente.email }} </td>
+                                    <td style="font-weight:bold"> {{ Docente.get_estado_display }} </td>
+                                    <td><a type="button" class="btn btn-default btn-xs" data-toggle="tooltip"
+                                           title="Asignar materias a {{ Docente.first_name }} {{ Docente.last_name }}"
+                                           href="{% url 'asignar:nuevo' Docente.id %}"><span
+                                            class="glyphicon glyphicon-plus"> </span></a>
+                                        <a type="button" class="btn btn-default btn-xs" data-toggle="tooltip"
+                                           title="Ver materias asignadas a {{ Docente.first_name }} {{ Docente.last_name }}"
+                                           href="{% url 'asignar:asignadas' Docente.id %}"><span
+                                                class="glyphicon glyphicon-search"> </span></a></td>
+                                    <td><a type="button" class="btn btn-primary btn-xs" data-toggle="tooltip"
+                                           title="Editar datos"
+                                           href="{% url 'docente:editar' Docente.id %}"><span
+                                            class="glyphicon glyphicon-pencil"> </span></a>
+                                        <a type="button" class="btn btn-default btn-xs estado" data-toggle="tooltip"
+                                           title="Gestionar estado del docente"><span
+                                                class="glyphicon glyphicon-cog"> </span></a></td>
+                                </tr>
+                            {% endfor %}
+
+                        {% else %}
+                            <h1>No hay Datos </h1>
+
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+            <div class="box-footer">
+                <a type="button" class="btn btn-default btn-sm" href="{% url 'docente:nuevo' %}">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Docente
+                </a>
+                <a type="button" class="btn btn-danger btn-sm pull-right"
+                   href="{% url 'docente:reporte_docentes_pdf' %}">
+                    <i class="fa fa-print" aria-hidden="true"></i> Reporte
+                </a>
+                <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                    <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+                </a>
+            </div>
+        </div>
+    </section>
+    <script type="application/javascript">
+        var table;
+        var dialog;
+        $(document).ready(function () {
+            tabla();
+            $('.estado').on("click", estado);
+        });
+
+
+        function tabla() {
+            table = $('#docente').DataTable({
+                destroy: true,
+                responsive: true,
+                dom: 'lfrtip',
+                columnDefs: [
+                    {"targets": [0], visible: false},
+                    {"className": "dt-center", "targets": [0, 1, 4, 6, 7]},
+                    {"className": "dt-center", "width": "12%", "bSortable": false, "targets": [-1]}
+                ],
+                "createdRow": function (row, data, dataIndex) {
+                    if (data[6] === 'Activo') {
+                        $('td', row).eq(5).addClass('green');
+                    } else if (data[6] === 'Retirado') {
+                        $('td', row).eq(5).addClass('red');
+                        //$('td', row).eq(6).disable();
+                    } else if (data[6] === 'Suspendido') {
+                        $('td', row).eq(5).addClass('orange');
+                        //$('td', row).eq(6).disable();
+                    }
+
+                }
+            });
+            filtros();
+        }
+
+        function filtros() {
+            $('#docente thead th').each(function () {
+                var title = $(this).text();
+                if (title === 'Usuario') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Nombre') {
+                    $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Apellido') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Cedula') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Correo') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Estado') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+            });
+
+            table.columns().every(function () {
+                var that = this;
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        $('.tooltip').remove();
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+        }
+
+        function estado() {
+            var data = table.row($(this).parents('tr')).data();
+            var a = 0;
+            var r = 1;
+            var s = 2;
+            dialog = bootbox.dialog({
+                title: 'Cambiar estado del Docente',
+                message: 'Seleccione el estado que desea asignar a  ' + data[2] + ' ' + data[3],
+                //'<i class="fa fa-child" aria-hidden="true"></i> Asistencias ' + ' de ' + data[5] +
+                size: 'large',
+                buttons: {
+                    cancel: {
+                        label: "Retirado",
+                        className: 'btn-danger retirado',
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'docente:estado' %}",
+                                data: {
+                                    id: data[0],
+                                    estado: r,
+                                },
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Cambiando estado..' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    alert(data.error);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    },
+                    noclose: {
+                        label: "Suspendido",
+                        className: 'btn-warning suspendido',
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'docente:estado' %}",
+                                data: {
+                                    id: data[0],
+                                    estado: s,
+                                },
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Cambiando estado...' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    alert(data.error);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    },
+                    ok: {
+                        label: "Activo",
+                        className: 'btn-success activo',
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'docente:estado' %}",
+                                data: {
+                                    id: data[0],
+                                    estado: a,
+                                },
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Cambiando estado...' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    alert(data.error);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            if (data[6] === 'Activo') {
+                dialog.find('.activo').hide();
+            }
+            if (data[6] === 'Retirado') {
+                dialog.find('.retirado').hide();
+                dialog.find('.suspendido').hide();
+            }
+            if (data[6] === 'Suspendido') {
+                dialog.find('.suspendido').hide();
+            }
+        }
+    </script>
+    <style>
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        td.green {
+            color: black;
+            text-align: center;
+            background-color: darkseagreen;
+        }
+
+        td.red {
+            color: black;
+            text-align: center;
+            background-color: #FD1B41;
+        }
+
+        td.orange {
+            color: black;
+            text-align: center;
+            background-color: orange;
+        }
+
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}

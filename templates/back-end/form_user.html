@@ -1,0 +1,71 @@
+{% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "plugins/formvalidation/css/formValidation.css" %}"/>
+    <script src="{% static "plugins/formvalidation/js/jquery.validate.js" %}" type="text/javascript"></script>
+    <script src="{% static "plugins/formvalidation/js/formValidation.js" %}" type="text/javascript"></script>
+    <script src="{% static "plugins/formvalidation/js/framework/bootstrap.js" %}" type="text/javascript"></script>
+    <script src="{% static "plugins/formvalidation/js/language/es_ES.js" %}" type="text/javascript"></script>
+
+    {% block form_head %}
+
+    {% endblock %}
+{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
+            <li><a href="{{ ruta }}"><i class="{{ icono }}"></i> {{ entidad }}</a></li>
+        </ol>
+    </section>
+    <section class="content" style="margin-top: 20px;">
+        <form class="form-horizontal" id="frm_objeto" method="POST" action="{{ crud }}" enctype="multipart/form-data">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h5><i class="{{ icono }} fa-lg"></i> <strong>{{ titulo }}</strong></h5>
+                </div>
+                <div class="box-body">
+                    <div class="container-fluid">
+                        <div class="col-lg-4">
+                            <input type="hidden" id="action" name="action" value="{{ action }}">
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="form-group">
+                                            <span class="label label-danger">{{ error }}</span>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="container">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-md-4">
+                                        {{ form.as_p }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-sm" name="guardar" id="guardar">
+                    <i class="fa fa-save"></i> {{ boton }}
+                </button>
+                <button type="button" class="btn btn-default btn-sm" id="reset"
+                        onclick="$('#frm_objeto').formValidation('resetForm', true);
+                $('select').selectpicker('refresh').selectpicker('val', '');
+                $('form:not(.filter):input:visible:enabled:first').focus();">
+                    <i class="fa fa-clipboard" aria-hidden="true"></i> Limpiar
+                </button>
+            </div>
+        </form>
+    </section>
+
+{% endblock %}
+
+
