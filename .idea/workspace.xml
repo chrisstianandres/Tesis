@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-3.5-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-3.5.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/easy_install.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.5-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.5.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Scripts/pip3.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +76,7 @@
       <workItem from="1587780123634" duration="81000" />
       <workItem from="1587841077108" duration="45000" />
       <workItem from="1587841983595" duration="110000" />
-      <workItem from="1587921533415" duration="1119000" />
+      <workItem from="1587921533415" duration="1782000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -82,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587922495988</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version 3">
+      <created>1587922853505</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587922853505</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,33 +111,33 @@
     <option name="LAST_COMMIT_MESSAGE" value="Version 3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1587922808010">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1587922852459">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587922808010" />
-    <state width="661" height="98" key="GridCell.Tab.0.bottom" timestamp="1587922841836">
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587922852459" />
+    <state width="1323" height="98" key="GridCell.Tab.0.bottom" timestamp="1587923106537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="661" height="98" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587922841836" />
-    <state width="661" height="98" key="GridCell.Tab.0.center" timestamp="1587922841836">
+    <state width="1323" height="98" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587923106537" />
+    <state width="1323" height="98" key="GridCell.Tab.0.center" timestamp="1587923106537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="661" height="98" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587922841836" />
-    <state width="661" height="98" key="GridCell.Tab.0.left" timestamp="1587922841836">
+    <state width="1323" height="98" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587923106537" />
+    <state width="1323" height="98" key="GridCell.Tab.0.left" timestamp="1587923106537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="661" height="98" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587922841836" />
-    <state width="661" height="98" key="GridCell.Tab.0.right" timestamp="1587922841836">
+    <state width="1323" height="98" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587923106537" />
+    <state width="1323" height="98" key="GridCell.Tab.0.right" timestamp="1587923106537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="661" height="98" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587922841836" />
+    <state width="1323" height="98" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587923106537" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1587922399525">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1587922399525" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587922824949">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587922909824">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587922824949" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587922909824" />
   </component>
 </project>
