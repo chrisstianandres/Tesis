@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\Angie\PycharmProjects\Demo\venv"
+set "VIRTUAL_ENV=C:\Users\Angie\Documents\MEGAsync\Demo\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
