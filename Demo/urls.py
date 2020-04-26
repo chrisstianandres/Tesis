@@ -22,7 +22,7 @@ from apps import backEnd as backEnd
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
 from apps.notas.ajax import *
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import login,logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

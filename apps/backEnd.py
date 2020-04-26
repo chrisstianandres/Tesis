@@ -73,7 +73,7 @@ def logeo(request):
 
 def connect(request):
     data = {}
-    if request.method == 'POST':
+    if request.method == 'POST' or None:
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
@@ -84,7 +84,8 @@ def connect(request):
                 login(request, user)
                 data['resp'] = True
         else:
-            data['error'] = 'Usuario no valido.'
+            data['error'] = '<strong>Usuario no valido </strong><br>' \
+                            'Verifica las credenciales de acceso y vuelve a intentarlo.'
     else:
         data['error'] = 'Metodo Request no es Valido.'
     return HttpResponse(json.dumps(data), content_type="application/json")

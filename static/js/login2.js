@@ -1,4 +1,4 @@
-$(function () {
+window.$(function () {
     $('#frm-login').formValidation({
         message: 'This value is not valid',
         icon: {
@@ -26,44 +26,56 @@ $(function () {
                 }
             }
         }
-    }).on('success.form.fv', function(e) {
+    }).on('success.form.fv', function (e) {
         e.preventDefault();
-        var $form = $(e.target);
+        var $form = window.$(e.target);
         var fv = $form.data('formValidation');
         var data = {
-            username : $('#id_username').val().trim(),
-            password : $('#id_password').val().trim()
+            username: window.$('#id_username').val().trim(),
+            password: window.$('#id_password').val().trim(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
         };
-        $('#btnLogin').attr('disabled',true);
+        $('#btnLogin').attr('disabled', true);
         $.ajax({
-                 dataType: 'JSON',
-                 type: 'POST',
-                 url : '/connect/',
-                 data: data,
-                 beforeSend : function(){
-                    $('#id_password').val('');
-                    $('#id_username').val('').focus();
-                 },
-                 success : function(data){
-                     if(data.resp  == true){
-                        $.isLoading({
-                             text: "<strong>Iniciando sesión...</strong>",
-                             tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-circle-o-notch fa-2x fa-spin"></i><br>%text%</span>',
-                        });
-                        setTimeout( function(){
-                          $.isLoading("hide");
-                            window.location = '/';
-                        },2000);
-                        return false;
-                     }
-                     message(data.error);
-                 },
-                 error: function(jqXHR, textStatus, errorThrown){
-                     message(errorThrown + ' ' + textStatus);
-                 }
-            }).done(setTimeout(function(){
-                $('#btnLogin').attr('disabled',false);
-            },2000));
+            dataType: 'JSON',
+            type: 'POST',
+            url: '/connect/',
+            data: data,
+
+            beforeSend: function () {
+                $('#id_password').val('');
+                $('#id_username').val('').focus();
+            },
+            success: function (data) {
+                if (data.resp === true) {
+                    window.$.isLoading({
+                        text: "<strong>Iniciando sesión...</strong>",
+                        tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-circle-o-notch fa-2x fa-spin"></i><br>%text%</span>',
+                    });
+                    setTimeout(function () {
+                        window.$.isLoading("hide");
+                        window.location = '/';
+                    }, 2000);
+                    return false;
+                } else {
+                    window.bootbox.dialog({
+                    title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Error",
+                    message: data.error,
+                    buttons: {
+                        success: {
+                            label: "<i class='fa fa-check'>OK</i>",
+                            className: "btn btn-primary btn-flat",
+                        }
+                    }
+                });
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                window.message(errorThrown + ' ' + textStatus);
+            }
+        }).done(setTimeout(function () {
+            window.$('#btnLogin').attr('disabled', false);
+        }, 2000));
     });
 
 });
