@@ -1,0 +1,34 @@
+
+pip3.5 install --user pythonanywhere
+
+pa_autoconfigure_django.py --python=3.5 https://github.com/chrisstianandres/sistema_web.git
+
+
+activate_this = '/home/sistemaweb2021/.virtualenvs/venv/bin/activate_this.py'
+exec(open(activate_this).read())
+
+import os
+import sys
+
+##ADD YOUR PROJECT TO THE FILE PYTHONPATH FOR THE PYTHON INSTANCE
+path = '/home/sistemaweb2021/django'
+
+if path not in sys.path:
+    sys.path.append(path)
+    
+os.chdir(path)
+
+TELL DJANGO WHERE YOUR SETTINGS MODULE IS LOCATED
+os.environ['DJANGO_SETTINGS_MODULE'] = '*carpeta_settings*.settings'
+
+
+######################### para versiones django menor a 1.5 ##########################
+import django.core.handlers.wsgi
+aplication = django.core.handlers.wsgi.WSGIHandler()
+
+
+
+######################### para versiones django mayor o igual a 1.5 ##########################
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
