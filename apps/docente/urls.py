@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 app_name = 'Docente'
 urlpatterns = [
-    url(r'^menu2$', login_required(views.menu), name='menu_docente'),
+#    url(r'^menu2$', login_required(views.menu), name='menu_docente'),
     url(r'^nuevo$', login_required(views.nuevo), name='nuevo'),
     url(r'^crear', login_required(views.crear), name='crear'),
     url(r'^editar/(?P<id_docente>\d+)/$', login_required(views.editar), name='editar'),

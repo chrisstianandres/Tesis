@@ -113,7 +113,7 @@ def notas_net(request):
                 "sexo": a.get_sexo_display()
             }
             data['data'] = data2
-            periodos = Listado.objects.filter(alumno__cedula=cedula).order_by("periodo_id").distinct("periodo_id")
+            periodos = Listado.objects.filter(alumno__cedula=cedula).order_by("periodo_id")#.distinct("periodo_id")
             options = '<option value="" selected="selected">---------</option>'
             for periodo in periodos:
                 options += '<option value="%s">%s</option>' % (

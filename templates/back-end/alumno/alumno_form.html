@@ -41,6 +41,7 @@
                                 {% endfor %}
                             {% endif %}
                             <div class="container-fluid"></div>
+                                    {% csrf_token %}
                             <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">{{ form.representante.label_tag }}</label>
                                 <div class="col-xs-12 col-md-5">

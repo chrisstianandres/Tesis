@@ -9,10 +9,6 @@ from django.http import HttpResponseRedirect
 #---------------------------
 
 #---------------------------
-class Materia_list (ListView):
-    model = Materia
-    template_name = 'back-end/materia/materia_list.html'
-
 
 opc_icono = 'fa fa-book'
 opc_ruta = '/materias/'
@@ -20,6 +16,12 @@ opc_nuevo = '/materia/nuevo'
 opc_crud = '/materia/crear'
 opc_delete = '/materia/borrar'
 opc_entidad = 'Materias'
+
+
+class Materia_list (ListView):
+    model = Materia
+    template_name = 'back-end/materia/materia_list.html'
+
 
 
 def nuevo(request):

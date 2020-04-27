@@ -1,5 +1,6 @@
 from django.http import JsonResponse, HttpResponse
 import json
+from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Count
 from .models import Asignar, Listado
 from apps.quimestre.models import *
@@ -13,7 +14,7 @@ def get_periodo(request):
     periodos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if a:
-        periodos = Asignar.objects.filter(docente_id=a).distinct("periodo_id")
+        periodos = Asignar.objects.filter(docente_id=a)#.distinct("periodo_id")
     for periodo in periodos:
         options += '<option value="%s">%s</option>' % (
             periodo.periodo_id,
@@ -29,7 +30,7 @@ def get_materia(request):
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:
-        materias = Asignar.objects.filter(periodo_id=periodo_id, docente_id=a).distinct("materia_id")
+        materias = Asignar.objects.filter(periodo_id=periodo_id, docente_id=a)#.distinct("materia_id")
     for materia in materias:
         options += '<option value="%s">%s</option>' % (
             materia.materia.id,
@@ -47,7 +48,7 @@ def get_curso(request):
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if materia_id:
-        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id).distinct("curso_id")
+        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id)#.distinct("curso_id")
     for curso in cursos:
         options += '<option value="%s">%s</option>' % (
             curso.curso.pk,
@@ -65,7 +66,7 @@ def get_curso_asistencias(request):
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if materia_id:
-        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id).distinct("curso_id")
+        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id)#.distinct("curso_id")
     for curso in cursos:
         options += '<option value="%s">%s</option>' % (
             curso.pk,
@@ -119,6 +120,8 @@ def get_alumno_asistencias(request):
                                                  Horario__asignar__docente_id=a, fecha__range=[desde, hasta])]
      return HttpResponse(json.dumps(data), content_type="application/json")
 
+
+@csrf_exempt
 def save_note(request):
     data = {}
     if request.method == 'POST':

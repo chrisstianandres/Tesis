@@ -6,6 +6,23 @@
 {% endblock %}
 
 {% block content %}
+     <style>
+        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
+            color: black;
+        }
+
+        .table tbody tr td {
+            font-size: 12px;
+        }
+
+        .form-inline .form-control {
+            width: 100%;
+        }
+
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+    </style>
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
@@ -113,7 +130,26 @@
             var tiempo = new Date();
             var hora = tiempo.getHours();
             var minuto = tiempo.getMinutes();
+            var t = check_in_range(inicio,fin);
+            alert(t);
             return ((hora >= inicioHoras & hora < finHoras));
+            //return (i===1 & f ===1)
+        }
+
+        function check_in_range(inicio, fin) {
+            var hoy = new Date();
+            var inicioHoras = parseInt(inicio.substr(0, 2));
+            var finHoras = parseInt(fin.substr(0, 2));
+            var inicioMinuto = parseInt(inicio.substr(3, 2));
+            var finMinuto = parseInt(inicio.substr(3, 2));
+            var i = inicioHoras + ':' + inicioMinuto;
+            var f = finHoras+ ':' + finMinuto;
+            var hora = hoy.getHours() + ':' + hoy.getMinutes();
+            if((hora >= i) && (hora <= f)){
+                     return true;
+                } else{
+                    return false;
+                }
         }
 
         function restar_horas(inicio, fin) {
@@ -162,7 +198,7 @@
                 ],
                 fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                     var row = $(nRow).closest('tr');
-                    var resp = restar_horas(aData[1], aData[2]);
+                    var resp = check_in_range(aData[1], aData[2]);
                     row.find("button[name='btnRegistrar']").prop('disabled', !resp);
                     row.find("button[name='btnAsistencia']").prop('disabled', !resp);
                     if (resp) {
@@ -340,7 +376,21 @@
         function enviarAsistencias() {
             var tabla = [];
             var trs = $("#asistencia tr").length;
-            tblasist.column(3).visible(true);
+            if (trs<=2){
+                bootbox.dialog({
+                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                message: 'No hay ningun almuno para asignar',
+                buttons: {
+                    default: {
+                        label: "<i class='fa fa-check'></i>",
+                        className: "btn-primary btn-sm btn-flat",
+                        callback: function () {
+                        }
+                    }
+                }
+            });
+            } else {
+                tblasist.column(3).visible(true);
             $("#asistencia tbody tr").each(function (index) {
                 var l, h, a;
                 var filas = $(this).children("td").each(function (index2) {
@@ -415,6 +465,8 @@
                 }
             });
 
+            }
+
         }
 
         function enviarFaltas(id) {
@@ -448,6 +500,7 @@
         function enviarAsistenciasfalta() {
             var tabla = [];
             var trs = $("#asistencia tr").length;
+            if (trs>2){
             tblasist.column(3).visible(true);
             $("#asistencia tbody tr").each(function (index) {
                 var l, h, a;
@@ -485,23 +538,8 @@
                 url: "{% url 'asistencia_list:save_asistencia' %}",
                 data: datos
             });
+            }
         }
     </script>
-    <style>
-        table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
-            color: black;
-        }
 
-        .table tbody tr td {
-            font-size: 12px;
-        }
-
-        .form-inline .form-control {
-            width: 100%;
-        }
-
-        th.dt-center, td.dt-center {
-            text-align: center;
-        }
-    </style>
 {% endblock %}

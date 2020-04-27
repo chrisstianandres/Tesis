@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from apps.asignar.forms import AsignarForm
 from django.http import *
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -60,6 +61,8 @@ def get_datos(request):
     response['cursos'] = optionsc
     return JsonResponse(response)
 
+
+@csrf_exempt
 def crear(request):
     data = {}
     if request.method == 'POST':
@@ -106,7 +109,7 @@ def Lista_cursos (request, id_curso, id_periodo):
 
 
 def Lista_Asignadas_admin (request, id_docente):
-    Asignadas = Asignar.objects.filter(docente_id=id_docente).distinct("materia_id")
+    Asignadas = Asignar.objects.filter(docente_id=id_docente)#.distinct("materia_id")
     contexto = {'Asignadas': Asignadas, "id_docente": id_docente}
     return render(request, "back-end/asignar/asignar_list_docente.html", contexto)
 

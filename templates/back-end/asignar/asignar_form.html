@@ -48,11 +48,11 @@
                                         </tr>
                                         </thead>
                                         <tr class="selected">
-                                            <td><select title="periodo" class="form-control form-rounded materias"></select>
+                                            <td><select title="meterias" class="form-control form-rounded materias"></select>
                                             </td>
-                                            <td><select title="materia" class="form-control form-rounded cursos"></select>
+                                            <td><select title="periodos" class="form-control form-rounded periodos"></select>
                                             </td>
-                                            <td><select title="curso" class="form-control form-rounded periodos"></select>
+                                            <td><select title="cursos" class="form-control form-rounded cursos"></select>
                                             </td>
                                             <td style="width: 15px">
                                                 <button disabled class="btn btn-danger btn-sm remove" name="btnQuitar"
@@ -82,9 +82,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </form>
     </section>
-
+    <style>
+      th.dt-center, td.dt-center {
+            text-align: center;
+        }
+    </style>
     <script>
         var table;
         var cont = 1;
@@ -103,7 +108,8 @@
                 dom: 't',
                 columnDefs: [
                     {
-                        'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
+                        'targets': -1, 'bSortable': false, 'data': null, 'className': 'dt-center',
+                        "width":"8%",
                         'render': function (data, type, row) {
                             return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
                                 'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
@@ -156,10 +162,10 @@
                             m = $(".materias", this).val();
                             break;
                         case 1:
-                            c = $(".cursos", this).val();
+                            p = $(".periodos", this).val();
                             break;
                         case 2:
-                            p = $(".periodos", this).val();
+                            c = $(".cursos", this).val();
                             break;
                         case 3:
                             d = $("#id_docente").val();
@@ -174,7 +180,7 @@
                 };
                 tabla.push(items);
             });
-           alert(JSON.stringify(tabla));
+           //alert(JSON.stringify(tabla));
             var datos = {'datos': JSON.stringify(tabla)};
 
             console.log(datos);

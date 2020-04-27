@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.http import *
+from django.views.decorators.csrf import csrf_exempt
 import pandas as pd
-import numpy as np
 from .models import *
 from apps.horario.models import *
 from apps.asistencias.forms import *
 from apps.asistencias.models import Asistencias
 import json
-from django.http import *
+
 
 def alumno_list(request):
     a = request.user.id
@@ -111,6 +112,7 @@ def transpose(materiaId, periodoId, cursoId, desde, hasta):
     return data
 
 
+@csrf_exempt
 def save_asistencia(request):
     data = {}
     fecha_hoy = date.today()
