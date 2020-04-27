@@ -42,7 +42,7 @@
                                 <div class="col-md-12">
 
                                     <form class="form" id="frm-login">
-                                        <input type="hidden" value="{% csrf_token %}" id="token">
+                                        {% csrf_token %}
                                         <div class="form-group has-feedback">
                                             <input type="text" id="id_username" name="username" class="form-control"
                                                    placeholder="Username" autofocus autocomplete="off"><span

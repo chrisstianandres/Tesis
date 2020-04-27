@@ -3,6 +3,9 @@ from .forms import *
 import json
 from .models import Silabo
 from django.http import *
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 opc_icono = 'fa fa-archive'
 opc_ruta = '/silabo/nuevo'
@@ -72,6 +75,7 @@ def get_last_silabo(request):
                                                  [materia_id])]
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+@csrf_exempt
 def save_silabo(request):
     data = {}
     if request.method == 'POST':

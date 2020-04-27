@@ -60,7 +60,7 @@ def crear_curso(request):
             else:
                 data['form'] = f
                 return render(request, 'back-end/curso/curso_form.html', data)
-            return HttpResponseRedirect('/curso/')
+            return HttpResponseRedirect('/curso/lista')
 
 def lista(request):
     lista = Curso.objects.all()

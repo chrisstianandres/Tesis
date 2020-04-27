@@ -31,9 +31,9 @@ window.$(function () {
         var $form = window.$(e.target);
         var fv = $form.data('formValidation');
         var data = {
+            csrfmiddlewaretoken:  $("#change_password-form").find('input[name=csrfmiddlewaretoken]').val(),
             username: window.$('#id_username').val().trim(),
             password: window.$('#id_password').val().trim(),
-            csrfmiddlewaretoken: '{{ csrf_token }}',
         };
         $('#btnLogin').attr('disabled', true);
         $.ajax({

@@ -99,7 +99,6 @@ def Lista_Asignadas_docente (request):
 
 
 def Lista_cursos (request, id_curso, id_periodo):
-    print(id_curso, id_periodo)
     Asignadas = Asignar.objects.filter(docente_id=request.user.id, curso_id=id_curso, periodo_id=id_periodo).distinct("materia_id")
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list_docente_curso.html", contexto)
