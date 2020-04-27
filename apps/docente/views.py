@@ -25,10 +25,6 @@ opc_entidad = 'Docentes'
 
 
 # ---------------------------
-def menu(request):
-    return render(request, "back-end/docente/indexdelmenu.html")
-
-
 def nuevo(request):
     data = {
         'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
