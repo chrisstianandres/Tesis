@@ -78,6 +78,8 @@ urlpatterns = [
     # url(r'^silabo2/', include('apps.horario.urls', namespace='silabolista1')),
     # url(r'^alumno/', include('apps.asistencias.urls', namespace='alumno_list')),
 
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
