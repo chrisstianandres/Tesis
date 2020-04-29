@@ -1,6 +1,5 @@
 {% extends 'back-end/base.html' %}
 <title>{{ titulo }}</title>
-{% load static from staticfiles %}
 {% block head %}
 {% endblock %}
 
@@ -131,6 +130,7 @@
                                 type: 'POST',
                                 url: "{% url 'silabos:eliminar' %}",
                                 data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
                                     id: data[0]
                                 },
                                 success: function (data) {

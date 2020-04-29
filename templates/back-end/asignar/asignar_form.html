@@ -1,5 +1,4 @@
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
     {% block form_head %}
 
@@ -181,7 +180,8 @@
                 tabla.push(items);
             });
            //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla)};
+            var datos = {'datos': JSON.stringify(tabla),
+            csrfmiddlewaretoken: "{{ csrf_token }}"};
 
             console.log(datos);
             bootbox.dialog({
@@ -237,5 +237,3 @@
 
 
 {% endblock %}
-
-

@@ -1,5 +1,4 @@
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
     {% block form_head %}
 
@@ -251,6 +250,7 @@
                     url: "{% url 'horario:get_periodo' %}",
                     data: {
                         "docente_id": docenteId,
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                     },
                 });
                 request.done(function (response) {
@@ -279,6 +279,7 @@
                     data: {
                         "periodo_id": periodoId,
                         "docente_id": docenteId,
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                     },
                 });
                 request.done(function (response) {
@@ -309,6 +310,7 @@
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                         "docente_id": docenteId,
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                     },
                 });
                 request.done(function (response) {
@@ -331,7 +333,8 @@
                 type: "POST",
                 url: "{% url 'horario:get_silabo' %}",
                 data: {
-                    "materia_id": materiaId
+                    "materia_id": materiaId,
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
                 },
             });
             request.done(function (response) {
@@ -382,9 +385,10 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {'datos': JSON.stringify(tabla)};
+                var datos = {'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}",};
 
-                console.log(datos);
+                //console.log(datos);
                 bootbox.dialog({
                     title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
                     message: 'Recuerde haber llenado correctamente todos los campos <br> ¿Desea continuar?',

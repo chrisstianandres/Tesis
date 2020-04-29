@@ -96,13 +96,13 @@ def Lista_Asignadas (request):
     return render(request, "back-end/asignar/asignar_list.html", contexto)
 
 def Lista_Asignadas_docente (request):
-    Asignadas = Asignar.objects.filter(docente_id=request.user.id).distinct("materia_id")
+    Asignadas = Asignar.objects.filter(docente_id=request.user.id)#.distinct("materia_id")
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list_docente.html", contexto)
 
 
 def Lista_cursos (request, id_curso, id_periodo):
-    Asignadas = Asignar.objects.filter(docente_id=request.user.id, curso_id=id_curso, periodo_id=id_periodo).distinct("materia_id")
+    Asignadas = Asignar.objects.filter(docente_id=request.user.id, curso_id=id_curso, periodo_id=id_periodo)#.distinct("materia_id")
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list_docente_curso.html", contexto)
 

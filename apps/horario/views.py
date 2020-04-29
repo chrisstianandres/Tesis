@@ -142,6 +142,7 @@ def get_silabo(request):
     return JsonResponse(response)
 
 
+
 def get_alumno(request):
     id = request.POST['id']
     h = Horario.objects.get(id=id)
@@ -159,7 +160,7 @@ def get_alumno(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-@csrf_exempt
+
 def save_horario(request):
     data = {}
     if request.method == 'POST':
@@ -224,7 +225,7 @@ def save_horario(request):
 
 def get_periodo_2(request):
     options = '<option value="" selected="selected">---------</option>'
-    periodos = Asignar.objects.filter(docente_id=request.user.id).distinct("periodo_id")
+    periodos = Asignar.objects.filter(docente_id=request.user.id)#.distinct("periodo_id")
     for p in periodos:
         options += '<option value="%s">%s</option>' % (p.periodo_id, p.periodo)
         response = {}
@@ -238,7 +239,7 @@ def get_materia_2(request):
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:
-        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id).distinct("materia")
+        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id)#.distinct("materia")
     for materia in materias:
         options += '<option value="%s">%s</option>' % (
             materia.materia.id,

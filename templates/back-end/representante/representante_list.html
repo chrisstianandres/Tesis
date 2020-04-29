@@ -1,15 +1,8 @@
 <title>Listado de Representantes</title>
 {% extends 'back-end/base.html' %}
-
-{% load static from staticfiles %}
 {% block head %}
-
-
 {% endblock %}
-
 {% block content %}
-
-
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
@@ -57,14 +50,14 @@
                     </table>
                 </div>
             </div>
-        <div class="box-footer">
-            <a type="button" class="btn btn-primary btn-sm" href="{% url 'Representante:nuevo' %}">
-                <i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Representante
-            </a>
-            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
-                <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
-            </a>
-        </div>
+            <div class="box-footer">
+                <a type="button" class="btn btn-primary btn-sm" href="{% url 'Representante:nuevo' %}">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Representante
+                </a>
+                <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                    <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
+                </a>
+            </div>
         </div>
     </section>
 

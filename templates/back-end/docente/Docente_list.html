@@ -1,9 +1,6 @@
 <title>Listado de Docentes</title>
 {% extends 'back-end/base.html' %}
-
-{% load static from staticfiles %}
 {% block head %}
-
 {% endblock %}
 {% block content %}
     <section class="content-header">
@@ -185,6 +182,7 @@
                                 type: 'POST',
                                 url: "{% url 'docente:estado' %}",
                                 data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
                                     id: data[0],
                                     estado: r,
                                 },
@@ -216,6 +214,7 @@
                                 type: 'POST',
                                 url: "{% url 'docente:estado' %}",
                                 data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
                                     id: data[0],
                                     estado: s,
                                 },
@@ -247,6 +246,7 @@
                                 type: 'POST',
                                 url: "{% url 'docente:estado' %}",
                                 data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
                                     id: data[0],
                                     estado: a,
                                 },

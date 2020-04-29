@@ -1,6 +1,5 @@
 <title>Horarios de los docentes</title>
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
 
 {% endblock %}
@@ -97,6 +96,7 @@
                 ajax: {
                     url: '/horario_json_admin/',
                     type: 'POST',
+                    data:{ csrfmiddlewaretoken: "{{ csrf_token }}"},
                     dataSrc: ""
                 },
                 columnDefs: [
@@ -117,7 +117,7 @@
                 ],
                 fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                     var row = $(nRow).closest('tr');
-                    var resp = restar_horas(aData[1], aData[2]);
+                    var resp = restar_horas(aData[2], aData[3]);
                     if (resp) {
                         $('td', nRow).css('background-color', '#dff0d8');
                     }

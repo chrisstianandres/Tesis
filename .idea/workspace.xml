@@ -2,29 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/media/docente/2020/04/29/mia.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/asistencias/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asistencias/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/backEnd.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/backEnd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/curso/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/asignar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asignar/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/horario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/horario/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/AdminLTE.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/AdminLTE.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-bootstrap-social.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-bootstrap-social.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-fullcalendar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-fullcalendar.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-select2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-select2.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-without-plugins.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/alt/AdminLTE-without-plugins.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dist/css/adminlte.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/login2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/login2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/alumno/alumno_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/alumno/alumno_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente_curso.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/aula/aula_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/aula/aula_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/form_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/cursoindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/cursoindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/listado/listado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/listado/listado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/menu_principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/menu_principal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notasindex_alumnos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notasindex_alumnos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +123,7 @@
       <workItem from="1588009259759" duration="15371000" />
       <workItem from="1588026740163" duration="2484000" />
       <workItem from="1588090150233" duration="3698000" />
-      <workItem from="1588115691480" duration="9532000" />
+      <workItem from="1588115691480" duration="19205000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -191,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588090535611</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Version 7">
+      <created>1588185101848</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1588185101849</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,49 +221,50 @@
     <MESSAGE value="Version 4" />
     <MESSAGE value="Version 5" />
     <MESSAGE value="Version 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 6" />
+    <MESSAGE value="Version 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 7" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1588090520288">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1588185061331">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588090520288" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588185061331" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1588023621554">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588023621554" />
-    <state width="1323" height="71" key="GridCell.Tab.0.bottom" timestamp="1588184006944">
+    <state width="1323" height="155" key="GridCell.Tab.0.bottom" timestamp="1588191911408">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588184006944" />
-    <state width="1323" height="71" key="GridCell.Tab.0.center" timestamp="1588184006943">
+    <state width="1323" height="155" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588191911408" />
+    <state width="1323" height="155" key="GridCell.Tab.0.center" timestamp="1588191911408">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588184006943" />
-    <state width="1323" height="71" key="GridCell.Tab.0.left" timestamp="1588184006943">
+    <state width="1323" height="155" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588191911408" />
+    <state width="1323" height="155" key="GridCell.Tab.0.left" timestamp="1588191911408">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588184006943" />
-    <state width="1323" height="71" key="GridCell.Tab.0.right" timestamp="1588184006943">
+    <state width="1323" height="155" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588191911408" />
+    <state width="1323" height="155" key="GridCell.Tab.0.right" timestamp="1588191911408">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588184006943" />
-    <state width="1323" height="71" key="GridCell.Tab.1.bottom" timestamp="1588184006863">
+    <state width="1323" height="155" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588191911408" />
+    <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588185237364">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588184006863" />
-    <state width="1323" height="71" key="GridCell.Tab.1.center" timestamp="1588184006863">
+    <state width="1323" height="208" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588185237364" />
+    <state width="1323" height="208" key="GridCell.Tab.1.center" timestamp="1588185237364">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1588184006863" />
-    <state width="1323" height="71" key="GridCell.Tab.1.left" timestamp="1588184006863">
+    <state width="1323" height="208" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1588185237364" />
+    <state width="1323" height="208" key="GridCell.Tab.1.left" timestamp="1588185237364">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1588184006863" />
-    <state width="1323" height="71" key="GridCell.Tab.1.right" timestamp="1588184006863">
+    <state width="1323" height="208" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1588185237364" />
+    <state width="1323" height="208" key="GridCell.Tab.1.right" timestamp="1588185237364">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="71" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1588184006863" />
+    <state width="1323" height="208" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1588185237364" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1588116827532">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

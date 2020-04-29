@@ -1,6 +1,7 @@
 <title>Horario</title>
 {% extends 'back-end/base.html' %}
-
+{% block head %}
+{% endblock %}
 {% block content %}
     <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
@@ -176,6 +177,7 @@
                 ajax: {
                     url: '/horario_json/',
                     type: 'POST',
+                    data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
                     dataSrc: ""
                 },
                 columnDefs: [
@@ -220,7 +222,10 @@
                     ajax: {
                         url: '/actividad_id/',
                         type: 'POST',
-                        data: {id: data[0]},
+                        data: {
+                            csrfmiddlewaretoken: "{{ csrf_token }}",
+                            id: data[0]
+                        },
                         dataSrc: ""
                     },
                     columnDefs: [
@@ -260,6 +265,7 @@
                                     type: 'POST',
                                     url: '/registrar_clase',
                                     data: {
+                                        csrfmiddlewaretoken: "{{ csrf_token }}",
                                         id: data[0]
                                     },
                                     success: function (data) {
@@ -314,8 +320,10 @@
                                     ajax: {
                                         url: "{% url 'horario:get_alumno' %}",
                                         type: 'POST',
-                                        data: {id: data[0]},
-                                        dataSrc: ""
+                                        data: {
+                                            csrfmiddlewaretoken: "{{ csrf_token }}",
+                                            id: data[0]
+                                        },
                                     },
                                     columnDefs: [
                                         {
@@ -399,7 +407,10 @@
                 tabla.push(items);
             });
             //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla)};
+            var datos = {
+                'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            };
             //console.log(datos);
             tblasist.column(3).visible(false);
             bootbox.dialog({
@@ -507,7 +518,10 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {'datos': JSON.stringify(tabla)};
+                var datos = {
+                    'datos': JSON.stringify(tabla),
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                };
                 //console.log(datos);
                 tblasist.column(3).visible(false);
                 $.ajax({

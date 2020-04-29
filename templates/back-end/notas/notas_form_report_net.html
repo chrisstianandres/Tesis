@@ -1,6 +1,5 @@
 <title>Consulta de Notas</title>
 {% extends "back-end/base_notas.html" %}
-{% load static from staticfiles %}
 {% block head %}
     <link rel="stylesheet" href="{% static "css/notas.css" %}"/>
 {% endblock %}
@@ -89,8 +88,6 @@
         </div>
     </section>
     <style>
-
-
         th.dt-center, td.dt-center {
             text-align: center;
         }
@@ -153,6 +150,7 @@
                     type: 'POST',
                     url: "{% url 'alumnos_notas' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "cedula": cedula,
                     },
                     success: function (data) {
@@ -214,7 +212,8 @@
                     ajax: {
                         url: '{% url "notas_alumnos"%}',
                         type: 'POST',
-                        data: {"cedula": cedula, "periodo": periodo},
+                        data: { csrfmiddlewaretoken: "{{ csrf_token }}",
+                            "cedula": cedula, "periodo": periodo},
                         dataSrc: ""
                     },
                     columnDefs: [

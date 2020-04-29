@@ -1,5 +1,4 @@
 {% load static from staticfiles %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +6,6 @@
     <title>{{ titulo }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="{% static "plugins/startbootstrap-sb-admin-gh-pages/css/bootstrap.min.css" %}"/>
     <link rel="stylesheet" href="{% static "plugins/startbootstrap-sb-admin-gh-pages/css/sb-admin.css" %}"/>
 
 
@@ -39,7 +37,7 @@
     <script src="{% static "plugins/dataTables-1.10.13/extensions/Responsive/js/dataTables.responsive.min.js" %}"></script>
     <script src="{% static "plugins/dataTables-1.10.13/extensions/Select/js/dataTables.select.min.js" %}"></script>
     <script src="{% static "js/config.js" %}"></script>
-  <style>
+    <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
             color: black;
         }
@@ -125,22 +123,4 @@
     </footer>
 </div>
 </body>
-<style>
-    .form-rounded {
-        border-radius: 1rem;
-    }
-
-    table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
-        color: black;
-    }
-
-    .table tbody tr td {
-        font-size: 12px;
-    }
-
-    .form-inline .form-control {
-        width: 100%;
-    }
-
-</style>
 </html>

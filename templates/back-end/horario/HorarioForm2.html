@@ -1,5 +1,4 @@
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
     {% block form_head %}
 
@@ -239,6 +238,7 @@
             var request = $.ajax({
                 type: "POST",
                 url: "{% url 'horario:get_periodo_2' %}",
+                data:  {csrfmiddlewaretoken: "{{ csrf_token }}"},
             });
             request.done(function (response) {
                 // Agregamos los resultados al select
@@ -258,6 +258,7 @@
                     type: "POST",
                     url: "{% url 'horario:get_materia_2' %}",
                     data: {
+                         csrfmiddlewaretoken: "{{ csrf_token }}",
                         "periodo_id": periodoId,
                     },
                 });
@@ -285,6 +286,7 @@
                     type: "POST",
                     url: "{% url 'horario:get_curso_2' %}",
                     data: {
+                         csrfmiddlewaretoken: "{{ csrf_token }}",
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                     },
@@ -309,6 +311,7 @@
                 type: "POST",
                 url: "{% url 'horario:get_silabo' %}",
                 data: {
+                     csrfmiddlewaretoken: "{{ csrf_token }}",
                     "materia_id": materiaId
                 },
             });
@@ -357,7 +360,8 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {'datos': JSON.stringify(tabla)};
+                var datos = {'datos': JSON.stringify(tabla),
+                 csrfmiddlewaretoken: "{{ csrf_token }}",};
 
                 console.log(datos);
                 bootbox.dialog({

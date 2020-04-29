@@ -105,6 +105,7 @@
             $("#id_periodo").html("");
             var request = $.ajax({
                 type: "GET",
+                data: { csrfmiddlewaretoken: "{{ csrf_token }}"},
                 url: "{% url 'get_periodo' %}",
             });
             request.done(function (response) {
@@ -124,6 +125,7 @@
                     type: "GET",
                     url: "{% url 'get_materia' %}",
                     data: {
+                         csrfmiddlewaretoken: "{{ csrf_token }}",
                         "periodo_id": periodoId,
                     },
                 });
@@ -151,6 +153,7 @@
                     type: "GET",
                     url: "{% url 'get_curso' %}",
                     data: {
+                         csrfmiddlewaretoken: "{{ csrf_token }}",
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                     },
@@ -180,12 +183,10 @@
                     ajax: {
                         url: "{% url 'get_notas' %}",
                         type: 'POST',
-                        data: {"periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                        data: { csrfmiddlewaretoken: "{{ csrf_token }}"},
+                            "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
                         dataSrc: ""
-                    },
-
-                });
-
+                    });
             } else {
                 bootbox.dialog({
                     title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",

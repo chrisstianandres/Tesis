@@ -1,10 +1,7 @@
 <title>Notas</title>
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
-
 {% endblock %}
-
 {% block content %}
 
     <section class="content-header">
@@ -148,6 +145,7 @@
                     type: "GET",
                     url: "{% url 'get_materia' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "periodo_id": periodoId,
                     },
                 });
@@ -175,6 +173,7 @@
                     type: "GET",
                     url: "{% url 'get_curso' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                     },
@@ -199,6 +198,7 @@
                     type: "GET",
                     url: "{% url 'get_parcial' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "quimestre_id": quimestreId,
                     },
                 });
@@ -229,7 +229,8 @@
                         ajax: {
                             url: "{% url 'get_alumno' %}",
                             type: 'GET',
-                            data: {"periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            data: {csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
                             dataSrc: ""
 
                         },
@@ -274,7 +275,8 @@
                         ajax: {
                             url: "{% url 'get_alumno' %}",
                             type: 'GET',
-                            data: {"periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            data: { csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
                             dataSrc: ""
 
                         },
@@ -331,7 +333,6 @@
                             } else {
                                 p = 10;
                             }
-
                             break;
                         case 1:
                             n = $(".nota", this).val();
@@ -353,7 +354,8 @@
                 tabla.push(items);
             });
             //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla)};
+            var datos = {'datos': JSON.stringify(tabla),
+            csrfmiddlewaretoken: "{{ csrf_token }}",};
             //console.log(datos);
             table.column(2).visible(false);
             table.column(3).visible(false);

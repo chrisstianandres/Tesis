@@ -1,10 +1,7 @@
 <title>Asistencias/Reporte</title>
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
 {% block head %}
-
 {% endblock %}
-
 {% block content %}
     {{ form.media }}
     <section class="content-header">
@@ -151,6 +148,7 @@
                     type: "GET",
                     url: "{% url 'get_materia' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "periodo_id": periodoId,
                     },
                 });
@@ -178,6 +176,7 @@
                     type: "GET",
                     url: "{% url 'get_curso_asistencias' %}",
                     data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                     },
@@ -222,7 +221,8 @@
                         "periodo_id": periodoId,
                         "curso_id": cursoId,
                         "desde": desde,
-                        "hasta": hasta
+                        "hasta": hasta,
+                        csrfmiddlewaretoken: "{{ csrf_token }}"
                     },
                 });
                 request.done(function (response) {
