@@ -1,12 +1,8 @@
 <title>Horario</title>
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles %}
-{% block head %}
-
-{% endblock %}
 
 {% block content %}
-     <style>
+    <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
             color: black;
         }
@@ -130,7 +126,7 @@
             var tiempo = new Date();
             var hora = tiempo.getHours();
             var minuto = tiempo.getMinutes();
-            var t = check_in_range(inicio,fin);
+            var t = check_in_range(inicio, fin);
             alert(t);
             return ((hora >= inicioHoras & hora < finHoras));
             //return (i===1 & f ===1)
@@ -143,13 +139,13 @@
             var inicioMinuto = parseInt(inicio.substr(3, 2));
             var finMinuto = parseInt(inicio.substr(3, 2));
             var i = inicioHoras + ':' + inicioMinuto;
-            var f = finHoras+ ':' + finMinuto;
+            var f = finHoras + ':' + finMinuto;
             var hora = hoy.getHours() + ':' + hoy.getMinutes();
-            if((hora >= i) && (hora <= f)){
-                     return true;
-                } else{
-                    return false;
-                }
+            if ((hora >= i) && (hora <= f)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function restar_horas(inicio, fin) {
@@ -375,22 +371,7 @@
 
         function enviarAsistencias() {
             var tabla = [];
-            var trs = $("#asistencia tr").length;
-            if (trs<=2){
-                bootbox.dialog({
-                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
-                message: 'No hay ningun almuno para asignar',
-                buttons: {
-                    default: {
-                        label: "<i class='fa fa-check'></i>",
-                        className: "btn-primary btn-sm btn-flat",
-                        callback: function () {
-                        }
-                    }
-                }
-            });
-            } else {
-                tblasist.column(3).visible(true);
+            tblasist.column(3).visible(true);
             $("#asistencia tbody tr").each(function (index) {
                 var l, h, a;
                 var filas = $(this).children("td").each(function (index2) {
@@ -464,9 +445,6 @@
                     }
                 }
             });
-
-            }
-
         }
 
         function enviarFaltas(id) {
@@ -500,44 +478,44 @@
         function enviarAsistenciasfalta() {
             var tabla = [];
             var trs = $("#asistencia tr").length;
-            if (trs>2){
-            tblasist.column(3).visible(true);
-            $("#asistencia tbody tr").each(function (index) {
-                var l, h, a;
-                var filas = $(this).children("td").each(function (index2) {
-                    switch (index2) {
-                        case 0:
-                            l = $(this).text();
-                            break;
-                        case 1:
-                        case 2:
-                            if ($(this).find('input:checkbox').prop('checked'))
-                                a = 1;
-                            else
-                                a = 0;
-                            break;
-                        case 3:
-                            h = $(this).text();
-                            break;
-                    }
+            if (trs > 2) {
+                tblasist.column(3).visible(true);
+                $("#asistencia tbody tr").each(function (index) {
+                    var l, h, a;
+                    var filas = $(this).children("td").each(function (index2) {
+                        switch (index2) {
+                            case 0:
+                                l = $(this).text();
+                                break;
+                            case 1:
+                            case 2:
+                                if ($(this).find('input:checkbox').prop('checked'))
+                                    a = 1;
+                                else
+                                    a = 0;
+                                break;
+                            case 3:
+                                h = $(this).text();
+                                break;
+                        }
+                    });
+                    var items = {
+                        "listado": l,
+                        "asistencia": a,
+                        "horario": h,
+                    };
+                    tabla.push(items);
                 });
-                var items = {
-                    "listado": l,
-                    "asistencia": a,
-                    "horario": h,
-                };
-                tabla.push(items);
-            });
-            //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla)};
-            //console.log(datos);
-            tblasist.column(3).visible(false);
-            $.ajax({
-                dataType: 'JSON',
-                type: 'POST',
-                url: "{% url 'asistencia_list:save_asistencia' %}",
-                data: datos
-            });
+                //alert(JSON.stringify(tabla));
+                var datos = {'datos': JSON.stringify(tabla)};
+                //console.log(datos);
+                tblasist.column(3).visible(false);
+                $.ajax({
+                    dataType: 'JSON',
+                    type: 'POST',
+                    url: "{% url 'asistencia_list:save_asistencia' %}",
+                    data: datos
+                });
             }
         }
     </script>

@@ -105,7 +105,7 @@
             $("#id_materia").on("change", getCurso);
             $("#id_curso").on("change", ocultar);
             $("#search").on("click", tabla);
-            $('#guardarNotas').on("click", enviarNotas);
+
         });
 
         function date(desde, hasta) {
@@ -124,7 +124,7 @@
         }
 
         function ocultar() {
-            fechas();
+            loadDatePiker();
             $("#tabla").hide();
         }
 

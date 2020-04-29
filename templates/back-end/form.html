@@ -44,6 +44,7 @@
                                     <label style="font-size: 13px;"
                                            class="col-lg-2 control-label">{{ field.label }}:</label>
                                     <div class="col-lg-10">
+                                        {% csrf_token %}
                                         {{ form.media }}
                                         {{ field }}
                                     </div>

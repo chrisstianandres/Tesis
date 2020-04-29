@@ -105,8 +105,9 @@ def get_asistencias(request):
 
 
 def transpose(materiaId, periodoId, cursoId, desde, hasta):
-    asistencias = Asistencias.objects.filter(Horario__asignar__materia_id=materiaId, Listado__curso__id=cursoId,
+    asistencias = Asistencias.objects.filter(Horario__asignar__materia_id=materiaId, Listado__curso_id=cursoId,
                                              Listado__periodo_id=periodoId, fecha__range=[desde, hasta])
+    print(asistencias)
     data = [{'Alumno': a.Listado.alumno.apellidos+' '+a.Listado.alumno.nombres, 'Fecha': a.fecha,
              'Asistencia': a.Asistencia} for a in asistencias]
     return data

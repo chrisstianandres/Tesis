@@ -35,6 +35,7 @@ def horario_list_admin(request):
     return render(request, 'back-end/horario/horario_list_admin.html', data)
 
 
+@csrf_exempt
 def nuevo_admin(request):
     data = {
         'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
@@ -265,6 +266,7 @@ def get_curso_2(request):
     return JsonResponse(response)
 
 
+@csrf_exempt
 def save_horario_2(request):
     data = {}
     if request.method == 'POST':

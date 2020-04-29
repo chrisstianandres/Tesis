@@ -4,12 +4,13 @@ from django.contrib.auth import *
 from django.http import HttpResponse
 from django.http import *
 from .horario.models import *
-from .registro.models import *
-import json
-from .notas.models import *
-from .asistencias.models import Asistencias
 from django.views.generic import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+import json
+from django.views.decorators.csrf import csrf_exempt
+from .registro.models import *
+from .notas.models import *
+from .asistencias.models import Asistencias
 
 #-----------------------------------------------PAGINA PRINCIPAL-----------------------------------------------------#
 def menu(request):
@@ -18,6 +19,8 @@ def menu(request):
     }
     return render(request, 'back-end/menu_principal.html', data)
 
+
+@csrf_exempt
 def horario_json(request):
     fecha_hoy = date.today()
     data = [[h.id, h.hora_inicio, h.hora_fin, h.asignar.curso.nombre, h.asignar.curso.aula.numero, h.silabo.materia.nombre, h.silabo.tema,

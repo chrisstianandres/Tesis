@@ -18,13 +18,13 @@ opc_entidad = 'Curso'
 #---------------------------
 def curso_list(request, id_materia, id_periodo):
     listacurso = Asignar.objects.filter(docente_id=request.user.id, materia_id=id_materia,
-                                        periodo_id=id_periodo).distinct("curso_id")
+                                        periodo_id=id_periodo)#.distinct("curso_id")
     contexto = {'listacurso': listacurso}
     return render(request, "back-end/curso/cursoindex.html", contexto)
 
 def curso_list_materias(request):
     curso = request.POST["curso"]
-    listamaterias = Asignar.objects.filter(docente_id=request.user.id, curso_id=curso).distinct("materia_id")
+    listamaterias = Asignar.objects.filter(docente_id=request.user.id, curso_id=curso)#.distinct("materia_id")
     contexto = {'listamaterias': listamaterias}
     return render(request, "back-end/curso/cursoindex.html", contexto)
 
