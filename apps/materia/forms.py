@@ -13,7 +13,8 @@ class MateriaForm(ModelForm):
             'nombre': 'Nombre',
         }
         widgets = {
-            'nombre': TextInput(attrs={'placeholder': 'Ingrese un nombre', 'class': 'form-control', 'style': 'width: 50%; '}),
+            'nombre': TextInput(attrs={'placeholder': 'Ingrese un nombre', 'class': 'form-control form-rounded',
+                                       'style': 'width: 50%; '}),
         }
 
 

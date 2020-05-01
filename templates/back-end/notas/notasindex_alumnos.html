@@ -1,5 +1,6 @@
 <title>Notas</title>
 {% extends 'back-end/base.html' %}
+{% load static from staticfiles%}
 {% block head %}
 {% endblock %}
 {% block content %}
@@ -125,7 +126,8 @@
         function getPeriodo() {
             $("#id_periodo").html("");
             var request = $.ajax({
-                type: "GET",
+                type: "POST",
+                data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
                 url: "{% url 'get_periodo' %}",
             });
             request.done(function (response) {
@@ -142,7 +144,7 @@
                 // Eliminamos las opciones anteriores del select
                 $("#id_materia").html("");
                 var request = $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "{% url 'get_materia' %}",
                     data: {
                         csrfmiddlewaretoken: "{{ csrf_token }}",
@@ -170,7 +172,7 @@
                 // Eliminamos las opciones anteriores del select
                 $("#id_curso").html("");
                 var request = $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "{% url 'get_curso' %}",
                     data: {
                         csrfmiddlewaretoken: "{{ csrf_token }}",
@@ -195,7 +197,7 @@
                 // Eliminamos las opciones anteriores del select
                 $("#id_parcial").html("");
                 var request = $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "{% url 'get_parcial' %}",
                     data: {
                         csrfmiddlewaretoken: "{{ csrf_token }}",
@@ -228,7 +230,7 @@
                         responsive: true,
                         ajax: {
                             url: "{% url 'get_alumno' %}",
-                            type: 'GET',
+                            type: 'POST',
                             data: {csrfmiddlewaretoken: "{{ csrf_token }}",
                                 "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
                             dataSrc: ""
@@ -274,7 +276,7 @@
                         responsive: true,
                         ajax: {
                             url: "{% url 'get_alumno' %}",
-                            type: 'GET',
+                            type: 'POST',
                             data: { csrfmiddlewaretoken: "{{ csrf_token }}",
                                 "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
                             dataSrc: ""

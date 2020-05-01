@@ -122,6 +122,7 @@ def save_asistencia(request):
         for sub in datos:
            if Asistencias.objects.filter(Horario_id=sub['horario'], Listado_id=sub['listado'], fecha=fecha_hoy):
                data['resp'] = False
+               data['error'] = 'Ya existe un registro de esta hora'
            else:
                h = Horario.objects.get(pk=sub['horario'])
                h.asist_alum = 2

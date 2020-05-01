@@ -26,7 +26,7 @@ def get_periodo(request):
 
 def get_materia(request):
     a = request.user.id
-    periodo_id = request.GET.get('periodo_id')
+    periodo_id = request.POST['periodo_id']
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:
@@ -42,8 +42,8 @@ def get_materia(request):
 
 def get_curso(request):
     a = request.user.id
-    materia_id = request.GET.get('materia_id')
-    periodo_id = request.GET.get('periodo_id')
+    materia_id = request.POST['materia_id']
+    periodo_id = request.POST['periodo_id']
     docente_id = request.user.id
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
@@ -60,8 +60,8 @@ def get_curso(request):
     return JsonResponse(response)
 
 def get_curso_asistencias(request):
-    materia_id = request.GET.get('materia_id')
-    periodo_id = request.GET.get('periodo_id')
+    materia_id = request.POST['materia_id']
+    periodo_id = request.POST['periodo_id']
     docente_id = request.user.id
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
@@ -78,7 +78,7 @@ def get_curso_asistencias(request):
     return JsonResponse(response)
 
 def get_parcial(request):
-    quimestre_id = request.GET.get('quimestre_id')
+    quimestre_id = request.POST['quimestre_id']
     parciales = Parcial.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if quimestre_id:
@@ -94,25 +94,26 @@ def get_parcial(request):
 
 def get_alumno(request):
     a = request.user.id
-    periodo_id = request.GET.get('periodo_id')
-    curso_id = request.GET.get('curso_id')
-    materia_id = request.GET.get('materia_id')
+    periodo_id = request.POST['periodo_id']
+    curso_id = request.POST['curso_id']
+    materia_id = request.POST['materia_id']
     asignar= Asignar.objects.get(docente=a, curso_id=curso_id, materia_id=materia_id, periodo_id=periodo_id)
 
     if periodo_id and curso_id:
      data = [[a.alumno.apellidos +" "+a.alumno.nombres, a.id, a.id, asignar.id]
                  for a in Listado.objects.filter(periodo_id=periodo_id, curso_id=curso_id,
-                                                 curso__asignar__docente_id=a, alumno__estado=0).order_by('-alumno_id').distinct('alumno_id')]
+                                                 curso__asignar__docente_id=a, alumno__estado=0).order_by('-alumno_id')]
+     #.distinct('alumno_id')]
 
      return HttpResponse(json.dumps(data), content_type="application/json")
 
 def get_alumno_asistencias(request):
     a = request.user.id
-    periodo_id = request.GET.get('periodo_id')
-    curso_id = request.GET.get('curso_id')
-    materia_id = request.GET.get('materia_id')
-    desde = request.GET.get('desde')
-    hasta = request.GET.get('hasta')
+    periodo_id = request.POST['periodo_id']
+    curso_id = request.POST['curso_id']
+    materia_id = request.POST['materia_id']
+    desde = request.POST['desde']
+    hasta = request.POST['hasta']
     if periodo_id and curso_id and materia_id and desde and hasta:
      data = [[a.Listado.alumno.apellidos +" "+a.Listado.alumno.nombres, a.get_Asistencia_display(), a.fecha.strftime("%d/%m/%Y")]
              for a in Asistencias.objects.filter(Listado__periodo_id=periodo_id, Horario__asignar__curso_id=curso_id,

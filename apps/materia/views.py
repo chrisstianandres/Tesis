@@ -68,12 +68,9 @@ def silabo(request, id_materia):
 
 
 
-
-
 def editar(request, id_materia):
-
     materia = Materia.objects.get(id=id_materia)
-    opc_edit = '/materias/editar/'+id_materia+'/'
+    opc_edit = '/materia/editar/'+id_materia+'/'
 
     if request.method == 'GET':
         form = MateriaForm(instance=materia)
@@ -81,7 +78,7 @@ def editar(request, id_materia):
         form = MateriaForm(request.POST, instance=materia)
         if form.is_valid():
             form.save()
-        return redirect('materias:listado')
+        return redirect('materias:lista')
     data = {
         'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
         'boton': 'Guardar Materia',  'titulo': 'Editar Registro de una Materia',

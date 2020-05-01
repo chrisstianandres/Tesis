@@ -1,12 +1,11 @@
 {% extends 'back-end/base.html' %}
-{% block head %}
-    {% block form_head %}
-
-    {% endblock %}
-{% endblock %}
 {% block content %}
     {{ form.media }}
+    <div>
+    <input class="form-control">
 
+    </input>
+    </div>
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
@@ -149,7 +148,6 @@
             </div>
         </form>
     </section>
-
     <script>
         var table;
         var cont = 1;
@@ -426,8 +424,6 @@
             $(this).parent().parent().remove();
         }
     </script>
-
-
 {% endblock %}
 
 

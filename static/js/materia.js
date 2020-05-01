@@ -1,6 +1,6 @@
 $(function () {
     $('#frm_objeto').formValidation({
-        message: 'This value is not valid',
+        message: 'Esto no es un valor valido',
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -22,7 +22,5 @@ $(function () {
                 }
             },
         }
-    }).on('success.form.fv', function(e) {
     });
-
 });

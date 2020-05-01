@@ -1,4 +1,3 @@
-
 $(function () {
     $('#frm_objeto').formValidation({
         message: 'Esto no es un valor valido',
@@ -52,5 +51,4 @@ $(function () {
             }
         }
     });
-
 });

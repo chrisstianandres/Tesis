@@ -3,7 +3,7 @@
 {% block form_head %}
     <link rel="stylesheet" href="{% static "plugins/bootstrap-select-1.12.2/css/bootstrap-select.min.css" %}"/>
     <script src="{% static "plugins/bootstrap-select-1.12.2/js/bootstrap-select.min.js" %}"></script>
-    <script src="{% static "js/representante.js" %}"></script>
+
     <script>
         $(document).ready(function () {
             soloNumeros();
@@ -17,5 +17,6 @@
             });
         }
     </script>
+    <script src="{% static "js/representante.js" %}"></script>
 {% endblock %}
 

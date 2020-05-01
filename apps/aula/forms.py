@@ -13,7 +13,7 @@ class AulaForm(ModelForm):
             'numero': 'Numero',
         }
         widgets = {
-            'numero': TextInput(attrs={'placeholder': 'Ingrese un numero', 'class': 'form-control form rounded',
+            'numero': TextInput(attrs={'placeholder': 'Ingrese un numero', 'class': 'form-control form-rounded',
                                        'style': 'width: 50%; '}),
         }
 

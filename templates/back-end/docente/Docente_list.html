@@ -1,7 +1,5 @@
 <title>Listado de Docentes</title>
 {% extends 'back-end/base.html' %}
-{% block head %}
-{% endblock %}
 {% block content %}
     <section class="content-header">
         <ol class="breadcrumb">
@@ -283,15 +281,36 @@
             }
         }
     </script>
-    <style>
-        th.dt-center, td.dt-center {
-            text-align: center;
-        }
+       <style>
+
 
         .form-inline .form-control {
             width: 100%;
         }
 
+        th.dt-center, td.dt-center {
+            text-align: center;
+            font-size: 16px;
+        }
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: black;
+            font-size: 16px;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: black;
+            font-size: 16px;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+           color: black;
+            font-size: 16px;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 16px;
+        }
         td.green {
             color: black;
             text-align: center;
@@ -310,24 +329,5 @@
             background-color: orange;
         }
 
-        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-            color: black;
-            font-size: 16px;
-        }
-
-        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-            color: black;
-            font-size: 16px;
-        }
-
-        ::-moz-placeholder { /* Mozilla Firefox 19+ */
-            color: black;
-            font-size: 16px;
-        }
-
-        :-ms-input-placeholder { /* Internet Explorer 10-11 */
-            color: black;
-            font-size: 16px;
-        }
     </style>
 {% endblock %}

@@ -1,4 +1,3 @@
-
 $(function () {
     $('#frm_objeto').formValidation({
         message: 'Esto no es un valor valido',
@@ -36,8 +35,8 @@ $(function () {
                     },
                 }
             },
-             cedula: {
-                 validators: {
+            cedula: {
+                validators: {
                     notEmpty: {
                         message: 'Este campo es obligatorio'
                     },
@@ -52,5 +51,4 @@ $(function () {
             }
         }
     });
-
 });

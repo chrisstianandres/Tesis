@@ -1,7 +1,10 @@
 <title>Horario</title>
 {% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
 {% block head %}
+
 {% endblock %}
+
 {% block content %}
     <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
@@ -177,7 +180,7 @@
                 ajax: {
                     url: '/horario_json/',
                     type: 'POST',
-                    data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
+                    data:{csrfmiddlewaretoken: "{{ csrf_token }}"},
                     dataSrc: ""
                 },
                 columnDefs: [
@@ -186,12 +189,16 @@
                         "width": "12%",
                         'bSortable': false,
                         'data': null,
-                        'sclass': 'text-center',
+                        'sclass': 'dt-center',
                         'render': function (data, type, row) {
                             var registro = data[10] == 1 ? '<button class="btn btn-default btn-sm" name="btnRegistrar" data-toggle="tooltip" title="Registrar"><i class="fa fa-book" aria-hidden="true"></i></button>' : '';
                             var asistencia = data[9] == 1 ? '<button class="btn btn-default btn-sm" name="btnAsistencia" data-toggle="tooltip" title="Registrar"><i class="fa fa-child" aria-hidden="true"></i></button>' : '';
-                            return '<button class="btn btn-default btn-sm" name="btnActividad"  data-toggle="tooltip" title="Actividades"><i class="fa fa-search" aria-hidden="true"></i></button> ' + asistencia + registro;
+                            return asistencia + registro;
                         },
+                    },
+                    {
+                        'targets': "_all",
+                        "className": "dt-center"
                     }
                 ],
                 fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -222,10 +229,7 @@
                     ajax: {
                         url: '/actividad_id/',
                         type: 'POST',
-                        data: {
-                            csrfmiddlewaretoken: "{{ csrf_token }}",
-                            id: data[0]
-                        },
+                        data: {csrfmiddlewaretoken: "{{ csrf_token }}", id: data[0]},
                         dataSrc: ""
                     },
                     columnDefs: [
@@ -264,8 +268,7 @@
                                     dataType: 'JSON',
                                     type: 'POST',
                                     url: '/registrar_clase',
-                                    data: {
-                                        csrfmiddlewaretoken: "{{ csrf_token }}",
+                                    data: { csrfmiddlewaretoken: "{{ csrf_token }}",
                                         id: data[0]
                                     },
                                     success: function (data) {
@@ -292,7 +295,6 @@
             });
 
             $('#horario tbody').on('click', 'button[name="btnAsistencia"]', function () {
-
                 var data = table.row($(this).parents('tr')).data();
                 dialog = bootbox.dialog({
                     title: 'Registrar Asistencias',
@@ -320,10 +322,8 @@
                                     ajax: {
                                         url: "{% url 'horario:get_alumno' %}",
                                         type: 'POST',
-                                        data: {
-                                            csrfmiddlewaretoken: "{{ csrf_token }}",
-                                            id: data[0]
-                                        },
+                                        data: {csrfmiddlewaretoken: "{{ csrf_token }}", id: data[0]},
+                                        dataSrc: ""
                                     },
                                     columnDefs: [
                                         {
@@ -379,83 +379,88 @@
 
         function enviarAsistencias() {
             var tabla = [];
-            tblasist.column(3).visible(true);
-            $("#asistencia tbody tr").each(function (index) {
-                var l, h, a;
-                var filas = $(this).children("td").each(function (index2) {
-                    switch (index2) {
-                        case 0:
-                            l = $(this).text();
-                            break;
-                        case 1:
-                        case 2:
-                            if ($(this).find('input:checkbox').prop('checked'))
-                                a = 1;
-                            else
-                                a = 0;
-                            break;
-                        case 3:
-                            h = $(this).text();
-                            break;
+            var trs = $("#asistencia tr").length;
+                tblasist.column(3).visible(true);
+                $("#asistencia tbody tr").each(function (index) {
+                    var l, h, a;
+                    var filas = $(this).children("td").each(function (index2) {
+                        switch (index2) {
+                            case 0:
+                                l = $(this).text();
+                                break;
+                            case 1:
+                            case 2:
+                                if ($(this).find('input:checkbox').prop('checked'))
+                                    a = 1;
+                                else
+                                    a = 0;
+                                break;
+                            case 3:
+                                h = $(this).text();
+                                break;
+                        }
+                    });
+                    var items = {
+                        "listado": l,
+                        "asistencia": a,
+                        "horario": h,
+                    };
+                    tabla.push(items);
+                });
+                //alert(JSON.stringify(tabla));
+                var datos = {'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}"};
+                //console.log(datos);
+                tblasist.column(3).visible(false);
+                bootbox.dialog({
+                    title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                    message: 'Registrando la asistencia de esta hora <br> ¿Desea continuar?',
+                    buttons: {
+                        default: {
+                            label: "<i class='fa fa-times'></i>",
+                            className: "btn-danger btn-sm btn-flat",
+                            callback: function () {
+                            }
+                        },
+                        success: {
+                            label: "<i class='fa fa-check'></i>",
+                            className: "btn btn-info btn-sm btn-flat",
+                            callback: function () {
+                                $.ajax({
+                                    dataType: 'JSON',
+                                    type: 'POST',
+                                    url: "{% url 'asistencia_list:save_asistencia' %}",
+                                    data: datos,
+                                    success: function (data) {
+                                        if (data.resp) {
+                                            $.isLoading({
+                                                text: "<strong>" + 'Registrando..' + "</strong>",
+                                                tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                            });
+                                            setTimeout(function () {
+                                                location.reload();
+                                            }, 1000);
+                                            return false;
+                                        }
+                                        bootbox.dialog({
+                                            title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Error al grabar",
+                                            message: data.error,
+                                            buttons: {
+                                                success: {
+                                                    label: "<i class='fa fa-check'>OK</i>",
+                                                    className: "btn btn-primary btn-flat",
+                                                }
+                                            }
+                                        });
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown + ' ' + textStatus);
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
-                var items = {
-                    "listado": l,
-                    "asistencia": a,
-                    "horario": h,
-                };
-                tabla.push(items);
-            });
-            //alert(JSON.stringify(tabla));
-            var datos = {
-                'datos': JSON.stringify(tabla),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-            };
-            //console.log(datos);
-            tblasist.column(3).visible(false);
-            bootbox.dialog({
-                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
-                message: 'Registrando la asistencia de esta hora <br> ¿Desea continuar?',
-                buttons: {
-                    default: {
-                        label: "<i class='fa fa-times'></i>",
-                        className: "btn-danger btn-sm btn-flat",
-                        callback: function () {
-                        }
-                    },
-                    success: {
-                        label: "<i class='fa fa-check'></i>",
-                        className: "btn btn-info btn-sm btn-flat",
-                        callback: function () {
-                            $.ajax({
-                                dataType: 'JSON',
-                                type: 'POST',
-                                url: "{% url 'asistencia_list:save_asistencia' %}",
-                                data: datos,
-                                success: function (data) {
-                                    if (data.resp) {
-                                        $.isLoading({
-                                            text: "<strong>" + 'Registrando..' + "</strong>",
-                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
-                                        });
-                                        setTimeout(function () {
-                                            location.reload();
-                                        }, 1000);
-                                        return false;
-                                    }
-                                    bootbox.alert({
-                                        message: data.error,
-                                        className: 'rubberBand animated'
-                                    });
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    alert(errorThrown + ' ' + textStatus);
-                                }
-                            });
-                        }
-                    }
-                }
-            });
         }
 
         function enviarFaltas(id) {
@@ -489,7 +494,7 @@
         function enviarAsistenciasfalta() {
             var tabla = [];
             var trs = $("#asistencia tr").length;
-            if (trs > 2) {
+
                 tblasist.column(3).visible(true);
                 $("#asistencia tbody tr").each(function (index) {
                     var l, h, a;
@@ -518,10 +523,8 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {
-                    'datos': JSON.stringify(tabla),
-                    csrfmiddlewaretoken: "{{ csrf_token }}"
-                };
+                var datos = {'datos': JSON.stringify(tabla),
+                    csrfmiddlewaretoken: "{{ csrf_token }}"};
                 //console.log(datos);
                 tblasist.column(3).visible(false);
                 $.ajax({
@@ -530,7 +533,6 @@
                     url: "{% url 'asistencia_list:save_asistencia' %}",
                     data: datos
                 });
-            }
         }
     </script>
 

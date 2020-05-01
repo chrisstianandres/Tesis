@@ -7,20 +7,20 @@ $(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nombre: {
-                validators: {
+            numero: {
+                 validators: {
                     notEmpty: {
-                        message: 'Este campo debe ser obligatorio'
+                        message: 'Este campo es obligatorio'
                     },
                     stringLength: {
-                        min: 3,
+                        min: 1,
                     },
                     regexp: {
-                        regexp: /^[A-ZáéíóúÁÉÍÓÚñÑ\s]+$/i,
-                        message: 'Solo introduzca letras'
+                        regexp: /^[0-9]/i,
+                        message: 'Solo introduzca numeros'
                     },
                 }
-            },
+            }
         }
     }).on('success.form.fv', function(e) {
     });
