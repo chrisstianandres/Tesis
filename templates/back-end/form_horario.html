@@ -188,7 +188,12 @@
                         {"width": "20%", "targets": 0},
                         {"width": "15%", "targets": [1, 2]}
                     ],
+                    fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        date();
+                        getSilabo();
+                    },
                 });
+
 
             } else {
                 bootbox.dialog({
@@ -202,8 +207,6 @@
                     }
                 });
             }
-            date();
-            getSilabo();
         }
 
         function agregar() {
@@ -378,8 +381,10 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {'datos': JSON.stringify(tabla),
-                csrfmiddlewaretoken: "{{ csrf_token }}",};
+                var datos = {
+                    'datos': JSON.stringify(tabla),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                };
 
                 //console.log(datos);
                 bootbox.dialog({

@@ -78,11 +78,11 @@ def nuevo(request):
 
 def get_periodo(request):
     docente_id = request.POST['docente_id']
-    print(docente_id)
     periodos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if docente_id:
-        periodos = Asignar.objects.filter(docente_id=docente_id)  # .distinct("periodo_id")
+        periodos = Asignar.objects.filter(docente_id=docente_id).distinct()  # .distinct("periodo_id")
+        print(periodos)
         for p in periodos:
             options += '<option value="%s">%s</option>' % (p.periodo_id, p.periodo)
         response = {}
@@ -151,12 +151,11 @@ def get_alumno(request):
     a = h.asignar.docente.id
     if id:
         data = [[alumno.id, alumno.alumno.apellidos + " " + alumno.alumno.nombres, alumno.id, h.id]
-                for alumno in Listado.objects.filter(periodo=p, curso=c, alumno__estado=0,
-                                                     periodo__asignar__docente_id=a).order_by("alumno_id")#.distinct(
+                for alumno in Listado.objects.filter(periodo_id=p, curso_id=c, alumno__estado=0,
+                                                     periodo__asignar__docente_id=a).order_by("alumno_id").distinct()
+                #.distinct(
                 #"alumno_id")
         ]
-        a = Listado.objects.filter(periodo=p, curso=c, alumno__estado=0, periodo__asignar__docente_id=a)
-        print(a.query)
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
