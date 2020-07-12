@@ -1,11 +1,19 @@
 from django.shortcuts import render, redirect
 from apps.lista.models import *
 from django.views.generic import *
-from django.http import HttpResponse
 from apps.alumno.forms import AlumnoForm
-from django.http import HttpResponseRedirect
 import json
+from django.http import *
+from django.conf import settings
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from reportlab.lib import colors
+from reportlab.platypus import TableStyle, Table
+from datetime import date
 from django.db.models import Q
+
 
 opc_icono = 'fa fa-odnoklassniki'
 opc_ruta = '/alumnos/'
@@ -99,8 +107,9 @@ def estado(request):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-
 class Alumno_lista(ListView):
     model = Alumno
     template_name = 'back-end/alumno/alumno_list.html'
+
+
 

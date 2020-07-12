@@ -97,7 +97,7 @@ def get_asistencias(request):
         df.fillna('0', inplace=True)
         pivot = pd.pivot_table(df, index=['Alumno'], values=['Asistencia'], columns=['Fecha'], aggfunc='mean')
         html2 = pivot.to_html(table_id='asistencia', classes='table table-striped table-bordered table-hover')
-        response = {"tablaHtml":html2}
+        response = {"tablaHtml": html2}
     else:
         response = {"resp": 'False'}
     return HttpResponse(json.dumps(response), content_type="application/json")
@@ -107,7 +107,6 @@ def get_asistencias(request):
 def transpose(materiaId, periodoId, cursoId, desde, hasta):
     asistencias = Asistencias.objects.filter(Horario__asignar__materia_id=materiaId, Listado__curso_id=cursoId,
                                              Listado__periodo_id=periodoId, fecha__range=[desde, hasta])
-    print(asistencias)
     data = [{'Alumno': a.Listado.alumno.apellidos+' '+a.Listado.alumno.nombres, 'Fecha': a.fecha,
              'Asistencia': a.Asistencia} for a in asistencias]
     return data

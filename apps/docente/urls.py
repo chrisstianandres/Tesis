@@ -12,5 +12,4 @@ urlpatterns = [
     url(r'^listado$', login_required(views.Docente_list), name='Docente_list'),
     url(r'^estado$', login_required(views.estado), name='estado'),
     url(r'^reporte_docentes_pdf/$', login_required(ReportePersonasPDF.as_view()), name="reporte_docentes_pdf"),
-    url(r'^profile/$', login_required(views.profile), name="reporte_docentes_pdf"),
-    ]
+        ]
