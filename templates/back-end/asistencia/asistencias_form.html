@@ -66,6 +66,9 @@
         </div>
     </section>
     <style>
+        table {
+            width: 100% !important;
+        }
         td.green {
             color: black;
             text-align: center;
@@ -109,7 +112,6 @@
         }
 
         function ocultar() {
-            loadDatePiker();
             $("#tabla").hide();
         }
 
@@ -180,19 +182,6 @@
             }
         }
 
-        function loadDatePiker() {
-            var request = $.ajax({
-                type: "POST",
-                url: "{% url 'get_fecha' %}",
-                data: {
-                    csrfmiddlewaretoken: "{{ csrf_token }}"
-                },
-            });
-            request.done(function (response) {
-                date(response.desde, response.hasta);
-            });
-        }
-
         function tabla() {
             c = 0;
             var periodoId = $("#id_periodo").val();
@@ -250,7 +239,8 @@
                                         //Remove the title created by datatTables
                                         doc.content.splice(0, 1, {
                                             text: "Reporte de Asistencias de " + curso + " en " + materia,
-                                            alignment: 'center'
+                                            alignment: 'center',
+                                            fontSize: 16,
                                         },);
                                         //Create a date string that we use in the footer. Format is dd-mm-yyyy
                                         var now = new Date();

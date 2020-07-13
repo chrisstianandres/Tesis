@@ -9,11 +9,8 @@ from apps.asistencias.forms import *
 from apps.asistencias.models import Asistencias
 import json
 from django.views.generic import View
-from jinja2 import Environment, FileSystemLoader
-from Demo.utils import render_to_pdf #created in step 4
 from django.http import HttpResponse
 from django.template.loader import get_template
-#from weasyprint import HTML
 
 
 def alumno_list(request):
@@ -110,12 +107,9 @@ def get_asistencias(request):
         df = pd.DataFrame(data)
         df.fillna('0', inplace=True)
         df.Asistencia = df.Asistencia.astype(str)
-        # df.sales = df.sales.astype(str)
-        # pd.pivot_table(df, index=['country'], columns=['year'], values=['rep', 'sales'], aggfunc='sum')
         pivot = pd.pivot_table(df, index=['Alumno'], values=['Asistencia'], columns=['Fecha'], aggfunc='sum')
-
-
-        html2 = pivot.to_html(table_id='asistencia', classes='table table-striped table-bordered table-hover')
+        html2 = pivot.to_html(table_id='asistencia', classes=['table table-striped table-bordered table-hover',
+                                                              'mystyle'])
         response = {"tablaHtml": html2}
     else:
         response = {"resp": 'False'}
