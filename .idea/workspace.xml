@@ -78,9 +78,14 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/asistencias/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asistencias/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/notas/ajax.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/notas/ajax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/aula/aula_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/aula/aula_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/listado/listado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/listado/listado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/_cffi_backend.cp35-win_amd64.pyd" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +201,7 @@
       <workItem from="1592317536084" duration="8207000" />
       <workItem from="1592413111845" duration="5982000" />
       <workItem from="1593372738531" duration="2633000" />
-      <workItem from="1594484825673" duration="74751000" />
+      <workItem from="1594484825673" duration="78818000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -331,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594616708917</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Version 10">
+      <created>1594656335370</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1594656335370</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,30 +367,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1594656233402">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1594656252497">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1594656233402" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1594656252497" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
-    <state width="1323" height="124" key="GridCell.Tab.0.bottom" timestamp="1594653773853">
+    <state width="1323" height="231" key="GridCell.Tab.0.bottom" timestamp="1594659029162">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="124" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594653773853" />
-    <state width="1323" height="124" key="GridCell.Tab.0.center" timestamp="1594653773853">
+    <state width="1323" height="231" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594659029162" />
+    <state width="1323" height="231" key="GridCell.Tab.0.center" timestamp="1594659029162">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="124" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594653773853" />
-    <state width="1323" height="124" key="GridCell.Tab.0.left" timestamp="1594653773853">
+    <state width="1323" height="231" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594659029162" />
+    <state width="1323" height="231" key="GridCell.Tab.0.left" timestamp="1594659029162">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="124" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594653773853" />
-    <state width="1323" height="124" key="GridCell.Tab.0.right" timestamp="1594653773853">
+    <state width="1323" height="231" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594659029162" />
+    <state width="1323" height="231" key="GridCell.Tab.0.right" timestamp="1594659029162">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="124" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594653773853" />
+    <state width="1323" height="231" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594659029162" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -407,10 +419,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594616735725">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594656448621">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594616735725" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594656448621" />
     <state x="-7" y="0" width="697" height="735" key="dock-window-1" timestamp="1594494698842">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
