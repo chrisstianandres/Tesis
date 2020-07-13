@@ -27,6 +27,7 @@ def get_periodo(request):
 def get_materia(request):
     a = request.user.id
     periodo_id = request.POST['periodo_id']
+    print(periodo_id)
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:

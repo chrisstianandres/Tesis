@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from . import views
+from apps.asistencias.views import *
 from django.contrib.auth.decorators import login_required
+from django.conf.urls import url
+
 
 app_name = 'Asistencias'
 urlpatterns = [
@@ -9,5 +12,4 @@ urlpatterns = [
     url(r'^asistencia$', login_required(views.vista_asistencias), name='asistencia'),
     url(r'^asistencia_report$', login_required(views.get_asistencias), name='asistencia_report'),
     url(r'^save_asistencia$', login_required(views.save_asistencia), name='save_asistencia'),
-
 ]

@@ -1,3 +1,4 @@
+#from __future__ import print_function
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.http import *
 from django.views.decorators.csrf import csrf_exempt
@@ -7,6 +8,12 @@ from apps.horario.models import *
 from apps.asistencias.forms import *
 from apps.asistencias.models import Asistencias
 import json
+from django.views.generic import View
+from jinja2 import Environment, FileSystemLoader
+from Demo.utils import render_to_pdf #created in step 4
+from django.http import HttpResponse
+from django.template.loader import get_template
+#from weasyprint import HTML
 
 
 def alumno_list(request):
@@ -28,9 +35,11 @@ def alumno_list(request):
     contexto = {'listaalumno': listaalumno}
 
     return render(request, "back-end/alumno/alumnoindex.html", contexto)
+
+
 def alumno_list2(request):
-    p= 'Presente'
-    f='Falta'
+    p = 'Presente'
+    f = 'Falta'
     a = request.user.id
     materia = request.GET.get('materia')
     fecha = request.GET.get('fecha')
@@ -59,6 +68,8 @@ def alumno_list2(request):
     contexto = {'listaalumno': listaalumno}
 
     return render(request, "back-end/alumno/alumnoindex2.html", contexto)
+
+
 def asistencia_list_fecha(request):
     a = request.user.id
     materia = request.GET.get('materia')
@@ -79,11 +90,14 @@ def asistencia_list_fecha(request):
                                               'materia.nombre', [materia, nomCurso, a])
     contexto = {'listaasistencia': listaasistencia}
     return render(request, "back-end/asistencia/asistenciaindex_fechas.html", contexto)
+
+
 def vista_asistencias(request):
     form = AsistenciasForm()
     if request.method == 'POST':
         form = AsistenciasForm(request.POST)
     return render(request, 'back-end/asistencia/asistencias_form.html', {'form': form})
+
 
 def get_asistencias(request):
     materiaId = request.POST["materia_id"]
@@ -95,7 +109,12 @@ def get_asistencias(request):
     if data:
         df = pd.DataFrame(data)
         df.fillna('0', inplace=True)
-        pivot = pd.pivot_table(df, index=['Alumno'], values=['Asistencia'], columns=['Fecha'], aggfunc='mean')
+        df.Asistencia = df.Asistencia.astype(str)
+        # df.sales = df.sales.astype(str)
+        # pd.pivot_table(df, index=['country'], columns=['year'], values=['rep', 'sales'], aggfunc='sum')
+        pivot = pd.pivot_table(df, index=['Alumno'], values=['Asistencia'], columns=['Fecha'], aggfunc='sum')
+
+
         html2 = pivot.to_html(table_id='asistencia', classes='table table-striped table-bordered table-hover')
         response = {"tablaHtml": html2}
     else:
@@ -107,8 +126,8 @@ def get_asistencias(request):
 def transpose(materiaId, periodoId, cursoId, desde, hasta):
     asistencias = Asistencias.objects.filter(Horario__asignar__materia_id=materiaId, Listado__curso_id=cursoId,
                                              Listado__periodo_id=periodoId, fecha__range=[desde, hasta])
-    data = [{'Alumno': a.Listado.alumno.apellidos+' '+a.Listado.alumno.nombres, 'Fecha': a.fecha,
-             'Asistencia': a.Asistencia} for a in asistencias]
+    data = [{'Alumno': a.Listado.alumno.apellidos + ' ' + a.Listado.alumno.nombres, 'Fecha': a.fecha,
+             'Asistencia': a.get_Asistencia_display()} for a in asistencias]
     return data
 
 
@@ -119,18 +138,18 @@ def save_asistencia(request):
     if request.method == 'POST':
         datos = json.loads(request.POST['datos'])
         for sub in datos:
-           if Asistencias.objects.filter(Horario_id=sub['horario'], Listado_id=sub['listado'], fecha=fecha_hoy):
-               data['resp'] = False
-               data['error'] = 'Ya existe un registro de esta hora'
-           else:
-               h = Horario.objects.get(pk=sub['horario'])
-               h.asist_alum = 2
-               h.save()
-               n = Asistencias()
-               n.Horario_id = sub['horario']
-               n.Listado_id = sub['listado']
-               n.fecha = fecha_hoy
-               n.Asistencia = sub['asistencia']
-               n.save()
-               data['resp'] = True
+            if Asistencias.objects.filter(Horario_id=sub['horario'], Listado_id=sub['listado'], fecha=fecha_hoy):
+                data['resp'] = False
+                data['error'] = 'Ya existe un registro de esta hora'
+            else:
+                h = Horario.objects.get(pk=sub['horario'])
+                h.asist_alum = 2
+                h.save()
+                n = Asistencias()
+                n.Horario_id = sub['horario']
+                n.Listado_id = sub['listado']
+                n.fecha = fecha_hoy
+                n.Asistencia = sub['asistencia']
+                n.save()
+                data['resp'] = True
         return HttpResponse(json.dumps(data), content_type="application/json")

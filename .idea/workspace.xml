@@ -1,13 +1,334 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="">
+    <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="Version 9">
+      <change afterPath="$PROJECT_DIR$/static/Buttons/Contributing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/Issue_template.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/License.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/as3/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/as3/ZeroClipboard.as" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/as3/lib/AlivePDF.swc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/as3/lib/fzip.swc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.bootstrap.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.bootstrap4.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.dataTables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.foundation.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.jqueryui.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/buttons.semanticui.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/common.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/css/mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/$.fn.dataTable.fileSave().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().action().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().active().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().add().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().disable().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().enable().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().node().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().popover().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().processing().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().remove().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().text().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().trigger().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/button().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().action().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().active().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().container().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().containers().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().destroy().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().disable().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().enable().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().nodes().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().processing().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().remove().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().text().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().trigger().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons.exportData().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons.exportInfo().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons.info().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/api/buttons.resize().xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/collection.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/columnToggle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/columnVisibility.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/columnsToggle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/columnsVisibility.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/colvis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/colvisGroup.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/colvisRestore.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/copyFlash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/copyHtml5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/csv.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/csvFlash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/csvHtml5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/excel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/excelFlash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/excelHtml5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/pageLength.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/pdf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/pdfFlash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/pdfHtml5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/button/print.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/event/buttons-action.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/event/buttons-processing.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.action.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.attr.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.available.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.className.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.destroy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.enabled.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.extend.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.init.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.key.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.name.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.namespace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.tag.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.text.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.titleAttr.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.buttons.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.button.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.buttonContainer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.buttonLiner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.collection.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.container.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.dom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.name.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/option/buttons.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/type/button-group-selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/docs/type/button-selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/api/addRemove.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/api/enable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/api/group.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/api/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/api/text.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/columnGroups.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/columnText.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/columns.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/columnsToggle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/layout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/restore.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/stateSave.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/column_visibility/text.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/copyi18n.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/filename.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/hidden.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/pdfMessage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/pdfPage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/swfPath.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/flash/tsv.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/columns.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/copyi18n.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/customFile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/excelAutoFilter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/excelBorder.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/excelCellShading.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/excelTextBold.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/filename.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/footer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/outputFormat-function.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/outputFormat-orthogonal.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/pdfImage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/pdfMessage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/pdfOpen.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/pdfPage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/titleMessage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/html5/tsv.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/className.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/collections-autoClose.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/collections-sub.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/collections.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/custom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/export.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/keys.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/multiple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/new.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/pageLength.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/select.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/initialisation/simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/autoPrint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/columns.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/customisation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/message.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/select.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/print/simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/bootstrap.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/bootstrap4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/dropup.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/foundation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/icons.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/jqueryui.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/examples/styling/semanticui.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.colVis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.dataTables.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.flash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.foundation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.html5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.jqueryui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.print.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/buttons.semanticui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/js/dataTables.buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/make.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/swf/flashExport.swf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().action().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().active().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().add().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().disable().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().enable().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().node().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().popover().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().processing().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().remove().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().text().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/button().trigger().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/buttons().container().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/buttons().destroy().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/buttons().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/buttons.exportData().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/api/buttons.info().js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/collection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/columnToggle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/columnVisibility.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/columnsToggle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/colvis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/colvisGroup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/colvisRestore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/buttons/pageLength.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/complex_headers_and_footers/example_DatatablesButtons_modified.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/complex_headers_and_footers/example_DatatablesButtons_original.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/event/buttons-action.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/event/buttons-processing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.action.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.attr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.available.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.className.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.destroy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.enable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.text.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Buttons/test/option/buttons.titleAttr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~plot3d/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~plot3d/art3d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~plot3d/axes3d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~plot3d/axis3d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~plot3d/proj3d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/angle_helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axes_divider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axes_grid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axes_rgb.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axis_artist.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axisline_style.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/axislines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/clip_path.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/floating_axes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/grid_finder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/grid_helper_curvelinear.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/mpl_toolkits/~xisartist/parasite_axes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~arkupsafe/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~arkupsafe/_speedups.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_animation_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_cm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_cm_listed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_color_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_constrained_layout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_contour.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_image.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_layoutbox.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_mathtext_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_path.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_png.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_pylab_helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_qhull.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_tri.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_windowing.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/msvcp140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/offsetbox.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/patches.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/path.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/patheffects.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/projections/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/projections/geo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/projections/polar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/pylab.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/pyplot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/quiver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/rcsetup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/sankey.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/scale.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/sphinxext/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/sphinxext/mathmpl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/sphinxext/plot_directive.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/spines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/stackplot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/streamplot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/style/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/style/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/compare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/determinism.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/disable_internet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/Duration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/Epoch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/EpochConverter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/StrConverter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/UnitDbl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/UnitDblConverter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/UnitDblFormatter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/testing/jpl_units/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/texmanager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/text.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/textpath.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/ticker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tight_bbox.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tight_layout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/transforms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/triangulation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/tricontour.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/trifinder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/triinterpolate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/tripcolor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/triplot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/trirefine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/tri/tritools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/ttconv.cp35-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/type1font.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/alumno/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/alumno/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/asistencias/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asistencias/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/asistencias/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asistencias/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docente/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docente/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/notas/ajax.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/notas/ajax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/plugins/dataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/plugins/dataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/plugins/dataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/plugins/dataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/_cffi_backend.cp35-win_amd64.pyd" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,19 +352,32 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1b0s0QOFy4ixkwy7eQPgSRfbCqI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/asistencias" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -51,6 +385,7 @@
       <recent name="https://github.com/chrisstianandres/Demo.git" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\apps\asistencias" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\static\js" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\static" />
     </key>
@@ -108,7 +443,7 @@
       <workItem from="1592317536084" duration="8207000" />
       <workItem from="1592413111845" duration="5982000" />
       <workItem from="1593372738531" duration="2633000" />
-      <workItem from="1594484825673" duration="22451000" />
+      <workItem from="1594484825673" duration="67403000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -229,13 +564,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589730151491</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Version 9">
+      <created>1594568229832</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1594568229832</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Version 2" />
     <MESSAGE value="Version 3" />
     <MESSAGE value="Version 4" />
@@ -243,37 +586,38 @@
     <MESSAGE value="Version 6" />
     <MESSAGE value="Version 7" />
     <MESSAGE value="Version 8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 8" />
+    <MESSAGE value="Version 9" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 9" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="22" key="#JSHint" timestamp="1588199162262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1589730137340">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1594616601445">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1589730137340" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1592413174717">
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1594616601445" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592413174717" />
-    <state width="1323" height="172" key="GridCell.Tab.0.bottom" timestamp="1594493176196">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
+    <state width="1323" height="281" key="GridCell.Tab.0.bottom" timestamp="1594615039081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594493176196" />
-    <state width="1323" height="172" key="GridCell.Tab.0.center" timestamp="1594493176196">
+    <state width="1323" height="281" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594615039081" />
+    <state width="1323" height="281" key="GridCell.Tab.0.center" timestamp="1594615039081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594493176196" />
-    <state width="1323" height="172" key="GridCell.Tab.0.left" timestamp="1594493176196">
+    <state width="1323" height="281" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594615039081" />
+    <state width="1323" height="281" key="GridCell.Tab.0.left" timestamp="1594615039081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594493176196" />
-    <state width="1323" height="172" key="GridCell.Tab.0.right" timestamp="1594493176196">
+    <state width="1323" height="281" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594615039081" />
+    <state width="1323" height="281" key="GridCell.Tab.0.right" timestamp="1594615039081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594493176196" />
+    <state width="1323" height="281" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594615039081" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -294,25 +638,33 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="467" y="86" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594508295755" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1594494562379">
+    <state x="303" y="13" key="SettingsEditor" timestamp="1594616357683">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594494562379" />
+    <state x="303" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594616357683" />
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1588197066682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1589730337032">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594568252054">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1589730337032" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594568252054" />
     <state x="-7" y="0" width="697" height="735" key="dock-window-1" timestamp="1594494698842">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-7" y="0" width="697" height="735" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1594494698842" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588197067230">
+    <state x="675" y="-8" width="699" height="744" maximized="true" key="dock-window-2" timestamp="1594570148605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588197067230" />
+    <state x="675" y="-8" width="699" height="744" maximized="true" key="dock-window-2/0.0.1366.728@0.0.1366.728" timestamp="1594570148605" />
+    <state x="-7" y="0" width="697" height="735" key="dock-window-3" timestamp="1594601732934">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="-7" y="0" width="697" height="735" key="dock-window-3/0.0.1366.728@0.0.1366.728" timestamp="1594601732934" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1594575427227">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1594575427227" />
   </component>
 </project>

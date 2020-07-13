@@ -131,7 +131,7 @@
 					orientation: 'landscape', //portrait
 					pageSize: 'A4', //A3 , A5 , A6 , legal , letter
 					exportOptions: {
-						columns: ':visible',
+						//columns: ':visible',
 						search: 'applied',
 						order: 'applied'
 					},
@@ -154,12 +154,12 @@
 						// Set page margins [left,top,right,bottom] or [horizontal,vertical]
 						// or one number for equal spread
 						// It's important to create enough space at the top for a header !!!
-						doc.pageMargins = [50,100,15,50];
+						doc.pageMargins = [30,100,15,50];
 						// Set the font size fot the entire document
-						doc.defaultStyle.fontSize = 12;
+						doc.defaultStyle.fontSize = 10;
 						// Set the fontsize for the table header
-						doc.styles.tableHeader.fontSize = 14;
-						doc.styles.tableBodyOdd.fontSize = 12;
+						doc.styles.tableHeader.fontSize = 12;
+						//doc.styles.tableBodyOdd.fontSize = 12;
 						// Create a header object with 3 columns
 						// Left side: Logo
 						// Middle: brandname
