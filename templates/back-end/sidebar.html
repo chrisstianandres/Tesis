@@ -133,6 +133,19 @@
             </li>  <!-- Alumnos-->
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-sort-numeric-asc"></i> <span>Notas</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'notas:notas' %}"><i class="fa fa-sort-numeric-desc"></i> Reporte de Notas/ Alumno</a>
+                    <li><a href="{% url 'notas:notas_curso' %}"><i class="fa fa-sort-numeric-desc"></i> Reporte de Notas/ Curso</a>
+                    </li>
+                </ul>
+            </li>  <!-- Notas-->
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-check-circle"></i> <span>Asistencias</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

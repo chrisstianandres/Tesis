@@ -56,13 +56,8 @@
 
                                 </tr>
                             {% endfor %}
-                        {% else %}
-                            <h1>No hay Notas </h1>
                         {% endif %}
-
-
                         </tbody>
-
                     </table>
                 </div>
             </div>
@@ -79,7 +74,7 @@
         var dialog;
         $(document).ready(function () {
             tabla();
-            $("#volver").on("click",  back);
+            $("#volver").on("click", back);
         });
 
         function back() {
