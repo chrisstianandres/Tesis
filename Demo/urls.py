@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^asistencia_registrar$', login_required(backEnd.asistencia_registrar), name='asistencia_registrar'),
     url(r'^ajax/get_periodo/$', login_required(get_periodo), name='get_periodo'),
     url(r'^ajax/get_curso/$', login_required(get_curso), name='get_curso'),
+    url(r'^ajax/get_curso_notas/$', login_required(get_curso_notas), name='get_curso_notas'),
     url(r'^ajax/get_fecha/$', login_required(get_fecha), name='get_fecha'),
     url(r'^ajax/get_curso_asistencias/$', login_required(get_curso_asistencias), name='get_curso_asistencias'),
     url(r'^ajax/get_materia/$', login_required(get_materia), name='get_materia'),
@@ -54,6 +55,7 @@ urlpatterns = [
     url(r'^ajax/get_alumno_asistencias/$', login_required(get_alumno_asistencias), name='get_alumno_asistencias'),
     url(r'^ajax/get_parcial/$', login_required(get_parcial), name='get_parcial'),
     url(r'^ajax/get_notas/$', login_required(get_notas), name='get_notas'),
+    url(r'^ajax/get_notas_alumnos/$', login_required(get_notas_alumos), name='get_notas_alumnos'),
     url(r'^ajax/save_note/$', login_required(save_note), name='save_note'),
 
     url(r'^silabo/', include('apps.silabo.urls', namespace='silabos')),

@@ -142,3 +142,13 @@ def notas_alumnos(request):
             for h in Notas.objects.filter(Listado__alumno__cedula=cedula, Asignar__periodo_id=periodo)]
 
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+def notas_alumnos_2(request):
+    alumno = request.POST["alumno"]
+    periodo = request.POST["periodo"]
+    data = [[h.Asignar.materia.nombre, h.Parcial_1_q_1, h.Parcial_2_q_1, h.Parcial_3_q_1,
+             h.Parcial_1_q_2, h.Parcial_2_q_2, h.Parcial_3_q_2,
+         h.Quimestre_1, h.Quimestre_2, h.examen_final, h.Nota_final]
+            for h in Notas.objects.filter(Listado__alumno_id=alumno, Asignar__periodo_id=periodo)]
+
+    return HttpResponse(json.dumps(data), content_type="application/json")

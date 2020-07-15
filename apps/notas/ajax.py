@@ -59,6 +59,21 @@ def get_curso(request):
     response['asignar'] = options
     return JsonResponse(response)
 
+def get_curso_notas(request):
+    periodo_id = request.POST['periodo_id']
+    cursos = Asignar.objects.none()
+    options = '<option value="" selected="selected">---------</option>'
+    if periodo_id:
+        cursos = Asignar.objects.filter(periodo_id=periodo_id)#.distinct("curso_id")
+    for curso in cursos:
+        options += '<option value="%s">%s</option>' % (
+            curso.curso.pk,
+            curso.curso
+        )
+    response={}
+    response['cursos'] = options
+    return JsonResponse(response)
+
 def get_curso_asistencias(request):
     materia_id = request.POST['materia_id']
     periodo_id = request.POST['periodo_id']
@@ -236,5 +251,15 @@ def get_notas(request):
                 for a in Notas.objects.filter(Listado__periodo_id=periodo_id, Listado__curso_id=curso_id,
                                               Asignar__materia_id=materia_id, Asignar__curso_id=curso_id,
                                               Asignar__docente_id=a)]
+
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+def get_notas_alumos(request):
+    a = request.user.id
+    periodo_id = request.POST['periodo_id']
+    curso_id = request.POST['curso_id']
+    if periodo_id and curso_id:
+        data = [[a.alumno.apellidos + " " + a.alumno.nombres, a.alumno.pk, a.pk]
+                for a in Listado.objects.filter(periodo_id=periodo_id, curso_id=curso_id)]
 
         return HttpResponse(json.dumps(data), content_type="application/json")

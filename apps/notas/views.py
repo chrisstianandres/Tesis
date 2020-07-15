@@ -21,3 +21,14 @@ def vista_notas(request):
     if request.method == 'POST':
         form = PeriodoForm(request.POST)
     return render(request, 'back-end/notas/notas_form_report.html', {'form': form})
+
+def vista_notas_curso(request):
+    form = PeriodoForm()
+    if request.method == 'POST':
+        form = PeriodoForm(request.POST)
+    return render(request, 'back-end/notas/notas_form_report_curso.html', {'form': form})
+
+def vista_notas_curso_materias(request, alumno, periodo):
+    data = Notas.objects.filter(Listado__alumno_id=alumno, Asignar__periodo_id=periodo)
+    contexto = {'data': data}
+    return render(request, 'back-end/notas/notas_lista_curso_alumno.html', contexto)
