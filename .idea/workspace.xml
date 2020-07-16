@@ -78,19 +78,35 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/asignar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asignar/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/notas/ajax.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/notas/ajax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/alumno/alumno_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asistencia/asistencias_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/listado/listado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/listado/listado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/pbr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/top_level.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/_cffi_backend.cp35-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/_auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/_compat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/_socketio.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/charset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/connections.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/CLIENT.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/COMMAND.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/CR.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/ER.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/FIELD_TYPE.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/FLAG.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/SERVER_STATUS.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/constants/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/converters.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/cursors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/err.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/optionfile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/protocol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/times.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pymysql/util.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +223,8 @@
       <workItem from="1592413111845" duration="5982000" />
       <workItem from="1593372738531" duration="2633000" />
       <workItem from="1594484825673" duration="79258000" />
-      <workItem from="1594749291229" duration="33532000" />
+      <workItem from="1594749291229" duration="33670000" />
+      <workItem from="1594915185179" duration="236000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -377,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594836139615</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Version 10">
+      <created>1594872032128</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1594872032128</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,30 +426,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1594836127790">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1594872020547">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1594836127790" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1594872020547" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
-    <state width="1323" height="241" key="GridCell.Tab.0.bottom" timestamp="1594871788422">
+    <state width="1323" height="241" key="GridCell.Tab.0.bottom" timestamp="1594872144606">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594871788422" />
-    <state width="1323" height="241" key="GridCell.Tab.0.center" timestamp="1594871788422">
+    <state width="1323" height="241" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594872144606" />
+    <state width="1323" height="241" key="GridCell.Tab.0.center" timestamp="1594872144605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594871788422" />
-    <state width="1323" height="241" key="GridCell.Tab.0.left" timestamp="1594871788422">
+    <state width="1323" height="241" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
+    <state width="1323" height="241" key="GridCell.Tab.0.left" timestamp="1594872144605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594871788422" />
-    <state width="1323" height="241" key="GridCell.Tab.0.right" timestamp="1594871788422">
+    <state width="1323" height="241" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
+    <state width="1323" height="241" key="GridCell.Tab.0.right" timestamp="1594872144605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594871788422" />
+    <state width="1323" height="241" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -446,18 +470,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="467" y="86" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594508295755" />
-    <state x="303" y="13" key="SettingsEditor" timestamp="1594651411025">
+    <state x="303" y="13" key="SettingsEditor" timestamp="1594915463393">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="303" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594651411025" />
+    <state x="303" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594915463393" />
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1588197066682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594836215267">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594872070382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594836215267" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594872070382" />
     <state x="-7" y="0" width="697" height="735" key="dock-window-1" timestamp="1594494698842">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
