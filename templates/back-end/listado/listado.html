@@ -109,7 +109,7 @@
                             // Set page margins [left,top,right,bottom] or [horizontal,vertical]
                             // or one number for equal spread
                             // It's important to create enough space at the top for a header !!!
-                            doc.pageMargins = [100, 100, 20, 50];
+                            doc.pageMargins = [25, 100, 25, 50];
                             // Set the font size fot the entire document
                             doc.defaultStyle.fontSize = 14;
                             // Set the fontsize for the table header
@@ -180,6 +180,11 @@
                                 return 4;
                             };
                             doc.content[0].layout = objLayout;
+                             doc.content[1].table.widths =
+                              ['*', '*', '*', '*'];
+                          //     alert(Array(doc.content[1].table.body[0].length + 1).join('*').split(''));
+                            doc.styles.tableBodyEven.alignment = 'center';
+                            doc.styles.tableBodyOdd.alignment = 'center';
 
                         }
                     }],

@@ -95,7 +95,7 @@
                         orientation: 'portrait',
                         pageSize: 'A4', //A3 , A5 , A6 , legal , letter
                         exportOptions: {
-                            //columns: ':visible',
+                            columns: [0,1,2,3,4],
                             search: 'applied',
                             order: 'applied'
                         },
@@ -117,7 +117,7 @@
                             // Set page margins [left,top,right,bottom] or [horizontal,vertical]
                             // or one number for equal spread
                             // It's important to create enough space at the top for a header !!!
-                            doc.pageMargins = [30, 100, 15, 50];
+                            doc.pageMargins = [25, 100, 25, 50];
                             // Set the font size fot the entire document
                             doc.defaultStyle.fontSize = 14;
                             // Set the fontsize for the table header
@@ -188,6 +188,11 @@
                                 return 4;
                             };
                             doc.content[0].layout = objLayout;
+                             doc.content[1].table.widths =
+                              ['*', '*', '*', '*', '*'];
+                          //     alert(Array(doc.content[1].table.body[0].length + 1).join('*').split(''));
+                            doc.styles.tableBodyEven.alignment = 'center';
+                            doc.styles.tableBodyOdd.alignment = 'center';
 
                         }
                     }],
