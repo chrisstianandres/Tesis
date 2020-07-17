@@ -81,8 +81,7 @@ def get_periodo(request):
     periodos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if docente_id:
-        periodos = Asignar.objects.filter(docente_id=docente_id).distinct()  # .distinct("periodo_id")
-        print(periodos)
+        periodos = Asignar.objects.filter(docente_id=docente_id).distinct().distinct("periodo_id")
         for p in periodos:
             options += '<option value="%s">%s</option>' % (p.periodo_id, p.periodo)
         response = {}
@@ -96,7 +95,7 @@ def get_materia(request):
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:
-        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id)  # .distinct("materia")
+        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id).distinct("materia")
     for materia in materias:
         options += '<option value="%s">%s</option>' % (
             materia.materia.id,
@@ -115,7 +114,7 @@ def get_curso(request):
     options = '<option value="" selected="selected">---------</option>'
     if materia_id:
         cursos = Asignar.objects.filter(materia=materia_id, periodo=periodo_id,
-                                        docente=docente_id)  # .distinct("curso_id")
+                                        docente=docente_id).distinct("curso_id")
     for curso in cursos:
         options += '<option value="%s">%s</option>' % (
             curso.id,
@@ -152,10 +151,7 @@ def get_alumno(request):
     if id:
         data = [[alumno.id, alumno.alumno.apellidos + " " + alumno.alumno.nombres, alumno.id, h.id]
                 for alumno in Listado.objects.filter(periodo_id=p, curso_id=c, alumno__estado=0,
-                                                     periodo__asignar__docente_id=a).order_by("alumno_id").distinct()
-                #.distinct(
-                #"alumno_id")
-        ]
+                                                     periodo__asignar__docente_id=a).order_by("alumno_id").distinct("alumno_id")]
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
@@ -196,13 +192,13 @@ def save_horario(request):
                     data['resp'] = False
                 else:
                     for row in Horario.objects.raw(
-                            'SELECT count(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar.id '
-                            'WHERE %s BETWEEN horario.hora_inicio AND DATE_SUB(hora_fin, INTERVAL 1 MINUTE) and '
-                            'asignar.docente_id=%s and horario.fecha= %s', [d, p, f]):
+                            #'SELECT count(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar.id '
+                            #'WHERE %s BETWEEN horario.hora_inicio AND DATE_SUB(hora_fin, INTERVAL 1 MINUTE) and '
+                            #'asignar.docente_id=%s and horario.fecha= %s', [d, p, f]):
 
-                        # 'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
-                        # 'WHERE %s BETWEEN horario.hora_inicio AND hora_fin::TIME - %s::INTERVAL and '
-                        # 'asignar.docente_id=%s and horario.fecha= %s', [d, i, p, f]):
+                         'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
+                         'WHERE %s BETWEEN horario.hora_inicio AND hora_fin::TIME - %s::INTERVAL and '
+                         'asignar.docente_id=%s and horario.fecha= %s', [d, i, p, f]):
 
                         if row.id == 1:
                             data[
@@ -224,7 +220,7 @@ def save_horario(request):
 
 def get_periodo_2(request):
     options = '<option value="" selected="selected">---------</option>'
-    periodos = Asignar.objects.filter(docente_id=request.user.id)#.distinct("periodo_id")
+    periodos = Asignar.objects.filter(docente_id=request.user.id).distinct("periodo_id")
     for p in periodos:
         options += '<option value="%s">%s</option>' % (p.periodo_id, p.periodo)
         response = {}
@@ -238,7 +234,7 @@ def get_materia_2(request):
     materias = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if periodo_id:
-        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id)#.distinct("materia")
+        materias = Asignar.objects.filter(periodo=periodo_id, docente_id=docente_id).distinct("materia")
     for materia in materias:
         options += '<option value="%s">%s</option>' % (
             materia.materia.id,
@@ -303,13 +299,13 @@ def save_horario_2(request):
                     data['resp'] = False
                 else:
                     for row in Horario.objects.raw(
-                            'SELECT count(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar.id '
-                            'WHERE %s BETWEEN horario.hora_inicio AND DATE_SUB(hora_fin, INTERVAL 1 MINUTE) and '
-                            'asignar.docente_id=%s and horario.fecha= %s', [d, p, f]):
+                           # 'SELECT count(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar.id '
+                           # 'WHERE %s BETWEEN horario.hora_inicio AND DATE_SUB(hora_fin, INTERVAL 1 MINUTE) and '
+                           # 'asignar.docente_id=%s and horario.fecha= %s', [d, p, f]):
 
-                            #'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
-                            #'WHERE %s BETWEEN horario.hora_inicio AND hora_fin::TIME - %s::INTERVAL and '
-                            #'asignar.docente_id=%s and horario.fecha= %s', [d, i, p, f]):
+                            'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
+                            'WHERE %s BETWEEN horario.hora_inicio AND hora_fin::TIME - %s::INTERVAL and '
+                            'asignar.docente_id=%s and horario.fecha= %s', [d, i, p, f]):
                         if row.id == 1:
                             data[
                                 'error'] = "El Docente tiene actividades ya asignadas  en algun/nos de los rangos de horas ingresados <br> Verificalos en el horario y vuelve a intentarlo "

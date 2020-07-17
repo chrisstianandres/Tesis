@@ -37,6 +37,9 @@
             </div>
         </div>
         <div class="box-footer">
+            <a type="button" class="btn btn-primary btn-sm" id="volver">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+            </a>
             <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
                 <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
             </a>
@@ -84,7 +87,13 @@
         var table;
         $(document).ready(function () {
             tabla();
+            $("#volver").on("click", back);
         });
+
+
+        function back() {
+            window.history.back();
+        }
 
         function tabla() {
             table = $('#cursos').DataTable({

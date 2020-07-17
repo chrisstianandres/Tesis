@@ -1,11 +1,6 @@
 {% extends 'back-end/base.html' %}
 {% block content %}
     {{ form.media }}
-    <div>
-    <input class="form-control">
-
-    </input>
-    </div>
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Panel</a></li>
@@ -168,25 +163,28 @@
             var cursoId = $("#id_curso").val();
 
             if (periodoId && materiaId && cursoId) {
-                $("#tabla").show();
-                table = $('#clases').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    dom: 't',
-                    columnDefs: [
-                        {
-                            'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
-                            'render': function (data, type, row) {
-                                return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
-                                    'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
-                                    '</i></button>';
+                $.isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $.isLoading("hide");
+                    $("#tabla").show();
+                    table = $('#clases').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        dom: 't',
+                        columnDefs: [
+                            {
+                                'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
+                                'render': function (data, type, row) {
+                                    return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
+                                        'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
+                                        '</i></button>';
+                                },
                             },
-                        },
-                        {"width": "20%", "targets": 0},
-                        {"width": "15%", "targets": [1, 2]}
-                    ],
-                });
-
+                            {"width": "20%", "targets": 0},
+                            {"width": "15%", "targets": [1, 2]}
+                        ],
+                    });
+                }, 1000);
             } else {
                 bootbox.dialog({
                     title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",
@@ -236,7 +234,7 @@
             var request = $.ajax({
                 type: "POST",
                 url: "{% url 'horario:get_periodo_2' %}",
-                data:  {csrfmiddlewaretoken: "{{ csrf_token }}"},
+                data: {csrfmiddlewaretoken: "{{ csrf_token }}"},
             });
             request.done(function (response) {
                 // Agregamos los resultados al select
@@ -256,15 +254,24 @@
                     type: "POST",
                     url: "{% url 'horario:get_materia_2' %}",
                     data: {
-                         csrfmiddlewaretoken: "{{ csrf_token }}",
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "periodo_id": periodoId,
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_materia").html(response.materias);
-                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
-                    $("#id_materia, #id_curso").trigger("change");
+
+                    // Setup Loading plugin
+                    $("#id_materia").isLoading({
+                        text: "Cargando",
+                    });
+                    // Re-enabling event
+                    setTimeout(function () {
+                        $("#id_materia").isLoading("hide");
+                        $("#id_materia").html(response.materias);
+                        $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                        $("#id_materia, #id_curso").trigger("change");
+                    }, 1000);
+
                 });
             } else {
                 $("#id_materia").html("<option value='' selected='selected'>---------</option>");
@@ -284,15 +291,22 @@
                     type: "POST",
                     url: "{% url 'horario:get_curso_2' %}",
                     data: {
-                         csrfmiddlewaretoken: "{{ csrf_token }}",
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
                         "materia_id": materiaId,
                         "periodo_id": periodoId,
                     },
                 });
                 request.done(function (response) {
+                    $("#id_curso").isLoading({
+                        text: "Cargando"
+                    });
                     // Agregamos los resultados al select
-                    $("#id_curso").html(response.cursos);
-                    $("#id_curso").trigger("change");
+                    setTimeout(function () {
+                        $("#id_curso").isLoading("hide");
+                        $("#id_curso").html(response.cursos);
+                        $("#id_curso").trigger("change");
+                    }, 1000);
+
                 });
             } else {
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");
@@ -309,7 +323,7 @@
                 type: "POST",
                 url: "{% url 'horario:get_silabo' %}",
                 data: {
-                     csrfmiddlewaretoken: "{{ csrf_token }}",
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
                     "materia_id": materiaId
                 },
             });
@@ -358,8 +372,10 @@
                     tabla.push(items);
                 });
                 //alert(JSON.stringify(tabla));
-                var datos = {'datos': JSON.stringify(tabla),
-                 csrfmiddlewaretoken: "{{ csrf_token }}",};
+                var datos = {
+                    'datos': JSON.stringify(tabla),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                };
 
                 console.log(datos);
                 bootbox.dialog({

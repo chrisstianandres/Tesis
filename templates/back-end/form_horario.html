@@ -171,28 +171,32 @@
             var docenteId = $("#id_docente").val();
 
             if (periodoId && materiaId && cursoId && docenteId) {
-                $("#tabla").show();
-                table = $('#clases').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    dom: 't',
-                    columnDefs: [
-                        {
-                            'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
-                            'render': function (data, type, row) {
-                                return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
-                                    'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
-                                    '</i></button>';
+                $.isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $.isLoading( "hide" );
+                    $("#tabla").show();
+                    table = $('#clases').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        dom: 't',
+                        columnDefs: [
+                            {
+                                'targets': -1, 'bSortable': false, 'data': null, 'sclass': 'text-center',
+                                'render': function (data, type, row) {
+                                    return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
+                                        'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
+                                        '</i></button>';
+                                },
                             },
+                            {"width": "20%", "targets": 0},
+                            {"width": "15%", "targets": [1, 2]}
+                        ],
+                        fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            date();
+                            getSilabo();
                         },
-                        {"width": "20%", "targets": 0},
-                        {"width": "15%", "targets": [1, 2]}
-                    ],
-                    fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        date();
-                        getSilabo();
-                    },
-                });
+                    });
+                }, 1000);
 
 
             } else {
@@ -250,10 +254,16 @@
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_periodo").html(response.periodos);
-                    $("#id_materia").html("<option value='' selected='selected'>---------</option>");
-                    $("#id_materia, #id_periodo").trigger("change");
+                    $("#id_periodo").isLoading({
+                        text: "Cargando"
+                    });
+                    setTimeout(function () {
+                        // Agregamos los resultados al select
+                        $("#id_periodo").isLoading("hide");
+                        $("#id_periodo").html(response.periodos);
+                        $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                        $("#id_materia, #id_periodo").trigger("change");
+                    }, 1000);
 
                 });
             } else {
@@ -279,10 +289,16 @@
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_materia").html(response.materias);
-                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
-                    $("#id_materia, #id_curso").trigger("change");
+                    // Setup Loading plugin
+                    $("#id_materia").isLoading({
+                        text: "Cargando"
+                    });
+                    setTimeout(function () {
+                        $("#id_materia").isLoading("hide");
+                        $("#id_materia").html(response.materias);
+                        $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                        $("#id_materia, #id_curso").trigger("change");
+                    }, 1000);
                 });
             } else {
                 $("#id_materia").html("<option value='' selected='selected'>---------</option>");
@@ -310,9 +326,16 @@
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_curso").html(response.cursos);
-                    $("#id_curso").trigger("change");
+                    $("#id_curso").isLoading({
+                        text: "Cargando"
+                    });
+                    setTimeout(function () {
+                        // Agregamos los resultados al select
+                        $("#id_curso").isLoading("hide");
+                        // Agregamos los resultados al select
+                        $("#id_curso").html(response.cursos);
+                        $("#id_curso").trigger("change");
+                    }, 1000);
                 });
             } else {
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");

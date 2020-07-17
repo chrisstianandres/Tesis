@@ -22,6 +22,7 @@
                         <thead>
                         <tr>
                             <th>Codigo</th>
+                            <th hidden="hidden"></th>
                             <th>Semana</th>
                             <th>Unidad</th>
                             <th>Clase</th>
@@ -36,6 +37,7 @@
                             {% for registro in silabos %}
                                 <tr>
                                     <td>{{ registro.id }}</td>
+                                    <td hidden="hidden" id="materia">{{ registro.materia.nombre }}</td>
                                     <td>{{ registro.semana }}</td>
                                     <td>{{ registro.unidad }}</td>
                                     <td>{{ registro.clase }}</td>
@@ -58,7 +60,10 @@
         </div>
 
         <div class="box-footer">
-            <a type="button" class="btn btn-primary btn-sm" href="{{ nuevo }}">
+            <a type="button" class="btn btn-success btn-sm" id="volver">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+            </a>
+            <a type="button" class="btn btn-primary btn-sm" href="{% url 'silabos:nuevo' %}">
                 <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Plan de clase
             </a>
             <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
@@ -79,7 +84,12 @@
         $(document).ready(function () {
             tabla();
             $(".borrar").on("click", eliminar);
+            $("#volver").on("click", back);
         });
+
+        function back() {
+            window.history.back();
+        }
 
         function tabla() {
             table = $('#plan').DataTable({
@@ -95,13 +105,18 @@
                         orientation: 'portrait',
                         pageSize: 'A4', //A3 , A5 , A6 , legal , letter
                         exportOptions: {
-                            columns: [0,1,2,3,4],
+                            columns: [0, 2, 3, 4, 5],
                             search: 'applied',
                             order: 'applied'
                         },
                         customize: function (doc) {
+                            var data = $('#materia').text();
                             //Remove the title created by datatTables
-                            doc.content.splice(0,1, {text:"Plan de Clases", fontSize:16, alignment:"center"});
+                            doc.content.splice(0, 1, {
+                                text: "Plan de Clases de " + data,
+                                fontSize: 16,
+                                alignment: "center"
+                            });
                             //Create a date string that we use in the footer. Format is dd-mm-yyyy
                             var now = new Date();
                             var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
@@ -188,9 +203,9 @@
                                 return 4;
                             };
                             doc.content[0].layout = objLayout;
-                             doc.content[1].table.widths =
-                              ['*', '*', '*', '*', '*'];
-                          //     alert(Array(doc.content[1].table.body[0].length + 1).join('*').split(''));
+                            doc.content[1].table.widths =
+                                ['*', '*', '*', '*', '*'];
+                            //     alert(Array(doc.content[1].table.body[0].length + 1).join('*').split(''));
                             doc.styles.tableBodyEven.alignment = 'center';
                             doc.styles.tableBodyOdd.alignment = 'center';
 
@@ -209,7 +224,7 @@
             var data = table.row($(this).parents('tr')).data();
             bootbox.dialog({
                 title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
-                message: 'Desea eliminar el registro de tema' + ' ' + '<strong>' + data[4] + '</strong>' + '?',
+                message: 'Desea eliminar el registro de tema' + ' ' + '<strong>' + data[5] + '</strong>' + '?',
                 buttons: {
                     default: {
                         label: "<i class='fa fa-times'></i>",

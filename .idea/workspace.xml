@@ -78,7 +78,14 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/horario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/horario/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list_docente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/cursoindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/cursoindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -225,7 +232,8 @@
       <workItem from="1593372738531" duration="2633000" />
       <workItem from="1594484825673" duration="79258000" />
       <workItem from="1594749291229" duration="33670000" />
-      <workItem from="1594915185179" duration="1128000" />
+      <workItem from="1594915185179" duration="6397000" />
+      <workItem from="1594938754834" duration="21778000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -409,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594915590001</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Version 10">
+      <created>1594916634249</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1594916634249</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,22 +457,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
-    <state width="1323" height="241" key="GridCell.Tab.0.bottom" timestamp="1594872144606">
+    <state width="1323" height="204" key="GridCell.Tab.0.bottom" timestamp="1595014403753">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594872144606" />
-    <state width="1323" height="241" key="GridCell.Tab.0.center" timestamp="1594872144605">
+    <state width="1323" height="204" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595014403753" />
+    <state width="1323" height="204" key="GridCell.Tab.0.center" timestamp="1595014403753">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
-    <state width="1323" height="241" key="GridCell.Tab.0.left" timestamp="1594872144605">
+    <state width="1323" height="204" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595014403753" />
+    <state width="1323" height="204" key="GridCell.Tab.0.left" timestamp="1595014403753">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
-    <state width="1323" height="241" key="GridCell.Tab.0.right" timestamp="1594872144605">
+    <state width="1323" height="204" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595014403753" />
+    <state width="1323" height="204" key="GridCell.Tab.0.right" timestamp="1595014403753">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="241" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594872144605" />
+    <state width="1323" height="204" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595014403753" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -474,10 +489,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="208" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1588202583535" />
-    <state x="467" y="86" key="RollbackChangesDialog" timestamp="1594508295755">
+    <state x="467" y="86" key="RollbackChangesDialog" timestamp="1595014631042">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="467" y="86" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594508295755" />
+    <state x="467" y="86" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1595014631042" />
     <state x="303" y="13" key="SettingsEditor" timestamp="1594915463393">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -486,10 +501,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594915602515">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1594916697047">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594915602515" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594916697047" />
     <state x="-7" y="0" width="697" height="735" key="dock-window-1" timestamp="1594494698842">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

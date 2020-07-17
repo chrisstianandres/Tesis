@@ -143,53 +143,51 @@
 
         function mostrarTabla() {
             var materiaId = $("#id_materia").val();
-
-            if (materiaId) {
-                $("#tabla").show();
-                $('#planes').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    bSortable: false,
-                    dom: 't',
-                    columnDefs: [
-                        {bSortable: false, "targets": '_all'},
-                        {"width": "10%", "targets": [0, 1, 2]},
-                        {"width": "5%", "targets": [4]}
-                    ]
-                });
-            }
-            silabo_ultimo();
-        }
-
-        function silabo_ultimo() {
-            var materiaId = $("#id_materia").val();
             var text = $('#id_materia option:selected').html();
+
             if (materiaId) {
-                $("#tabla2").show();
-                $('#pnl_titulo').html('<h4><i class="fa fa-hand-o-right" aria-hidden="true"></i> Ultimo Registro de' + ' ' + '<span class="label label-danger">' + text + '</span></h4>');
-                $('#planes2').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    bSortable: false,
-                    dom: 't',
-                    ajax: {
-                        url: "{% url 'silabos:get_last_silabo' %}",
-                        type: 'GET',
-                        data: {
-                            csrfmiddlewaretoken: "{{ csrf_token }}",
-                            "materia_id": materiaId,
+                $.isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $.isLoading("hide");
+                    $("#tabla").show();
+                    $('#planes').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        bSortable: false,
+                        dom: 't',
+                        columnDefs: [
+                            {bSortable: false, "targets": '_all'},
+                            {"width": "10%", "targets": [0, 1, 2]},
+                            {"width": "5%", "targets": [4]}
+                        ]
+                    });
+                    $("#tabla2").show();
+                    $('#pnl_titulo').html('<h4><i class="fa fa-hand-o-right" aria-hidden="true"></i> Ultimo Registro de' + ' ' + '<span class="label label-danger">' + text + '</span></h4>');
+                    $('#planes2').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        bSortable: false,
+                        dom: 't',
+                        ajax: {
+                            url: "{% url 'silabos:get_last_silabo' %}",
+                            type: 'GET',
+                            data: {
+                                csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "materia_id": materiaId,
+                            },
+                            dataSrc: ""
                         },
-                        dataSrc: ""
-                    },
-                    columnDefs: [
-                        {
-                            "targets": '_all',
-                            "className": 'dt-center',
-                            "bSortable": false,
-                            "searchable": false,
-                        },
-                    ],
-                });
+                        columnDefs: [
+                            {
+                                "targets": '_all',
+                                "className": 'dt-center',
+                                "bSortable": false,
+                                "searchable": false,
+                            },
+                        ],
+                    });
+                }, 1000);
+
             }
         }
 
@@ -243,8 +241,10 @@
                 tabla.push(items);
             });
             //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla),
-            csrfmiddlewaretoken: "{{ csrf_token }}"};
+            var datos = {
+                'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+            };
             //console.log(datos);
 
             bootbox.dialog({

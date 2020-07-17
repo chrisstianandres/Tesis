@@ -30,13 +30,13 @@
                                     <td> {{ Asignar.materia }}  </td>
                                     <td> {{ Asignar.periodo }} </td>
                                     <td><a type="button" class="btn btn-default btn-xs"
-                                       href="{% url 'materias:plan' Asignar.materia.id %}"><span
-                                        class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
-                                        title="Ver Plan"> </span></a>
+                                           href="{% url 'materias:plan' Asignar.materia.id %}"><span
+                                            class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+                                            title="Ver Plan"> </span></a>
                                         <a type="button" class="btn btn-primary btn-xs"
-                                           href="{% url 'curso:cursos' Asignar.materia.id Asignar.periodo.id%}">
+                                           href="{% url 'curso:cursos' Asignar.materia.id Asignar.periodo.id %}">
                                         <span class="glyphicon glyphicon-list" data-toggle="tooltip"
-                                        title="Ver cursos Asignados"> </span></a></td>
+                                              title="Ver cursos Asignados"> </span></a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
@@ -47,12 +47,15 @@
         </div>
 
         <div class="box-footer">
+            <a type="button" class="btn btn-primary btn-sm" id="volver">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+            </a>
             <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
                 <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
             </a>
         </div>
     </section>
-        <style>
+    <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
             color: black;
         }
@@ -69,6 +72,7 @@
             text-align: center;
             font-size: 16px;
         }
+
         ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
             color: black;
             font-size: 16px;
@@ -80,7 +84,7 @@
         }
 
         ::-moz-placeholder { /* Mozilla Firefox 19+ */
-           color: black;
+            color: black;
             font-size: 16px;
         }
 
@@ -90,13 +94,18 @@
         }
     </style>
     <script>
-    var table;
+        var table;
         $(document).ready(function () {
             tabla();
+            $("#volver").on("click", back);
         });
 
+        function back() {
+            window.history.back();
+        }
+
         function tabla() {
-           table= $('#asignar').DataTable({
+            table = $('#asignar').DataTable({
                 destroy: true,
                 responsive: true,
                 columnDefs: [
@@ -104,7 +113,7 @@
                     {width: "12%", bSortable: false, "targets": [-1]}
                 ],
             });
-           filtros();
+            filtros();
         }
 
         function filtros() {
@@ -112,13 +121,15 @@
                 var title = $(this).text();
                 if (title === 'Materia') {
                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
-                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
-                }if (title === 'Nombre') {
-                     $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
-                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
-                }if (title === 'Periodo') {
-                     $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
-                        'title="Buscar por '+ title +'" placeholder="'+ title +'" />');
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Nombre') {
+                    $(this).html('<input type="text" style="width : 100%"data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
+                }
+                if (title === 'Periodo') {
+                    $(this).html('<input type="text" style="width : 100%" data-toggle="tooltip" ' +
+                        'title="Buscar por ' + title + '" placeholder="' + title + '" />');
                 }
             });
 
