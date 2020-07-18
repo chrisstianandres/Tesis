@@ -78,10 +78,10 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/asignar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asignar/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/materia/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/materia/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -230,7 +230,7 @@
       <workItem from="1594749291229" duration="33670000" />
       <workItem from="1594915185179" duration="6397000" />
       <workItem from="1594938754834" duration="32905000" />
-      <workItem from="1595081917289" duration="17177000" />
+      <workItem from="1595081917289" duration="18095000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -442,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595088814455</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Version 10">
+      <created>1595107274590</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1595107274590</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,10 +474,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595088803332">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595107264249">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595088803332" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595107264249" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -519,10 +526,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595088828920">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595107300837">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595088828920" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595107300837" />
     <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1595087919488">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

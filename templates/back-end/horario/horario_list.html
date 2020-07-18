@@ -146,9 +146,9 @@
             </div>
         </div>
         <div class="box-footer">
-            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+            <button type="button" class="btn btn-default btn-sm" onclick="window.location.reload();">
                 <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
-            </a>
+            </button>
         </div>
     </section>
 
@@ -186,7 +186,7 @@
             var i = inicioHoras * 60 + inicioMinuto;
             var f = finHoras * 60 + finMinuto;
             var hora = hoy.getHours() * 60 + hoy.getMinutes();
-            if((hora >= i) && (hora <= f)) {
+            if ((hora >= i) && (hora <= f)) {
                 return true;
             } else {
                 return false;
@@ -197,6 +197,7 @@
             var spl = hora.split(":");
             return parseInt(spl[0]) * 60 + parseInt(spl[1]);
         }
+
         function restar_horas(inicio, fin) {
             if (rango_horas(inicio, fin)) {
                 inicioMinutos = parseInt(inicio.substr(3, 2));

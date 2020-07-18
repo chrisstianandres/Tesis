@@ -142,9 +142,9 @@
                         </i> Registrar Horario
                         </button>
 
-                        <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                        <button type="button" class="btn btn-default btn-sm" onclick="window.location.reload();">
                             <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
             if (periodoId && materiaId && cursoId && docenteId) {
                 $.isLoading({text: "Cargando"});
                 setTimeout(function () {
-                    $.isLoading( "hide" );
+                    $.isLoading("hide");
                     $("#tabla").show();
                     table = $('#clases').DataTable({
                         destroy: true,

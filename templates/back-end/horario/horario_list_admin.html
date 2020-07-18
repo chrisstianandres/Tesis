@@ -60,9 +60,9 @@
             <a type="button" class="btn btn-primary btn-sm" href="{% url 'horario:nuevo_admin' %}">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Horario
             </a>
-            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+            <button type="button" class="btn btn-default btn-sm" onclick="window.location.reload();">
                 <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
-            </a>
+            </button>
         </div>
     </section>
 
@@ -246,7 +246,8 @@
         function recargar() {
             setTimeout(recarga, 60000);
         }
-          function filtros() {
+
+        function filtros() {
             $('#horario tfoot th').each(function () {
                 var title = $(this).text();
                 if (title === 'Código') {
