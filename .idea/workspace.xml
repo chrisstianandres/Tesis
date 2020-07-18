@@ -78,10 +78,7 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/HorarioForm2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/menu_principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/menu_principal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -159,14 +156,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/back-end/notas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="OPEN_URL_DIALOG">
       <recent name="https://github.com/chrisstianandres/Demo.git" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates\back-end\alumno" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates\back-end\notas" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\apps\asistencias" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\static\js" />
@@ -230,7 +231,7 @@
       <workItem from="1594749291229" duration="33670000" />
       <workItem from="1594915185179" duration="6397000" />
       <workItem from="1594938754834" duration="32905000" />
-      <workItem from="1595081917289" duration="18095000" />
+      <workItem from="1595081917289" duration="21806000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -449,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595107274590</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Version 10">
+      <created>1595108125917</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1595108125917</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,30 +482,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595107264249">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595108114870">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595107264249" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595108114870" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
-    <state width="1323" height="231" key="GridCell.Tab.0.bottom" timestamp="1595106210172">
+    <state width="1323" height="231" key="GridCell.Tab.0.bottom" timestamp="1595108290021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595106210172" />
-    <state width="1323" height="231" key="GridCell.Tab.0.center" timestamp="1595106210172">
+    <state width="1323" height="231" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
+    <state width="1323" height="231" key="GridCell.Tab.0.center" timestamp="1595108290021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595106210172" />
-    <state width="1323" height="231" key="GridCell.Tab.0.left" timestamp="1595106210172">
+    <state width="1323" height="231" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
+    <state width="1323" height="231" key="GridCell.Tab.0.left" timestamp="1595108290021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595106210172" />
-    <state width="1323" height="231" key="GridCell.Tab.0.right" timestamp="1595106210172">
+    <state width="1323" height="231" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
+    <state width="1323" height="231" key="GridCell.Tab.0.right" timestamp="1595108290021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595106210172" />
+    <state width="1323" height="231" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -526,10 +534,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595107300837">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595108133777">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595107300837" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595108133777" />
     <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1595087919488">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

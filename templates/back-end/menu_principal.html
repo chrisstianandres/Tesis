@@ -20,7 +20,7 @@
         <tr style="border: hidden">
             <td style="border: hidden">
                 <div class="basic-panel">
-                    <img src="{{user.docente.avatar.url }}" class="img-circle img-lg" alt="User Image">
+                    <img src="{{ user.docente.avatar.url }}" class="img-circle img-lg" alt="User Image">
                 </div>
             </td>
             <td><a href="#"><h1>&nbsp;{{ user.get_full_name }}</h1></a>
@@ -30,75 +30,75 @@
     <!-- /.row -->
     <br>
     <div class="row">
-     {% if user.docente.rol == 1 %}
-        <div class="col-lg-4 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-calendar-plus-o fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">Horario</div>
+        {% if user.docente.rol == 1 %}
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-calendar-plus-o fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">Horario</div>
+                            </div>
                         </div>
                     </div>
+                    <a href="{% url 'horario:ver' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color: #f0ad4e">Mostrar...</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <a href="{% url 'horario:ver' %}">
-                    <div class="panel-footer">
-                        <span class="pull-left" style="color: #f0ad4e">Mostrar...</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-list-alt fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">Asistencias</div>
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-list-alt fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">Asistencias</div>
 
+                            </div>
                         </div>
                     </div>
+                    <a href="{% url 'asistencia_list:asistencia' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color:#b8101a ">Mostrar...</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <a href="{% url 'asistencia_list:asistencia' %}">
-                    <div class="panel-footer">
-                        <span class="pull-left" style="color:#b8101a ">Mostrar...</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="panel panel-blue2">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-sort-numeric-asc fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">Notas</div>
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-sort-numeric-asc fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">Notas</div>
+                            </div>
                         </div>
                     </div>
+                    <a href="{% url 'notas:notas' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color: #07f0dd">Mostrar...</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <a href="{% url 'notas:notas' %}">
-                    <div class="panel-footer">
-                        <span class="pull-left" style="color: #07f0dd">Mostrar...</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
     </div>
-    <div class="row">
-        {% if user.docente.rol == 0 %}
+    {% if user.docente.rol == 0 %}
+        <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading">
@@ -162,9 +162,7 @@
                     </a>
                 </div>
             </div>
-        {% endif %}
-    </div>
-    {% if user.docente.rol == 0 %}
+        </div>
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="panel panel-orange">
@@ -230,9 +228,7 @@
                 </div>
             </div>
         </div>
-    {% endif %}
-    <div class="row">
-        {% if user.docente.rol == 0 %}
+        <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="panel panel-blue2">
                     <div class="panel-heading">
@@ -276,41 +272,63 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-calendar-plus-o fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">Horario</div>
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-calendar-plus-o fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">Horario</div>
+                            </div>
                         </div>
                     </div>
+                    <a href="{% url 'horario:nuevo_admin' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color: #f0ad4e">Mostrar...</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <a href="{% url 'horario:nuevo_admin' %}">
-                    <div class="panel-footer">
-                        <span class="pull-left" style="color: #f0ad4e">Mostrar...</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
             </div>
         </div>
-        {% endif %}
-        {% if user.docente.rol == 1 %}
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-list-alt fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">Asistencias</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'asistencia_list:asistencia' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color:#b8101a ">Mostrar...</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="col-lg-4 col-md-6">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-line-chart fa-4x"></i>
+                                <i class="fa fa-sort-numeric-asc fa-4x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Asignadas</div>
+                                <div class="huge">Notas</div>
                             </div>
                         </div>
                     </div>
-                    <a href="{% url 'asignar:lista_asignadas' %}">
+                    <a href="{% url 'notas:notas' %}">
                         <div class="panel-footer">
                             <span class="pull-left" style="color: #337ab7">Mostrar...</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -319,6 +337,30 @@
                     </a>
                 </div>
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
+    {% if user.docente.rol == 1 %}
+        <div class="col-lg-4 col-md-6">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-line-chart fa-4x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">Asignadas</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'asignar:lista_asignadas' %}">
+                    <div class="panel-footer">
+                        <span class="pull-left" style="color: #337ab7">Mostrar...</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
