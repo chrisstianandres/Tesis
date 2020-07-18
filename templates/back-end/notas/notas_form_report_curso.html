@@ -72,10 +72,13 @@
                 url: "{% url 'get_periodo' %}"
             });
             request.done(function (response) {
-                // Agregamos los resultados al select
-                $("#id_periodo").html(response.periodos);
-                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
-                $("#id_materia, #id_periodo").trigger("change");
+                $('#id_periodo').isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $('#id_periodo').isLoading("hide");
+                    $("#id_periodo").html(response.periodos);
+                    $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                    $("#id_materia, #id_periodo").trigger("change");
+                }, 1000);
             });
         }
 
@@ -94,9 +97,18 @@
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_curso").html(response.cursos);
-                    $("#id_curso").trigger("change");
+                    $('#id_curso').isLoading({
+                        text: "Cargando",
+                        disableOthers: [
+                            $("#id_materia")
+                        ]
+                    });
+                    setTimeout(function () {
+                        $('#id_curso').isLoading("hide");
+                        // Agregamos los resultados al select
+                        $("#id_curso").html(response.cursos);
+                        $("#id_curso").trigger("change");
+                    }, 1000);
                 });
             } else {
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");
@@ -109,38 +121,43 @@
             var cursoId = $("#id_curso").val();
 
             if (periodoId && cursoId) {
-                $("#tabla").show();
-                table = $('#notas').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    ajax: {
-                        url: "{% url 'get_notas_alumnos' %}", type: 'POST', data: {
-                            csrfmiddlewaretoken: "{{ csrf_token }}",
-                            "periodo_id": periodoId, "curso_id": cursoId
+                $.isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $.isLoading("hide");
+                    $("#tabla").show();
+                    table = $('#notas').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        ajax: {
+                            url: "{% url 'get_notas_alumnos' %}", type: 'POST', data: {
+                                csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "periodo_id": periodoId, "curso_id": cursoId
+                            },
+                            dataSrc: ""
                         },
-                        dataSrc: ""
-                    },
-                    dom: 'flrtip',
-                    columnDefs: [
-                        {targets: [0], sClass: 'dt-center'},
-                        {"targets": [1], visible: false},
-                        {targets: -1,
-                         width: '10%',
-                         bSortable: false,
-                         data: null,
-                         sclass: 'text-center',
-                         render: function (data, type, row) {
-                            var per =  $("#id_periodo").val().toString();
-                            var alu = data[1].toString();
-                            var s ="/";
-                            var boton = '<a class="btn btn-danger btn-md reporte" data-toggle="tooltip" ' +
-                             'href= "/notas/notas_curso_materias/'+ per +''+ s +''+alu+'" title="reporte"><i class="fa fa-eye" aria-hidden="true"></i></a>';
-                         return boton
+                        dom: 'flrtip',
+                        columnDefs: [
+                            {targets: [0], sClass: 'dt-center'},
+                            {"targets": [1], visible: false},
+                            {
+                                targets: -1,
+                                width: '10%',
+                                bSortable: false,
+                                data: null,
+                                sclass: 'text-center',
+                                render: function (data, type, row) {
+                                    var per = $("#id_periodo").val().toString();
+                                    var alu = data[1].toString();
+                                    var s = "/";
+                                    var boton = '<a class="btn btn-danger btn-md reporte" data-toggle="tooltip" ' +
+                                        'href= "/notas/notas_curso_materias/' + per + '' + s + '' + alu + '" title="reporte"><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                                    return boton
+                                }
                             }
-                        }
-                    ]
-                });
-                 //$(document).on('click', '.reporte', report);
+                        ]
+                    });
+                    //$(document).on('click', '.reporte', report);
+                }, 1000);
             } else {
                 bootbox.dialog({
                     title: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Algunos campos estan vacios",

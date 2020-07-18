@@ -30,7 +30,7 @@ def horario_list(request):
 
 def horario_list_admin(request):
     data = {
-        'titulo': 'Listado de Horario de los docentes'
+        'titulo': 'Horario General de Docentes'
     }
     return render(request, 'back-end/horario/horario_list_admin.html', data)
 

@@ -29,8 +29,8 @@ def horario_json(request):
 
 def horario_json_admin(request):
     fecha_hoy = date.today()
-    data = [[h.id, str(h.asignar.docente), h.hora_inicio, h.hora_fin, h.asignar.curso.nombre, h.asignar.curso.aula.numero, h.silabo.materia.nombre, h.silabo.tema,
-         h.silabo.unidad, h.silabo.semana, h.asist_alum, h.estado] for h in Horario.objects.filter(fecha=fecha_hoy)]
+    data = [[h.id, str(h.asignar.docente), h.fecha.strftime("%d/%m/%Y"), h.hora_inicio, h.hora_fin, h.asignar.curso.nombre, h.asignar.curso.aula.numero, h.silabo.materia.nombre, h.silabo.tema,
+         h.silabo.unidad, h.silabo.semana, h.asist_alum, h.estado] for h in Horario.objects.all().order_by('fecha')]
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def actividad_id(request):
@@ -116,7 +116,7 @@ def notas_net(request):
                 "sexo": a.get_sexo_display()
             }
             data['data'] = data2
-            periodos = Listado.objects.filter(alumno__cedula=cedula).order_by("periodo_id")#.distinct("periodo_id")
+            periodos = Listado.objects.filter(alumno__cedula=cedula).order_by("periodo_id").distinct("periodo_id")
             options = '<option value="" selected="selected">---------</option>'
             for periodo in periodos:
                 options += '<option value="%s">%s</option>' % (
