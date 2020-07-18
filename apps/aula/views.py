@@ -51,19 +51,21 @@ def editar(request, id_aula):
 
     aula = Aula.objects.get(id=id_aula)
     opc_edit = '/aula/editar/'+id_aula+'/'
-
+    data = {
+        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
+        'boton': 'Guardar Aula', 'titulo': 'Editar Registro de un Aula',
+    }
     if request.method == 'GET':
         form = AulaForm(instance=aula)
+        data['form']=form
     else:
         form = AulaForm(request.POST, instance=aula)
         if form.is_valid():
             form.save()
+        else:
+            data['form'] = form
         return redirect('/aula/listado')
-    data = {
-        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
-        'boton': 'Guardar Aula',  'titulo': 'Editar Registro de un Aula',
-        'form': form
-    }
+
     return render(request, 'back-end/aula/aula_form.html', data)
 
 def eliminar(request):
