@@ -39,6 +39,9 @@
                                     {% endfor %}
                                 {% endfor %}
                             {% endif %}
+                            <div class="form-group">
+                                <span class="label label-danger">{{ errorrep }}</span>
+                            </div>
                             {% for field in form.visible_fields %}
                                 <div class="form-group">
                                     <label style="font-size: 13px;"

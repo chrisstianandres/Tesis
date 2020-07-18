@@ -47,11 +47,14 @@
                                         </tr>
                                         </thead>
                                         <tr class="selected">
-                                            <td><select title="meterias" class="form-control form-rounded materias"></select>
+                                            <td><select title="meterias"
+                                                        class="form-control form-rounded materias"></select>
                                             </td>
-                                            <td><select title="periodos" class="form-control form-rounded periodos"></select>
+                                            <td><select title="periodos"
+                                                        class="form-control form-rounded periodos"></select>
                                             </td>
-                                            <td><select title="cursos" class="form-control form-rounded cursos"></select>
+                                            <td><select title="cursos"
+                                                        class="form-control form-rounded cursos"></select>
                                             </td>
                                             <td style="width: 15px">
                                                 <button disabled class="btn btn-danger btn-sm remove" name="btnQuitar"
@@ -74,10 +77,9 @@
                                     class="fa fa-save">
                             </i> Registrar Asignaturas
                             </button>
-
-                            <a type="button" class="btn btn-default btn-sm" href="{{ ruta }}">
+                            <button type="button" class="btn btn-default btn-sm" onclick="window.location.reload();">
                                 <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -85,7 +87,7 @@
         </form>
     </section>
     <style>
-      th.dt-center, td.dt-center {
+        th.dt-center, td.dt-center {
             text-align: center;
         }
     </style>
@@ -98,7 +100,7 @@
             $("#btnAgregar").on("click", agregar);
             $("#guardarAsignacion").on("click", enviarAsignaciones);
         });
-        $(document).on("click",'.quitar', removeElemento);
+        $(document).on("click", '.quitar', removeElemento);
 
         function tabla() {
             table = $('#asignar').DataTable({
@@ -108,7 +110,7 @@
                 columnDefs: [
                     {
                         'targets': -1, 'bSortable': false, 'data': null, 'className': 'dt-center',
-                        "width":"8%",
+                        "width": "8%",
                         'render': function (data, type, row) {
                             return '<button disabled class="btn btn-danger btn-sm remove" name="btnQuitar" ' +
                                 'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true">' +
@@ -126,8 +128,8 @@
             cont++;
             var fila = '<tr class="selected" id="fila' + cont + '"> ' +
                 '<td><select title="clase" class="form-control form-rounded materias"></select></td>\n' +
-                '<td><select title="clase" class="form-control form-rounded cursos"></select></td>\n' +
                 '<td><select title="clase" class="form-control form-rounded periodos"></select></td>\n' +
+                '<td><select title="clase" class="form-control form-rounded cursos"></select></td>\n' +
                 '<td style="width: 15px"><button class="btn btn-danger btn-sm quitar" name="btnQuitar"\n' +
                 'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true"></i></button> </td></tr>';
             $('#asignar').append(fila);
@@ -179,9 +181,11 @@
                 };
                 tabla.push(items);
             });
-           //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla),
-            csrfmiddlewaretoken: "{{ csrf_token }}"};
+            //alert(JSON.stringify(tabla));
+            var datos = {
+                'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+            };
 
             console.log(datos);
             bootbox.dialog({
@@ -210,7 +214,8 @@
                                             tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
                                         });
                                         setTimeout(function () {
-                                            location.reload();
+                                            //location.reload();
+                                            location.href = "{% url 'asignar:listado' %}";
                                         }, 1000);
                                         return false;
                                     }

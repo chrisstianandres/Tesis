@@ -9,15 +9,12 @@ from django.http import *
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-
-
 opc_icono = 'fa fa-briefcase'
 opc_ruta = '/asignar/'
 opc_nuevo = '/asignar/nuevo'
 opc_crud = '/asignar/crear/'
 opc_delete = '/asignar/borrar'
 opc_entidad = 'Asignaciones'
-
 
 
 def nuevo(request, id_docente):
@@ -43,7 +40,7 @@ def get_datos(request):
         f = str(periodo.periodo_fin.year)
         optionsp += '<option value="%s">%s</option>' % (
             periodo.id,
-            i+k+f,
+            i + k + f,
         )
     for materia in materias:
         optionsm += '<option value="%s">%s</option>' % (
@@ -80,57 +77,73 @@ def crear(request):
                     data['error'] = "Ya existe un registro igual por favor verificalo y vuelve a intentarlo"
                     data['resp'] = False
                 else:
-                    n = Asignar()
-                    n.docente_id = d
-                    n.materia_id = m
-                    n.curso_id = c
-                    n.periodo_id = p
-                    n.save()
-                    data['resp'] = True
+                    if Asignar.objects.filter(materia_id=m, curso_id=c, periodo_id=p):
+                        data[
+                            'error'] = "Materia y curso ya Asignados a un Docente <br> por favor verificalo y vuelve a intentarlo"
+                        data['resp'] = False
+                    else:
+                        n = Asignar()
+                        n.docente_id = d
+                        n.materia_id = m
+                        n.curso_id = c
+                        n.periodo_id = p
+                        n.save()
+                        data['resp'] = True
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-def Lista_Asignadas (request):
+def Lista_Asignadas(request):
     Asignadas = Asignar.objects.all()
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list.html", contexto)
 
-def Lista_Asignadas_docente (request):
+
+def Lista_Asignadas_docente(request):
     Asignadas = Asignar.objects.filter(docente_id=request.user.id).distinct("materia_id")
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list_docente.html", contexto)
 
 
-def Lista_cursos (request, id_curso, id_periodo):
-    Asignadas = Asignar.objects.filter(docente_id=request.user.id, curso_id=id_curso, periodo_id=id_periodo).distinct("materia_id")
+def Lista_cursos(request, id_curso, id_periodo):
+    Asignadas = Asignar.objects.filter(docente_id=request.user.id, curso_id=id_curso, periodo_id=id_periodo).distinct(
+        "materia_id")
     contexto = {'Asignadas': Asignadas}
     return render(request, "back-end/asignar/asignar_list_docente_curso.html", contexto)
 
 
-
-def Lista_Asignadas_admin (request, id_docente):
+def Lista_Asignadas_admin(request, id_docente):
     Asignadas = Asignar.objects.filter(docente_id=id_docente).distinct("materia_id")
     contexto = {'Asignadas': Asignadas, "id_docente": id_docente}
     return render(request, "back-end/asignar/asignar_list_docente.html", contexto)
 
-def editar(request, id_asignar):
 
+def editar(request, id_asignar):
     asignar = Asignar.objects.get(id=id_asignar)
-    opc_edit = '/asignar/editar/'+id_asignar+'/'
+    opc_edit = '/asignar/editar/' + id_asignar + '/'
+    data = {
+        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
+        'boton': 'Guardar Asignacion', 'titulo': 'Editar Registro de una Asignacion',
+    }
 
     if request.method == 'GET':
         form = AsignarForm(instance=asignar)
+        data['form'] = form
     else:
         form = AsignarForm(request.POST, instance=asignar)
-        if form.is_valid():
-            form.save()
-        return redirect('asignar:listado')
-    data = {
-        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
-        'boton': 'Guardar Asignacion',  'titulo': 'Editar Registro de una Asignacion',
-        'form': form
-    }
-
+        if Asignar.objects.filter(materia_id=form.data['materia'], curso_id=form.data['curso'], periodo_id=form.data['periodo'],
+                                  docente_id=form.data['docente']):
+            if form.is_valid():
+                form.save()
+            return redirect('asignar:listado')
+        else:
+            if Asignar.objects.filter(materia_id=form.data['materia'], curso_id=form.data['curso'],
+                                      periodo_id=form.data['periodo']).exclude(docente_id=form.data['docente']):
+                data['errorrep'] = "Materia y Curso ya asignados a un Docente en el mismo periodo " \
+                                   "por favor verificalo y vuelve a intentarlo"
+                data['form'] = form
+                return render(request, 'back-end/asignar/asignar_form2.html', data)
+            else:
+                if form.is_valid():
+                    form.save()
+                return redirect('asignar:listado')
     return render(request, 'back-end/asignar/asignar_form2.html', data)
-
-
