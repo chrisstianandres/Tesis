@@ -34,6 +34,12 @@ def horario_list_admin(request):
     }
     return render(request, 'back-end/horario/horario_list_admin.html', data)
 
+def horario_list_admin_historico(request):
+    data = {
+        'titulo': 'Horario General de Docentes Historico'
+    }
+    return render(request, 'back-end/horario/horario_list_admin_historico.html', data)
+
 
 @csrf_exempt
 def nuevo_admin(request):

@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^$', login_required(backEnd.menu), name='menu'),
     url(r'^horario_json/$', login_required(backEnd.horario_json), name='horario_json'),
     url(r'^horario_json_admin/$', login_required(backEnd.horario_json_admin), name='horario_json_admin'),
+    url(r'^horario_json_admin_historico/$', login_required(backEnd.horario_json_admin_historico), name='horario_json_admin_historico'),
     url(r'^actividad_id/$', login_required(backEnd.actividad_id), name='horario_json'),
     url(r'^registrar_clase$', login_required(backEnd.registrar_clase), name='registrar_clase'),
     url(r'^asistencia_registrar$', login_required(backEnd.asistencia_registrar), name='asistencia_registrar'),

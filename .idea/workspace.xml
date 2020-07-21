@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="Version 10">
+      <change afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin_historico.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_animation_data.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_cm.py" afterDir="false" />
@@ -78,25 +79,11 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/backEnd.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/backEnd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/horario/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/horario/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/horario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/horario/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/listado/listado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/listado/listado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/menu_principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/menu_principal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/registration/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/registration/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/registration/login2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/registration/login2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list_admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -174,7 +161,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/back-end/horario" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -187,11 +174,11 @@
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates\back-end\alumno" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates\back-end\horario" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\templates\back-end\notas" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\apps\asistencias" />
       <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\static\js" />
-      <recent name="C:\Users\Angie\Documents\MEGAsync\Demo\static" />
     </key>
   </component>
   <component name="RunManager">
@@ -253,7 +240,7 @@
       <workItem from="1594938754834" duration="32905000" />
       <workItem from="1595081917289" duration="21861000" />
       <workItem from="1595265260707" duration="71000" />
-      <workItem from="1595265386234" duration="21271000" />
+      <workItem from="1595265386234" duration="22765000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -486,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595112718654</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Version 10">
+      <created>1595292676992</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1595292676992</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
