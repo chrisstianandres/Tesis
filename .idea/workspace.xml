@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="">
+    <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="Version 10">
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_animation_data.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_cm.py" afterDir="false" />
@@ -78,7 +78,25 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/horario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/horario/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/asignar/asignar_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/docente/Docente_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/form_horario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/form_horario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/horario/horario_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/listado/listado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/listado/listado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/materia/materia_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back-end/menu_principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/menu_principal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_curso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_form_report_net.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notas_lista_curso_alumno.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/periodo/periodo_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/registration/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/registration/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/registration/login2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/registration/login2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -161,6 +179,8 @@
   </component>
   <component name="RecentsManager">
     <key name="OPEN_URL_DIALOG">
+      <recent name="https://www.pythonanywhere.com/user/Christiangomez/files/" />
+      <recent name="https://www.pythonanywhere.com/user/Christiangomez/files/home/Christiangomez" />
       <recent name="https://github.com/chrisstianandres/Demo.git" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -231,7 +251,9 @@
       <workItem from="1594749291229" duration="33670000" />
       <workItem from="1594915185179" duration="6397000" />
       <workItem from="1594938754834" duration="32905000" />
-      <workItem from="1595081917289" duration="21806000" />
+      <workItem from="1595081917289" duration="21861000" />
+      <workItem from="1595265260707" duration="71000" />
+      <workItem from="1595265386234" duration="21271000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -457,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595108125917</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Version 10">
+      <created>1595112718654</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1595112718654</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,30 +511,34 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#JSHint/0.0.1366.728@0.0.1366.728" timestamp="1588199162262" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595108114870">
+    <state x="508" y="167" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595265607913">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595108114870" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1594576874825">
+    <state x="508" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1595265607913" />
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595292632006">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594576874825" />
-    <state width="1323" height="231" key="GridCell.Tab.0.bottom" timestamp="1595108290021">
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595292632006" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1595265481072">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
-    <state width="1323" height="231" key="GridCell.Tab.0.center" timestamp="1595108290021">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1595265481072" />
+    <state width="1323" height="114" key="GridCell.Tab.0.bottom" timestamp="1595287594937">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
-    <state width="1323" height="231" key="GridCell.Tab.0.left" timestamp="1595108290021">
+    <state width="1323" height="114" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595287594937" />
+    <state width="1323" height="114" key="GridCell.Tab.0.center" timestamp="1595287594937">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
-    <state width="1323" height="231" key="GridCell.Tab.0.right" timestamp="1595108290021">
+    <state width="1323" height="114" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595287594937" />
+    <state width="1323" height="114" key="GridCell.Tab.0.left" timestamp="1595287594937">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="231" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595108290021" />
+    <state width="1323" height="114" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595287594937" />
+    <state width="1323" height="114" key="GridCell.Tab.0.right" timestamp="1595287594937">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="114" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595287594937" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -534,14 +567,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595108133777">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595112739193">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595108133777" />
-    <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1595087919488">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595112739193" />
+    <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1595287891235">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="676" y="0" width="697" height="735" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1595087919488" />
+    <state x="676" y="0" width="697" height="735" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1595287891235" />
     <state x="675" y="-8" width="699" height="744" maximized="true" key="dock-window-2" timestamp="1594570148605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

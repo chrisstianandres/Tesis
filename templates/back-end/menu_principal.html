@@ -1,5 +1,12 @@
-<title>Menu Principal</title>
 {% extends 'back-end/base.html' %}
+<title>Menu Principal</title>
+{% load static from staticfiles %}
+{% block head %}
+
+    {% block form_head %}
+
+    {% endblock %}
+{% endblock %}
 {% block content %}
     <!-- Page Heading -->
     <div class="row">

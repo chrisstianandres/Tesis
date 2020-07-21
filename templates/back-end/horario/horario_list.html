@@ -1,51 +1,9 @@
-<title>Horario</title>
 {% extends 'back-end/base.html' %}
+<title>Horario</title>
 {% load static from staticfiles %}
 {% block head %}
 
 {% endblock %}
-<style>
-    table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
-        color: black;
-    }
-
-    .table tbody tr td {
-        font-size: 12px;
-    }
-
-    .form-inline .form-control {
-        width: 100%;
-    }
-
-    th.dt-center, td.dt-center {
-        text-align: center;
-        font-size: 16px;
-    }
-
-    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-        color: black;
-        font-size: 16px;
-    }
-
-    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color: black;
-        font-size: 16px;
-    }
-
-    ::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color: black;
-        font-size: 16px;
-    }
-
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: black;
-        font-size: 16px;
-    }
-
-    .form-rounded {
-        border-radius: 12px;
-    }
-</style>
 {% block content %}
     <style>
         table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {

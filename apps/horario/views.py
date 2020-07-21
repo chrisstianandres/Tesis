@@ -78,10 +78,11 @@ def nuevo(request):
 
 def get_periodo(request):
     docente_id = request.POST['docente_id']
+    year = date.today().year
     periodos = Asignar.objects.none()
-    options = '<option value="" selected="selected">---------</option>'
+    options = ''
     if docente_id:
-        periodos = Asignar.objects.filter(docente_id=docente_id).distinct().distinct("periodo_id")
+        periodos = Asignar.objects.filter(docente_id=docente_id, periodo__periodo_inicio__year=year).distinct("periodo_id")
         for p in periodos:
             options += '<option value="%s">%s</option>' % (p.periodo_id, p.periodo)
         response = {}

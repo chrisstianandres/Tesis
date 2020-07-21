@@ -1,4 +1,5 @@
 {% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
 {% block content %}
     {{ form.media }}
     <section class="content-header">
@@ -31,32 +32,40 @@
                                 {% endfor %}
                             {% endif %}
                             <div class="container-fluid">
-                                <div class="form-group" id="docente_select">
-                                    <label for="docente"
-                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.docente.label_tag }}</label>
-                                    <div class="col-xs-12 col-md-4">
-                                        {{ form.docente }}
+                                <div class="row">
+                                    <div class="form-group" id="docente_select">
+                                        <label for="docente"
+                                               class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.docente.label_tag }}</label>
+                                        <div class="col-xs-12 col-md-4 col-lg-4">
+                                            {{ form.docente }}
+                                        </div>
+                                        <label for="periodo"
+                                               class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.periodo.label_tag }}</label>
+                                        <div class="col-xs-12 col-md-4 col-lg-4">
+                                            {{ form.periodo }}
+                                        </div>
                                     </div>
+
+
                                 </div>
-                                <div class="form-group">
-                                    <label for="docente"
-                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.periodo.label_tag }}</label>
-                                    <div class="col-xs-12 col-md-4">
-                                        {{ form.periodo }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="materia"
+                                               class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.materia.label_tag }}</label>
+                                        <div class="col-xs-12 col-md-4">
+                                            {{ form.materia }}
+                                        </div>
+                                        <label for="curso"
+                                               class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.curso.label_tag }}</label>
+                                        <div class="col-xs-12 col-md-4 col-lg-4">
+                                            {{ form.curso }}
+                                        </div>
+
                                     </div>
-                                    <label for="curso"
-                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.curso.label_tag }}</label>
-                                    <div class="col-xs-12 col-md-4">
-                                        {{ form.curso }}
-                                    </div>
+
+
                                 </div>
-                                <div class="form-group">
-                                    <label for="materia"
-                                           class="control-label col-xs-12 col-sm-2 col-md-2 col-lg-1">{{ form.materia.label_tag }}</label>
-                                    <div class="col-xs-12 col-md-4">
-                                        {{ form.materia }}
-                                    </div>
-                                </div>
+
                                 <br>
                                 <div class="form-group">
                                     <div class="col-xs-12 col-md-4">
@@ -135,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-footer">
+                    <div class="box-footer" id="botones" style="display: none;">
                         <button type="button" class="btn btn-success btn btn-primary btn-sm" data-title="Selecionar"
                                 data-toggle="modal" data-target="#edit" name="ok" id="guardarClases"><i
                                 class="fa fa-save">
@@ -175,6 +184,7 @@
                 setTimeout(function () {
                     $.isLoading("hide");
                     $("#tabla").show();
+                    $("#botones").show();
                     table = $('#clases').DataTable({
                         destroy: true,
                         responsive: true,
@@ -235,10 +245,14 @@
         function date() {
             $('.date').datetimepicker({
                 format: 'YYYY-MM-DD',
-                locale: 'Es'
+                locale: 'Es',
+                minDate: new Date()
             });
             $('.time').datetimepicker({
-                format: 'HH:mm'
+                format: 'HH:mm',
+                minDate: moment({h: 8}),
+                maxDate: moment({h:17})
+
             });
         }
 
@@ -261,6 +275,7 @@
                         // Agregamos los resultados al select
                         $("#id_periodo").isLoading("hide");
                         $("#id_periodo").html(response.periodos);
+                        $("#id_periodo").prop('disabled', true);
                         $("#id_materia").html("<option value='' selected='selected'>---------</option>");
                         $("#id_materia, #id_periodo").trigger("change");
                     }, 1000);
@@ -309,6 +324,7 @@
 
         function getCurso() {
             $("#tabla").hide();
+            $("#botones").hide();
             var periodoId = $("#id_periodo").val();
             var docenteId = $("#id_docente").val();
             var materiaId = $("#id_materia").val();
@@ -436,7 +452,7 @@
                                                 tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
                                             });
                                             setTimeout(function () {
-                                                location.reload();
+                                                location.href = "{% url 'horario:horarios_admin' %}";
                                             }, 1000);
                                             return false;
                                         }

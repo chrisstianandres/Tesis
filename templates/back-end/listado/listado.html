@@ -1,5 +1,12 @@
-<title>Listado de Matriculas</title>
 {% extends 'back-end/base.html' %}
+{% load static from staticfiles %}
+<title>Listado de Matriculas</title>
+{% block head %}
+
+    {% block form_head %}
+
+    {% endblock %}
+{% endblock %}
 {% block content %}
     <section class="content-header">
         <ol class="breadcrumb">
