@@ -40,6 +40,7 @@
                         (admin)</a></li>
                     <li><a href="{% url 'horario:horarios_admin' %}"><i class="fa fa-calendar-o"></i> Horarios de los
                         docentes</a></li>
+                    <li><a href="{% url 'horario:horarios_admin_historico' %}"><i class="fa fa-calendar-o"></i> Horarios Historicos</a></li>
                     <li><a href="{% url 'horario:ver' %}"><i class="fa fa-calendar-o"></i> Ver Horario </a></li>
                 </ul>
             </li>  <!-- Horarios admin-->
@@ -152,7 +153,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{% url 'asistencia_list:asistencia' %}"><i class="fa fa-check-circle"></i> Registro</a>
+                    <li><a href="{% url 'asistencia_list:asistencia' %}"><i class="fa fa-odnoklassniki"></i> Alumnos</a>
+                    </li>
+                    <li><a href="{% url 'horario:asistencias_docentes' %}"><i class="fa fa-users"></i> Docentes</a>
                     </li>
                 </ul>
             </li>  <!-- Asistencias-->

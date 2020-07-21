@@ -8,7 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from apps.horario.forms import *
 from apps.silabo.models import Silabo
+from apps.asistencias.forms import AsistenciasForm
 import json
+import pandas as pd
 
 
 # ---------------------------
@@ -327,3 +329,35 @@ def save_horario_2(request):
                             n.save()
                             data['resp'] = True
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+def asistencias_Docentes(request):
+    form = AsistenciasForm()
+    if request.method == 'POST':
+        form = AsistenciasForm(request.POST)
+    return render(request, 'back-end/asistencia/asistencias_form_docentes.html', {'form': form})
+
+def get_asist_docente(request):
+    desde = request.POST['desde']
+    hasta = request.POST['hasta']
+    periodo = request.POST['periodo_id']
+    data = transpose(periodo, desde, hasta)
+    if data:
+        df = pd.DataFrame(data)
+        df.fillna('0', inplace=True)
+        df.Asistencia = df.Asistencia.astype(str)
+        df.Materia = df.Materia.astype(str)
+        pivot = pd.pivot_table(df, index=['Docente'], values=['Asistencia'], columns=['Materia','Fecha'], aggfunc='sum')
+        html2 = pivot.to_html(table_id='asistencia', classes=['table table-striped table-bordered table-hover', 'mystyle'])
+        response = {"tablaHtml": html2}
+    else:
+        response = {"resp": 'False'}
+    return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+
+def transpose(periodoId, desde, hasta):
+    #data = [[a.asignar.docente, a.fecha, a.asignar.materia, a.estado]
+    asistencias = Horario.objects.filter(fecha__range=[desde, hasta]).order_by("asignar__docente_id")
+    data = [{'Docente': a.asignar.docente.last_name + ' ' + a.asignar.docente.first_name, 'Hora': a.hora_inicio + ' - ' + a.hora_fin, 'Fecha': a.fecha,
+             'Materia': a.asignar.materia, 'Asistencia': a.get_estado_display()} for a in asistencias]
+    return data

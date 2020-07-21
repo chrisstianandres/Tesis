@@ -29,10 +29,11 @@ def nuevo(request, id_docente):
 
 def get_datos(request):
     k = " - "
-    periodos = Periodo.objects.all().order_by("id")
+    year = datetime.today().year
+    periodos = Periodo.objects.filter(periodo_inicio__year=year)
     materias = Materia.objects.all().order_by("nombre")
     cursos = Curso.objects.all().order_by("nombre")
-    optionsp = '<option value="" selected="selected">---------</option>'
+    optionsp = ''
     optionsm = '<option value="" selected="selected">---------</option>'
     optionsc = '<option value="" selected="selected">---------</option>'
     for periodo in periodos:

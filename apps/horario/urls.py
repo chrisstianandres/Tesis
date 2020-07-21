@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^ver$', login_required(views.horario_list), name='ver'),
     url(r'^horarios_admin$', login_required(views.horario_list_admin), name='horarios_admin'),
     url(r'^horarios_admin_historico$', login_required(views.horario_list_admin_historico), name='horarios_admin_historico'),
+    url(r'^asistencias_docentes$', login_required(views.asistencias_Docentes), name='asistencias_docentes'),
+    url(r'^get_asistencia_docente$', login_required(views.get_asist_docente), name='get_asistencia_docente'),
     url(r'^editar_admin/(?P<id>\d+)/$', login_required(views.editar), name='editar_admin'),
 ]

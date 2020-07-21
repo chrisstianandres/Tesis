@@ -16,23 +16,25 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="form-group col-xs-12 col-md-3">
+                        <div class="form-group col-xs-12 col-md-3 col-lg-4">
                             <label for="id_periodo" class="control-label col-xs-1"> {{ form.periodo.label_tag }}</label>
                             {{ form.periodo }}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-xs-12 col-md-3">
+                        <div class="form-group col-xs-12 col-md-3 col-lg-4">
                             <label for="id_materia"
                                    class="control-label col-xs-1"> {{ form.materia.label_tag }}  </label>
                             {{ form.materia }}
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group col-xs-12 col-md-3">
-                            <label for="id_curso" class="control-label col-xs-1"> {{ form.curso.label_tag }} </label>
+                            <label for="id_curso" class="control-label col-xs-1 col-lg-4"> {{ form.curso.label_tag }} </label>
                             {{ form.curso }}
                         </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+
                     </div>
                 </form>
             </div>
