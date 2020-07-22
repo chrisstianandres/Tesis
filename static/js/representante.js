@@ -13,7 +13,7 @@ $(function () {
                         message: 'Este campo debe ser obligatorio'
                     },
                     stringLength: {
-                        min: 10,
+                        min: 5,
                     },
                     regexp: {
                         regexp: /^[A-ZáéíóúÁÉÍÓÚñÑ\s]+$/i,

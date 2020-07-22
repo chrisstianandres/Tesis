@@ -107,9 +107,11 @@ def estado(request):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-class Alumno_lista(ListView):
-    model = Alumno
-    template_name = 'back-end/alumno/alumno_list.html'
+def Alumno_lista(request):
+    list = Alumno.objects.all()
+    contexto = {'list': list, 'titulo': 'Listado de Alumnos'}
+    return render(request, 'back-end/alumno/alumno_list.html', contexto)
+    #template_name = 'back-end/alumno/alumno_list.html'
 
 
 
