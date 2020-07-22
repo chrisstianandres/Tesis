@@ -47,7 +47,7 @@ def crear(request):
 
 def listado (request):
     lista= Periodo.objects.all()
-    contexto={"lista":lista}
+    contexto={"lista":lista, 'titulo':'Listado de Periodos'}
     return render(request, 'back-end/periodo/periodo_list.html', contexto)
 
 def editar(request, id_periodo):

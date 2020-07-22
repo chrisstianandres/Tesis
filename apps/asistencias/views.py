@@ -93,7 +93,7 @@ def vista_asistencias(request):
     form = AsistenciasForm()
     if request.method == 'POST':
         form = AsistenciasForm(request.POST)
-    return render(request, 'back-end/asistencia/asistencias_form.html', {'form': form})
+    return render(request, 'back-end/asistencia/asistencias_form.html', {'form': form, 'titulo': 'Reporte de Asistencias de Alumnos'})
 
 
 def get_asistencias(request):

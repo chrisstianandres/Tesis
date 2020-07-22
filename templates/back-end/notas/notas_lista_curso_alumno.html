@@ -1,6 +1,4 @@
-
 {% extends 'back-end/base.html' %}
-<title>Notas Generales</title>
 {% block content %}
     <section class="content-header">
         <ol class="breadcrumb">
@@ -14,6 +12,7 @@
                 <h5><i class="fa fa-user-circle-o fa-lg"></i> <strong>Notas/Alumnos</strong></h5>
             </div>
             <div class="box-body">
+            <div hidden="hidden" id="al"> {{ alumno }}</div>
                 <div class="container-fluid">
                     <table style="width:100%" class="table table-striped table-bordered table-hover"
                            id="notas_alumno">
@@ -106,8 +105,13 @@
                         },
                         customize: function (doc) {
                             //Remove the title created by datatTables
-                            //doc.content.splice(0,0, {margin: [25, 30],
-                            //alignment: 'center'});
+                            //Remove the title created by datatTables
+                             var alumno = $('#al').text();
+                            doc.content.splice(0, 1, {
+                                text: "Reporte de Notas de " + alumno,
+                                alignment: 'center',
+                                fontSize: 16,
+                            },);
                             //Create a date string that we use in the footer. Format is dd-mm-yyyy
                             var now = new Date();
                             var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
@@ -189,9 +193,9 @@
                                 return 4;
                             };
                             doc.content[0].layout = objLayout;
-                             doc.content[1].table.widths =
-                             // ['*', '*', '*', '*', '*','*','*'];
-                          Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                            doc.content[1].table.widths =
+                                // ['*', '*', '*', '*', '*','*','*'];
+                                Array(doc.content[1].table.body[0].length + 1).join('*').split('');
                             doc.styles.tableBodyEven.alignment = 'center';
                             doc.styles.tableBodyOdd.alignment = 'center';
                         }

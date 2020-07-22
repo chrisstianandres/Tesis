@@ -30,5 +30,6 @@ def vista_notas_curso(request):
 
 def vista_notas_curso_materias(request, alumno, periodo):
     data = Notas.objects.filter(Listado__alumno_id=alumno, Asignar__periodo_id=periodo)
-    contexto = {'data': data}
+    alumno = Alumno.objects.get(id=alumno)
+    contexto = {'data': data, 'alumno': alumno}
     return render(request, 'back-end/notas/notas_lista_curso_alumno.html', contexto)

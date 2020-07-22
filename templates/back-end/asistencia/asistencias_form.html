@@ -1,5 +1,4 @@
 {% extends 'back-end/base.html' %}
-<title>Asistencias/Reporte</title>
 {% block content %}
     {{ form.media }}
     <section class="content-header">
@@ -31,24 +30,24 @@
                             {{ form.curso }}
                         </div>
                     </div>
-                        <div class="row">
-                            <div class="form-group col-xs-12 col-md-3 col-lg-6">
-                                <label for="desde" class="control-label col-xs-1"> {{ form.desde.label }}</label>
-                                <br>
-                                <div class='input-group date1'><input title="desde" type='text' class="form-control
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-3 col-lg-6">
+                            <label for="desde" class="control-label col-xs-1"> {{ form.desde.label }}</label>
+                            <br>
+                            <div class='input-group date1'><input title="desde" type='text' class="form-control
                         form-rounded time2" id="desde"/>
-                                    <span class="input-group-addon"><span
-                                            class="glyphicon glyphicon-calendar"></span></span></div>
-                            </div>
-                            <div class="form-group col-xs-12 col-md-3 col-lg-6">
-                                <label for="desde" class="control-label col-xs-1"> {{ form.hasta.label_tag }}</label>
-                                <br>
-                                <div class='input-group date2'><input title="hasta" type='text' class="form-control
-                       form-rounded time2" id="hasta"/>
-                                    <span class="input-group-addon"><span
-                                            class="glyphicon glyphicon-calendar"></span></span></div>
-                            </div>
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-calendar"></span></span></div>
                         </div>
+                        <div class="form-group col-xs-12 col-md-3 col-lg-6">
+                            <label for="desde" class="control-label col-xs-1"> {{ form.hasta.label_tag }}</label>
+                            <br>
+                            <div class='input-group date2'><input title="hasta" type='text' class="form-control
+                       form-rounded time2" id="hasta"/>
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-calendar"></span></span></div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="box-footer">
@@ -92,7 +91,6 @@
             $("#id_materia").on("change", getCurso);
             $("#id_curso").on("change", ocultar);
             $("#search").on("click", tabla);
-            $("#pdf").on("click", pdf);
 
         });
 
@@ -183,10 +181,7 @@
                 });
                 request.done(function (response) {
                     $('#id_curso').isLoading({
-                        text: "Cargando",
-                        disableOthers: [
-                            $("#id_materia")
-                        ]
+                        text: "Cargando"
                     });
                     setTimeout(function () {
                         $('#id_curso').isLoading("hide");
@@ -378,10 +373,10 @@
                                                         $(this).text('F');
                                                         $(this).addClass('red');
                                                     }
+
                                                     break;
 
                                             }
-                                            c = c + 1;
                                         });
 
                                     });

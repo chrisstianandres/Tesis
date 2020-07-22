@@ -25,12 +25,12 @@ def nuevo(request):
     return render(request, 'back-end/silabo/silabo_form.html', data)
 
 def silabo_list(request):
-    data = {
-        'icono': opc_icono, 'ruta': '/silabo/listado', 'crud': opc_crud, 'entidad': opc_entidad,
-        'titulo': 'Planes de Clase Generales',
-    }
+
     if request.method == 'GET':
-        data['form'] = SilaboForm()
+        data = {
+            'icono': opc_icono, 'ruta': '/silabo/listado', 'crud': opc_crud, 'entidad': opc_entidad,
+            'titulo': 'Planes de Clase Generales', 'form': SilaboForm()
+        }
     return render(request, 'back-end/silabo/silabo_general.html', data)
 
 def editar(request, id):

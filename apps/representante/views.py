@@ -50,7 +50,7 @@ def crear(request):
 
 def listado(request):
     lista= Representante.objects.all()
-    contexto={"lista":lista}
+    contexto={"lista":lista, 'titulo':'Listado de Representantes'}
     return render(request, 'back-end/representante/representante_list.html', contexto)
 
 def editar(request, id_representante):

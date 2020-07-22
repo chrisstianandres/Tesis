@@ -201,12 +201,8 @@ def save_horario(request):
                     data['resp'] = False
                 else:
                     for row in Horario.objects.raw(
-                            #'SELECT count(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar.id '
-                            #'WHERE %s BETWEEN horario.hora_inicio AND DATE_SUB(hora_fin, INTERVAL 1 MINUTE) and '
-                            #'asignar.docente_id=%s and horario.fecha= %s', [d, p, f]):
-
                          'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
-                         'WHERE %s BETWEEN horario.hora_inicio AND hora_fin::TIME - %s::INTERVAL and '
+                         'WHERE %s BETWEEN horario.hora_inicio AND horario.hora_fin::TIME - %s::INTERVAL and '
                          'asignar.docente_id=%s and horario.fecha= %s', [d, i, p, f]):
 
                         if row.id == 1:
@@ -216,14 +212,26 @@ def save_horario(request):
                                            "y vuelve a intentarlo "
                             data['resp'] = False
                         else:
-                            n = Horario()
-                            n.asignar_id = a
-                            n.silabo_id = s
-                            n.fecha = f
-                            n.hora_inicio = d
-                            n.hora_fin = h
-                            n.save()
-                            data['resp'] = True
+                            for row2 in Horario.objects.raw(
+                                    'SELECT "count"(*) as id FROM horario INNER JOIN asignar ON horario.asignar_id = asignar."id" '
+                                    'WHERE %s BETWEEN horario.hora_inicio AND horario.hora_fin::TIME - %s::INTERVAL and '
+                                    'horario.fecha= %s', [d, i, f]):
+
+                                if row2.id == 1:
+                                    data[
+                                        'error'] = "Actividades ya asignadas  en algun/nos de los " \
+                                                   "rangos de horas ingresados para este curso <br> Verificalos en el horario " \
+                                                   "y vuelve a intentarlo "
+                                    data['resp'] = False
+                                else:
+                                    n = Horario()
+                                    n.asignar_id = a
+                                    n.silabo_id = s
+                                    n.fecha = f
+                                    n.hora_inicio = d
+                                    n.hora_fin = h
+                                    n.save()
+                                    data['resp'] = True
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
@@ -334,7 +342,7 @@ def asistencias_Docentes(request):
     form = AsistenciasForm()
     if request.method == 'POST':
         form = AsistenciasForm(request.POST)
-    return render(request, 'back-end/asistencia/asistencias_form_docentes.html', {'form': form})
+    return render(request, 'back-end/asistencia/asistencias_form_docentes.html', {'form': form, 'titulo': 'Reporte de Asistencias de Docentes'})
 
 def get_asist_docente(request):
     desde = request.POST['desde']

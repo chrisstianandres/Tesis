@@ -131,12 +131,17 @@
                 url: "{% url 'get_periodo' %}",
             });
             request.done(function (response) {
+                $('#id_periodo').isLoading({text: "Cargando"});
+                setTimeout(function () {
+                    $('#id_periodo').isLoading("hide");
                 // Agregamos los resultados al select
-                $("#id_periodo").html(response.periodos);
+                $("#id_periodo").html(response.periodos).prop('disabled', true);
                 $("#id_materia").html("<option value='' selected='selected'>---------</option>");
                 $("#id_materia, #id_periodo").trigger("change");
+            }, 1000);
             });
         }
+
 
         function getMateria() {
             var periodoId = $("#id_periodo").val();
@@ -152,12 +157,22 @@
                     },
                 });
                 request.done(function (response) {
+                    $('#id_materia').isLoading({
+                        text: "Cargando",
+                        disableOthers: [
+                            $("#id_materia")
+                        ]
+                    });
+                    setTimeout(function () {
+                        $('#id_materia').isLoading("hide");
+                        $("#id_materia").html(response.materias);
+                        $("#id_curso").html("<option value='' selected='selected'>---------</option>");
+                        $("#id_materia, #id_curso").trigger("change");
+                    }, 1000);
                     // Agregamos los resultados al select
-                    $("#id_materia").html(response.materias);
-                    $("#id_curso").html("<option value='' selected='selected'>---------</option>");
-                    $("#id_materia, #id_curso").trigger("change");
+
                 });
-            } else {
+                 } else {
                 $("#id_materia").html("<option value='' selected='selected'>---------</option>");
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");
                 $("#id_materia, #id_curso").trigger("change");
@@ -181,9 +196,19 @@
                     },
                 });
                 request.done(function (response) {
-                    // Agregamos los resultados al select
-                    $("#id_curso").html(response.cursos);
-                    $("#id_curso").trigger("change");
+                    $('#id_curso').isLoading({
+                        text: "Cargando",
+                        disableOthers: [
+                            $("#id_materia")
+                        ]
+                    });
+                    setTimeout(function () {
+                        $('#id_curso').isLoading("hide");
+                        // Agregamos los resultados al select
+                        $("#id_curso").html(response.cursos);
+                        $("#id_curso").trigger("change");
+                    }, 1000);
+
                 });
             } else {
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");

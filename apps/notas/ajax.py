@@ -11,10 +11,11 @@ from ..asistencias.models import *
 
 def get_periodo(request):
     a = request.user.id
+    y = date.today().year
     periodos = Asignar.objects.none()
-    options = '<option value="" selected="selected">---------</option>'
+    options = ''
     if a:
-        periodos = Asignar.objects.filter(docente_id=a).distinct("periodo_id")
+        periodos = Asignar.objects.filter(docente_id=a, periodo__periodo_inicio__year=y).distinct("periodo_id")
     for periodo in periodos:
         options += '<option value="%s">%s</option>' % (
             periodo.periodo_id,
@@ -48,7 +49,7 @@ def get_curso(request):
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if materia_id:
-        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id)#.distinct("curso_id")
+        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id).distinct("curso_id")
     for curso in cursos:
         options += '<option value="%s">%s</option>' % (
             curso.curso.pk,
@@ -81,15 +82,15 @@ def get_curso_asistencias(request):
     cursos = Asignar.objects.none()
     options = '<option value="" selected="selected">---------</option>'
     if materia_id:
-        cursos = Asignar.objects.filter(periodo_id=periodo_id, docente_id=docente_id, materia_id=materia_id).distinct("curso_id")
+        cursos = Asignar.objects.filter(periodo_id=periodo_id, materia_id=materia_id).distinct("curso_id")
     for curso in cursos:
         options += '<option value="%s">%s</option>' % (
-            curso.pk,
+            curso.curso_id,
             curso.curso
         )
     response={}
     response['cursos'] = options
-    response['asignar'] = options
+    #response['asignar'] = options
     return JsonResponse(response)
 
 def get_parcial(request):
