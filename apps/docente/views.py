@@ -85,6 +85,20 @@ def editar(request, id_docente):
 
     return render(request, 'back-end/docente/docenteForm.html', data)
 
+def eliminar(request):
+    data = {}
+    if request.method == 'POST':
+        try:
+            h = Docente.objects.get(pk=request.POST['id'])
+            h.delete()
+            data['resp'] = True
+        except Exception as e:
+            data['error'] = e.message
+            data['resp'] = False
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+
 
 def estado(request):
     data = {}

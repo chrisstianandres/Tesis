@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from apps.lista.models import *
+from apps.docente.models import *
 from django.views.generic import *
 from apps.alumno.forms import AlumnoForm
 import json
@@ -35,7 +36,8 @@ def nuevo(request):
 def crear(request):
     f = AlumnoForm(request.POST)
     data = {
-        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud
+        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
+        'boton': 'Guardar Alumno', 'action': 'add', 'titulo': 'Nuevo Registro de un Alumno'
     }
     action = request.POST['action']
     data['action'] = action
@@ -43,15 +45,20 @@ def crear(request):
         if action == 'add':
             f = AlumnoForm(request.POST)
             if f.is_valid():
-                f.save()
-            else:
-                data = {
-                    'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
-                    'boton': 'Guardar Alumno', 'action': 'add', 'titulo': 'Nuevo Registro de un Alumno',
-                    'form': f
-                }
-                return render(request, 'back-end/alumno/alumno_form.html', data)
-            return HttpResponseRedirect('/alumnos/listado')
+                f.save(commit=False)
+                if Representante.objects.filter(cedula=f.data['cedula']):
+                    data['dupla'] = 'Numero de Cedula ya exitente en los respresentantes'
+                    data['form'] = f
+                    return render(request, 'back-end/alumno/alumno_form.html', data)
+                else:
+                    if Docente.objects.filter(cedula=f.data['cedula']):
+                        data['dupla'] = 'Numero de Cedula ya exitente en los Docentes'
+                        data['form'] = f
+                        return render(request, 'back-end/alumno/alumno_form.html', data)
+                    else:
+                        f.save()
+                        return HttpResponseRedirect('/alumnos/listado')
+
 
 def editar(request, id_alumno):
     alumno = Alumno.objects.get(id=id_alumno)

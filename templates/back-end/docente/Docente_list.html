@@ -54,7 +54,11 @@
                                             class="glyphicon glyphicon-pencil"> </span></a>
                                         <a type="button" class="btn btn-default btn-xs estado" data-toggle="tooltip"
                                            title="Gestionar estado del docente"><span
-                                                class="glyphicon glyphicon-cog"> </span></a></td>
+                                                class="glyphicon glyphicon-cog"> </span></a>
+                                    <a type="button" class="btn btn-danger btn-xs borrar" data-toggle="tooltip"
+                                           title="Eliminar Docente"><span
+                                                class="glyphicon glyphicon-trash"> </span></a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
@@ -95,6 +99,7 @@
         $(document).ready(function () {
             tabla();
             $('.estado').on("click", estado);
+            $(".borrar").on("click", eliminar);
         });
 
 
@@ -212,7 +217,7 @@
                 columnDefs: [
                     {"targets": [0], visible: false},
                     {"className": "dt-center", "targets": [0, 1, 4, 6, 7]},
-                    {"className": "dt-center", "width": "7%", "bSortable": false, "targets": [-1]}
+                    {"className": "dt-center", "width": "10%", "bSortable": false, "targets": [-1]}
                 ],
                 "createdRow": function (row, data, dataIndex) {
                     if (data[6] === 'Activo') {
@@ -392,6 +397,54 @@
             if (data[6] === 'Suspendido') {
                 dialog.find('.suspendido').hide();
             }
+        }
+
+        function eliminar() {
+            $('.tooltip').remove();
+            var data = table.row($(this).parents('tr')).data();
+            bootbox.dialog({
+                title: "<i class='fa fa-info' aria-hidden='true'></i> Confirmaci\u00f3n",
+                message: 'Desea eliminar el docente' + ' ' + '<strong>' + data[2] + '</strong>' + '?',
+                buttons: {
+                    default: {
+                        label: "<i class='fa fa-times'></i>",
+                        className: "btn btn-danger btn-sm btn-flat",
+                        callback: function () {
+                        }
+                    },
+                    success: {
+                        label: "<i class='fa fa-check'></i>",
+                        className: "btn btn-primary btn-sm btn-flat",
+                        callback: function () {
+                            $.ajax({
+                                dataType: 'JSON',
+                                type: 'POST',
+                                url: "{% url 'docente:eliminar' %}",
+                                data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                                    id: data[0]
+                                },
+                                success: function (data) {
+                                    if (data.resp) {
+                                        $.isLoading({
+                                            text: "<strong>" + 'Eliminando Registro..' + "</strong>",
+                                            tpl: '<span class="isloading-wrapper %wrapper%"><i class="fa fa-spin fa-spinner fa-2x fa-spin"></i><br>%text%</span>',
+                                        });
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 1000);
+                                        return false;
+                                    }
+                                    alert(data.error);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown + ' ' + textStatus);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
         }
     </script>
     <style>
