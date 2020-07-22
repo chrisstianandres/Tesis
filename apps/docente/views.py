@@ -14,6 +14,8 @@ from reportlab.platypus import TableStyle, Table
 from datetime import date
 import json
 from django.db.models import Q
+from apps.representante.models import *
+from apps.alumno.models import *
 
 # ---------------------------
 opc_icono = 'fa fa-user-o'
@@ -38,27 +40,31 @@ def nuevo(request):
 def crear(request):
     f = DocenteForm(request.POST)
     data = {
-        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud
+        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
+        'boton': 'Guardar Docente', 'action': 'add', 'titulo': 'Nuevo Registro de un Docente',
     }
     action = request.POST['action']
     data['action'] = action
     if request.method == 'POST' and 'action' in request.POST:
-        if action == 'add' or action == 'edit':
-            if action == 'add':
-                f = DocenteForm(request.POST or None, request.FILES or None)
-            elif action == 'edit':
-                f = DocenteForm(request.POST, instance=Docente.objects.get(id=request.POST['id']))
+        if action == 'add':
+            f = DocenteForm(request.POST or None, request.FILES or None)
             if f.is_valid():
-                f.save()
+                f.save(commit=False)
+                if Representante.objects.filter(cedula=f.data['cedula']):
+                    data['errorrep'] = 'Numero de Cedula ya exitente en los respresentantes'
+                    data['form'] = f
+                    return render(request, 'back-end/docente/docenteForm.html', data)
+                else:
+                    if Alumno.objects.filter(cedula=f.data['cedula']):
+                        data['errorrep'] = 'Numero de Cedula ya exitente en los Alumnos'
+                        data['form'] = f
+                        return render(request, 'back-end/docente/docenteForm.html', data)
+                    else:
+                        f.save()
+                    return HttpResponseRedirect('/docente/listado')
             else:
-                data = {
-                    'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
-                    'boton': 'Guardar Docente', 'action': 'add', 'titulo': 'Nuevo Registro de un Docente',
-                    'form': f
-                }
-                return render(request, 'back-end/docente/docenteForm.html', data)
-            return HttpResponseRedirect('/docente/listado')
-
+                data['form'] = f
+            return render(request, 'back-end/docente/docenteForm.html', data)
 
 def Docente_list(request):
     Docente_list = Docente.objects.all()
