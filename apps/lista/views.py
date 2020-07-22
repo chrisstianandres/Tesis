@@ -48,12 +48,14 @@ def crear(request):
     periodo = request.POST.get('periodo')
     curso = request.POST.get('curso')
     if request.method == 'POST' and 'action' in request.POST:
-        if Listado.objects.filter(alumno=alumno, curso=curso, periodo=periodo, estado=0):
+        if Listado.objects.filter(alumno=alumno, periodo=periodo):
             f = ListadoForm(request.POST)
+            a = Alumno.objects.get(id=alumno)
+            p = Periodo.objects.get(id=periodo)
             data = {
                 'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
                 'boton': 'Guardar Matricula', 'action': 'add', 'titulo': 'Nuevo Registro de Matricula',
-                'form': f, 'dupla': 'Ya existe un registro igual'
+                'form': f, 'errorrep': 'Ya existe una matricula para '+ str(a)+ "en el periodo " + str(p)
             }
         else:
 

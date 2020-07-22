@@ -15,6 +15,10 @@ class ListadoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         year = datetime.today().year
         query = Periodo.objects.filter(periodo_inicio__year=year)
+       #value = "%s" > % s < / option > ' % (
+        #periodo.periodo_id,
+        #periodo.periodo)
+
 
         for field in self.Meta.fields:
             self.fields[field].widget.attrs.update({
@@ -23,8 +27,8 @@ class ListadoForm(forms.ModelForm):
             })
             self.fields['alumno'].widget.attrs['class'] = 'selectpicker'
             self.fields['periodo'].widget.attrs['class'] = 'selectpicker'
-            self.fields['periodo'].widget.attrs['disabled'] = 'disabled'
-            self.initial['periodo'] = query.first()
+            self.fields['periodo'].queryset = Periodo.objects.filter(periodo_inicio__year=year)
+            self.initial['periodo'] = Periodo.objects.get(periodo_inicio__year=year)
             self.fields['curso'].widget.attrs['class'] = 'selectpicker'
         # habilitar, desabilitar, y mas
 
