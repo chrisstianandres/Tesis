@@ -6,9 +6,6 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -99,8 +96,8 @@
                                    class="form-control unidad"></td>
                         <td><input title="Clase" type="number" size="2" max="100" min="1" step="1"
                                    class="form-control clase"></td>
-                        <td style="width:50px"><textarea title="tema" rows="2" cols="50px"
-                                                         class="form-control tema"></textarea></td>
+                        <td style="width:50px"><textarea title="tema" rows="2" cols="50px" maxlength="250"
+                                                         class="form-control tema" placeholder="Escriba un tema con un maximo de 250 caracteres"></textarea></td>
                         <td style="width: 15px">
                             <button disabled class="btn btn-danger btn-sm remove" name="btnQuitar"
                                     data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden=
@@ -198,7 +195,7 @@
                 '<input title="Semana" type="number" size="3" max="25" min="1" step="1" class="form-control semana"></td>\n' +
                 '<td><input title="Unidad" type="number" size="3" max="10" min="1" step="1" class="form-control unidad"></td>\n' +
                 '<td><input title="Clase" type="number" size="2" max="100" min="1" step="1" class="form-control clase"></td>\n' +
-                '<td style="width:50px"><textarea rows="2" cols="50px"class="form-control tema"></textarea></td>\n' +
+                '<td style="width:50px"><textarea rows="2" cols="50px" maxlength="250" class="form-control tema" placeholder="Escriba un tema con un maximo de 250 caracteres"></textarea></td>\n' +
                 '<td style="width: 15px"><button class="btn btn-danger btn-sm remove" name="btnQuitar"\n' +
                 'data-toggle="tooltip" title="Quitar fila"><i class="fa fa-trash" aria-hidden="true"></i></button> </td></tr>';
             $('#planes').append(fila);
@@ -268,6 +265,7 @@
                                 url: "{% url 'silabos:guardar' %}",
                                 data: datos,
                                 success: function (data) {
+                                    alert(data.resp);
                                     if (data.resp) {
                                         $.isLoading({
                                             text: "<strong>" + 'Registrando..' + "</strong>",

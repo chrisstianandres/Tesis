@@ -4,7 +4,7 @@ class Silabo(models.Model):
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, null=True, blank=True)
     semana = models.IntegerField(default=1)
     unidad = models.IntegerField(default=1)
-    clase = models.IntegerField(default=1)
+    clase = models.IntegerField(default=1, unique=True)
     tema = models.CharField(max_length=250)
 
     def __str__(self):

@@ -1,6 +1,6 @@
 <title>Notas</title>
 {% extends 'back-end/base.html' %}
-{% load static from staticfiles%}
+{% load static from staticfiles %}
 {% block head %}
 {% endblock %}
 {% block content %}
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-footer">
+        <div class="box-footer" id="botones" style="display: none">
             <button type="button" class="btn btn-success btn btn-primary btn-sm" data-title="Selecionar"
                     data-toggle="modal" data-target="#edit" name="ok" id="guardarNotas"><i class="fa fa-save">
             </i> Registrar Notas
@@ -107,10 +107,12 @@
             $("#search").on("click", tabla);
             $('#guardarNotas').on("click", enviarNotas);
             $("#tipo_nota").on("change", tipo_nota);
+            $(document).on('change', '.nota', prueba);
         });
 
         function ocultar() {
             $("#tabla").hide();
+            $("#botones").hide();
         }
 
         function tipo_nota() {
@@ -134,11 +136,11 @@
                 $('#id_periodo').isLoading({text: "Cargando"});
                 setTimeout(function () {
                     $('#id_periodo').isLoading("hide");
-                // Agregamos los resultados al select
-                $("#id_periodo").html(response.periodos).prop('disabled', true);
-                $("#id_materia").html("<option value='' selected='selected'>---------</option>");
-                $("#id_materia, #id_periodo").trigger("change");
-            }, 1000);
+                    // Agregamos los resultados al select
+                    $("#id_periodo").html(response.periodos).prop('disabled', true);
+                    $("#id_materia").html("<option value='' selected='selected'>---------</option>");
+                    $("#id_materia, #id_periodo").trigger("change");
+                }, 1000);
             });
         }
 
@@ -172,7 +174,7 @@
                     // Agregamos los resultados al select
 
                 });
-                 } else {
+            } else {
                 $("#id_materia").html("<option value='' selected='selected'>---------</option>");
                 $("#id_curso").html("<option value='' selected='selected'>---------</option>");
                 $("#id_materia, #id_curso").trigger("change");
@@ -181,6 +183,7 @@
 
         function getCurso() {
             $("#tabla").hide();
+            $("#botones").hide();
             var periodoId = $("#id_periodo").val();
             var materiaId = $("#id_materia").val();
             if (materiaId) {
@@ -250,14 +253,17 @@
             if (tipo_nota === 0) {
                 if (periodoId && materiaId && cursoId && quimestreId && parcialId) {
                     $("#tabla").show();
+                    $("#botones").show();
                     table = $('#notas').DataTable({
                         destroy: true,
                         responsive: true,
                         ajax: {
                             url: "{% url 'get_alumno' %}",
                             type: 'POST',
-                            data: {csrfmiddlewaretoken: "{{ csrf_token }}",
-                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            data: {
+                                csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId
+                            },
                             dataSrc: ""
 
                         },
@@ -274,7 +280,7 @@
                                 data: null,
                                 sclass: "text-center",
                                 render: function (data, type, row) {
-                                    return '<input  type="number" size="2" max="10" min="1" ' +
+                                    return '<input  type="number" size="2" max="10" min="1" maxlength="2" ' +
                                         'class="form-control nota" value="1" step="1">';
                                 },
                             },
@@ -302,8 +308,10 @@
                         ajax: {
                             url: "{% url 'get_alumno' %}",
                             type: 'POST',
-                            data: { csrfmiddlewaretoken: "{{ csrf_token }}",
-                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId},
+                            data: {
+                                csrfmiddlewaretoken: "{{ csrf_token }}",
+                                "periodo_id": periodoId, "curso_id": cursoId, 'materia_id': materiaId
+                            },
                             dataSrc: ""
 
                         },
@@ -381,8 +389,10 @@
                 tabla.push(items);
             });
             //alert(JSON.stringify(tabla));
-            var datos = {'datos': JSON.stringify(tabla),
-            csrfmiddlewaretoken: "{{ csrf_token }}",};
+            var datos = {
+                'datos': JSON.stringify(tabla),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            };
             //console.log(datos);
             table.column(2).visible(false);
             table.column(3).visible(false);
@@ -430,6 +440,26 @@
                     }
                 }
             });
+        }
+
+        function prueba() {
+            var a = $(this).val();
+            if (a < 1) {
+                $(this).val(1);
+
+                bootbox.alert({
+                    message: "Ingresa unicamente notas del 1 hasta 10",
+                    className: 'rubberBand animated'
+                });
+            } else {
+                if (a > 10) {
+                    $(this).val(1);
+                    bootbox.alert({
+                        message: "Ingresa unicamente notas del 1 hasta 10",
+                        className: 'rubberBand animated'
+                    });
+                }
+            }
         }
 
     </script>

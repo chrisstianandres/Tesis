@@ -146,7 +146,9 @@ def save_note(request):
         n=Notas()
         for sub in datos:
             if Notas.objects.filter(Asignar=sub['asignar'], Listado=sub['lista']):
-                g = Notas.objects.get(Listado_id=sub['lista'])
+                a=Notas.objects.filter(Asignar=sub['asignar'], Listado=sub['lista'])
+                print(a.query)
+                g = Notas.objects.get(Listado=sub['lista'], Listado__periodo__periodo_inicio__year=date.today().year)
                 if g.Parcial_1_q_1 > 0:
                     if sub['parcial'] == "2":
                         if g.Parcial_2_q_1 == 0:

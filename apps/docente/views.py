@@ -73,22 +73,24 @@ def Docente_list(request):
 
 
 def editar(request, id_docente):
+    data = {
+        'icono': opc_icono, 'ruta': opc_ruta, 'entidad': opc_entidad,
+        'boton': 'Guardar Docente', 'titulo': 'Editar Registro de un Docente'
+    }
     docente = Docente.objects.get(id=id_docente)
-    opc_edit = '/docente/editar/' + id_docente + '/'
+    data['opc_edit'] = '/docente/editar/' + id_docente + '/'
 
     if request.method == 'GET':
         form = DocenteForm(instance=docente)
+        data['form'] = form
     else:
         form = DocenteForm(request.POST, instance=docente)
         if form.is_valid():
             form.save()
+        else:
+           data['form'] = form
+           return render(request, 'back-end/docente/docenteForm.html', data)
         return redirect('docente:Docente_list')
-    data = {
-        'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_edit, 'entidad': opc_entidad,
-        'boton': 'Guardar Docente', 'titulo': 'Editar Registro de un Docente',
-        'form': form
-    }
-
     return render(request, 'back-end/docente/docenteForm.html', data)
 
 def eliminar(request):

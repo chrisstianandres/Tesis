@@ -105,11 +105,12 @@ def save_silabo(request):
                 if Silabo.objects.filter(materia=m):
                     if Silabo.objects.filter(materia=m, semana=s):
                         if Silabo.objects.filter(materia=m, semana=s, unidad=u):
-                            print("misma unidad")
                             if Silabo.objects.filter(materia=m, semana=s, unidad=u, clase=c):
-                                print("misma clase")
-                                if Silabo.objects.filter(materia=m, semana=s, unidad=u, clase=c, tema=t):
-                                    print("misma tema")
+                                data['error'] = "Ya existe un numero de clase registrado"
+                                data['resp'] = False
+
+                            else:
+                                if Silabo.objects.filter(materia=m, semana=s, unidad=u, tema=t):
                                     data['error'] = "Ya existe un tema igual registrado"
                                     data['resp'] = False
                                 else:
@@ -121,15 +122,6 @@ def save_silabo(request):
                                     n.tema = t
                                     n.save()
                                     data['resp'] = True
-                            else:
-                                n = Silabo()
-                                n.materia_id = m
-                                n.semana = s
-                                n.unidad = u
-                                n.clase = c
-                                n.tema = t
-                                n.save()
-                                data['resp'] = True
                         else:
                             n = Silabo()
                             n.materia_id = m
