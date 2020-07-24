@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8160b35b-32d8-4076-a058-2934bf7cbb71" name="Default Changelist" comment="Version 10">
-      <change afterPath="$PROJECT_DIR$/apps/silabo/migrations/0003_auto_20200722_1728.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/curso/migrations/0004_curso_seccion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/docente/2020/07/23/alec.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_animation_data.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/_cm.py" afterDir="false" />
@@ -79,14 +80,19 @@
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/units.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/~atplotlib/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/alumno/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/alumno/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/asignar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/asignar/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/curso/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/curso/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/curso/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/curso/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/curso/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/docente/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docente/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/notas/ajax.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/notas/ajax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/periodo/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/periodo/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/periodo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/periodo/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/representante/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/representante/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/silabo/migrations/0003_auto_20200722_1728.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/silabo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/silabo/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/silabo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/silabo/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/notas/notasindex_alumnos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/notas/notasindex_alumnos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/silabo/silabo_general.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/curso/curso_lista.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/back-end/representante/representante_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back-end/representante/representante_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PyMySQL-0.9.3.dist-info/METADATA" beforeDir="false" />
@@ -243,7 +249,11 @@
       <workItem from="1594938754834" duration="32905000" />
       <workItem from="1595081917289" duration="21861000" />
       <workItem from="1595265260707" duration="71000" />
-      <workItem from="1595265386234" duration="85773000" />
+      <workItem from="1595265386234" duration="85889000" />
+      <workItem from="1595517992064" duration="940000" />
+      <workItem from="1595526428787" duration="1897000" />
+      <workItem from="1595528361763" duration="79000" />
+      <workItem from="1595528603106" duration="9847000" />
     </task>
     <task id="LOCAL-00001" summary="Version 2">
       <created>1587921640248</created>
@@ -532,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595455499801</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Version 10">
+      <created>1595473621574</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1595473621574</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,30 +578,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="508" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1595265607913" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595455489106">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1595473605563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595455489106" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1595473605563" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1595265481072">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1595265481072" />
-    <state width="1323" height="193" key="GridCell.Tab.0.bottom" timestamp="1595472535193">
+    <state width="1323" height="176" key="GridCell.Tab.0.bottom" timestamp="1595537494141">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="193" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595472535193" />
-    <state width="1323" height="193" key="GridCell.Tab.0.center" timestamp="1595472535193">
+    <state width="1323" height="176" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595537494141" />
+    <state width="1323" height="176" key="GridCell.Tab.0.center" timestamp="1595537494141">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="193" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595472535193" />
-    <state width="1323" height="193" key="GridCell.Tab.0.left" timestamp="1595472535193">
+    <state width="1323" height="176" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595537494141" />
+    <state width="1323" height="176" key="GridCell.Tab.0.left" timestamp="1595537494141">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="193" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595472535193" />
-    <state width="1323" height="193" key="GridCell.Tab.0.right" timestamp="1595472535193">
+    <state width="1323" height="176" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595537494141" />
+    <state width="1323" height="176" key="GridCell.Tab.0.right" timestamp="1595537494141">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="193" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595472535193" />
+    <state width="1323" height="176" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595537494141" />
     <state width="1323" height="208" key="GridCell.Tab.1.bottom" timestamp="1588202583535">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -613,10 +630,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1366.728@0.0.1366.728" timestamp="1588197066682" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595442386372">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595473674627">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595442386372" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1595473674627" />
     <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1595287891235">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

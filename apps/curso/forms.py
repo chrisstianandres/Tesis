@@ -18,11 +18,10 @@ class CursoForm(forms.ModelForm):
 
     class Meta:
         model = Curso
-        fields = 'nombre', \
+        fields = ['nombre',
                  'aula',
-        # exclude = ['materia']
+                 'seccion']
         widgets = {
-
-            'aula': forms.Select(
-                    attrs={'class': 'selectpicker', 'data-live-search': 'true', 'data-size': '20'}),
+            'aula': forms.Select(attrs={'class': 'selectpicker', 'data-live-search': 'true', 'data-size': '20'}),
+            'seccion': forms.Select(attrs={'class': 'selectpicker', 'data-live-search': 'true', 'data-size': '20'}),
         }

@@ -7,6 +7,7 @@
     <script>
         $(document).ready(function () {
             soloNumeros();
+            cedula();
         });
 
         function soloNumeros() {
@@ -15,6 +16,16 @@
                 if (this.value.length > 10)
                     this.value = this.value.slice(0, 10);
             });
+        }
+
+        function cedula() {
+            var ce= $("#id_cedula").val();
+            if (ce===""){
+            }
+            else {
+               $("#id_cedula").prop({ readOnly: true });
+            }
+
         }
     </script>
 

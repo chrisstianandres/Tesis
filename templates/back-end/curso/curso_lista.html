@@ -19,6 +19,7 @@
                         <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>Seccion</th>
                             <th>Aula</th>
                             <th hidden="hidden"></th>
                             <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -30,6 +31,7 @@
                             {% for Curso in lista %}
                                 <tr>
                                     <td>{{ Curso.nombre }}</td>
+                                    <td>{{ Curso.get_seccion_display }}</td>
                                     <td>{{ Curso.aula }}</td>
                                     <td hidden="hidden">{{ Curso.id }}</td>
                                     <td><a type="button" class="btn btn-primary btn-xs" data-toggle="tooltip"

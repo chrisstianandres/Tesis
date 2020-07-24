@@ -20,9 +20,11 @@ def nuevo(request):
         'icono': opc_icono, 'ruta': opc_ruta, 'crud': opc_crud, 'entidad': opc_entidad,
         'boton': 'Guardar Periodo', 'action': 'add', 'titulo': 'Nuevo Registro de un Periodo',
     }
+
     if request.method == 'GET':
         data['form'] = PeriodoForm()
     return render(request, 'back-end/periodo/periodo_form.html', data)
+
 
 def crear(request):
     f = PeriodoForm(request.POST)

@@ -49,9 +49,10 @@ def get_datos(request):
             materia.nombre,
         )
     for curso in cursos:
-        optionsc += '<option value="%s">%s</option>' % (
+        optionsc += '<option value="%s">%s  %s</option>' % (
             curso.id,
             curso.nombre,
+            curso.get_seccion_display()
         )
     response = {}
     response['periodos'] = optionsp
@@ -131,7 +132,8 @@ def editar(request, id_asignar):
         data['form'] = form
     else:
         form = AsignarForm(request.POST, instance=asignar)
-        if Asignar.objects.filter(materia_id=form.data['materia'], curso_id=form.data['curso'], periodo_id=form.data['periodo'],
+        if Asignar.objects.filter(materia_id=form.data['materia'], curso_id=form.data['curso'],
+                                  periodo_id=form.data['periodo'],
                                   docente_id=form.data['docente']):
             if form.is_valid():
                 form.save()

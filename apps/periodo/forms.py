@@ -38,3 +38,15 @@ class PeriodoForm(forms.ModelForm):
             'cedula': forms.TextInput(),
         }
 
+    def clean(self, *args, **kwargs):
+        cleaned_data = super(PeriodoForm, self).clean(*args, **kwargs)
+        periodo_inicio = cleaned_data.get('periodo_inicio', None)
+        periodo_fin = cleaned_data.get('periodo_fin', None)
+        if periodo_inicio is not None:
+            for row2 in Periodo.objects.raw('SELECT "count"(*) as id FROM periodo WHERE %s BETWEEN periodo_inicio and periodo_fin', [periodo_inicio]):
+                if row2.id > 0:
+                    self.add_error('periodo_inicio', 'Periodo ya existente con este rango de fechas')
+                else:
+                    if periodo_fin <= periodo_inicio:
+                        self.add_error('periodo_inicio', 'No puede ingresar el final mayor que el inicio')
+
