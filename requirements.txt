@@ -6,7 +6,7 @@ django-datetimepicker==3.14
 django-widget-tweaks==1.4.8
 html5lib==1.0b10
 httplib2==0.17.3
-numpy==1.18.3
+numpy==1.22.0
 olefile==0.46
 pandas==0.24.2
 Pillow==4.1.0
